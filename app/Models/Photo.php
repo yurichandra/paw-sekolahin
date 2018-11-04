@@ -9,6 +9,9 @@ class Photo extends Model
 {
     use SoftDeletes;
 
+    public const DONATION = 1;
+    public const CAMPAIGN = 2;
+
     /**
      * Attributes that are mass assignable.
      *
