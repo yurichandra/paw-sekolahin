@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\UserRepository;
-use App\Events\UserRegistration;
 use Illuminate\Support\Facades\DB;
 use App\Models\Token;
 
@@ -55,7 +54,7 @@ class UserService
                 $user->token()->create($token);
             });
 
-            // event(new UserRegistration($user));
+            // dispatch(new SendEmailRegistration($user));
 
             return $user;
         } catch (\Exception $e) {
