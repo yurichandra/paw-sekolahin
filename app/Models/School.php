@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    use SoftDeletes;
-
     /**
      * Attributes that are mass assignable.
      *

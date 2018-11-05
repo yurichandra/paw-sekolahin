@@ -118,15 +118,15 @@ class UserController extends RestController
             'identityNumber' => 'required',
         ]);
 
-        try {
-            $data = [
-                'name' => $request->name,
-                'personal' => [
-                    'phone_number' => $request->phoneNumber,
-                    'identity_number' => $request->identityNumber,
-                ],
-            ];
+        $data = [
+            'name' => $request->name,
+            'personal' => [
+                'phone_number' => $request->phoneNumber,
+                'identity_number' => $request->identityNumber,
+            ],
+        ];
 
+        try {
             $model = $service->update($data, $id);
             $response = $this->generateItem($model);
 

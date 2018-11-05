@@ -8,14 +8,19 @@ use App\Models\School;
 
 class SchoolService
 {
+    protected $repo;
+
+    public function __construct(SchoolRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
     /**
      * Get the schools.
-     *
-     * @param SchoolRepository $repo
      */
-    public function get(SchoolRepository $repo)
+    public function get()
     {
-        return $repo->get();
+        return $this->repo->get();
     }
 
     /**
@@ -24,9 +29,9 @@ class SchoolService
      * @param SchoolRepository $repo
      * @param [type]           $id
      */
-    public function find(SchoolRepository $repo, $id)
+    public function find($id)
     {
-        return $repo->find($id);
+        return $this->repo->find($id);
     }
 
     /**
@@ -73,8 +78,8 @@ class SchoolService
      * @param SchoolRepository $repo
      * @param int              $id
      */
-    public function delete(SchoolRepository $repo, $id)
+    public function delete($id)
     {
-        return $repo->destroy($id);
+        return $this->repo->destroy($id);
     }
 }
