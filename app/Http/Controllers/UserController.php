@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Transformers\UserTransformer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends RestController
 {
@@ -56,6 +57,7 @@ class UserController extends RestController
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'status' => 0,
+                'token' => Hash::make($request->email),
             ];
 
             $model = $service->create($data);
@@ -74,8 +76,18 @@ class UserController extends RestController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(UserService $service, $id)
     {
+        try {
+            $model = $service->find($id);
+            $response = $this->generateItem($model);
+
+            return $this->sendResponse($response);
+        } catch (ModelNotFoundException $e) {
+            return $this->sendNotFoundResponse('user_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
     }
 
     /**
@@ -97,8 +109,32 @@ class UserController extends RestController
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserService $service, Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'phoneNumber' => 'required',
+            'identityNumber' => 'required',
+        ]);
+
+        try {
+            $data = [
+                'name' => $request->name,
+                'personal' => [
+                    'phone_number' => $request->phoneNumber,
+                    'identity_number' => $request->identityNumber,
+                ],
+            ];
+
+            $model = $service->update($data, $id);
+            $response = $this->generateItem($model);
+
+            return $this->sendResponse($response);
+        } catch (ModelNotFoundException $e) {
+            return $this->sendNotFoundResponse('user_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
     }
 
     /**
@@ -108,7 +144,16 @@ class UserController extends RestController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserService $service, $id)
     {
+        try {
+            $service->delete($id);
+
+            return response()->json('delete_success');
+        } catch (ModelNotFoundException $e) {
+            return $this->sendNotFoundResponse('user_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
     }
 }

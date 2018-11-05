@@ -21,19 +21,19 @@ abstract class RestController extends Controller
     protected function generateItem($model, $transformer = null)
     {
         if (!is_null($transformer)) {
-            return new Item($model, new $transformer());
+            return new Item($model, new $transformer);
         }
 
-        return new Item($model, new $this->transformer());
+        return new Item($model, new $this->transformer);
     }
 
     protected function generateCollection($model, $transformer = null)
     {
         if (!is_null($transformer)) {
-            return new Collection($model, new $transformer());
+            return new Collection($model, new $transformer);
         }
 
-        return new Collection($model, new $this->transformer());
+        return new Collection($model, new $this->transformer);
     }
 
     protected function sendResponse(ResourceInterface $data, $status = 200)
