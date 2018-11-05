@@ -104,6 +104,7 @@ class UserController extends RestController
     /**
      * Update the specified resource in storage.
      *
+     * @param UserService              $service
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
      *
@@ -140,7 +141,8 @@ class UserController extends RestController
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param UserService $service
+     * @param int         $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -173,5 +175,34 @@ class UserController extends RestController
         } catch (\Exception $e) {
             return $this->sendIseResponse($e->getMessage());
         }
+    }
+
+    /**
+     * Authenticate user for login.
+     *
+     * @param UserService $service
+     * @param Request     $request
+     */
+    public function authenticate(UserService $service, Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        $model = $service->auth($data);
+
+        if (is_null($model)) {
+            return response()->json('unable_to_login', 400);
+        }
+
+        $response = $this->generateItem($model);
+
+        return $this->sendResponse($response);
     }
 }

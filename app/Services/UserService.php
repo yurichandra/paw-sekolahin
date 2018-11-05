@@ -117,4 +117,17 @@ class UserService
 
         return null;
     }
+
+    public function auth(array $data)
+    {
+        $email = $data['email'];
+        $password = $data['password'];
+
+        $user = User::where([
+            'email' => $email,
+            'status' => true,
+        ])->first();
+
+        return password_verify($password, $user->password) ? $user : null;
+    }
 }
