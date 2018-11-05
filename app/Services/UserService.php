@@ -5,17 +5,25 @@ namespace App\Services;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Events\UserRegistration;
+use Illuminate\Support\Facades\DB;
 
 class UserService
 {
+    protected $repo;
+
+    public function __construct(UserRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
     /**
      * Return collection of users.
      *
      * @param UserRepository $repo
      */
-    public function get(UserRepository $repo)
+    public function get()
     {
-        return $repo->get();
+        return $this->repo->get();
     }
 
     /**
@@ -24,9 +32,9 @@ class UserService
      * @param UserRepository $repo
      * @param int            $id
      */
-    public function find(UserRepository $repo, $id)
+    public function find($id)
     {
-        return $repo->find($id);
+        return $this->repo->find($id);
     }
 
     /**
@@ -41,7 +49,7 @@ class UserService
                 $user = User::create($data);
             });
 
-            event(new UserRegistration($user));
+            // event(new UserRegistration($user));
 
             return $user;
         } catch (\Exception $e) {
@@ -75,7 +83,7 @@ class UserService
      * @param UserRepository $repo
      * @param int            $id
      */
-    public function delete(UserRepository $repo, $id)
+    public function delete($id)
     {
         return $this->repo->destroy($id);
     }
