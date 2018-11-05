@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Donation extends Model
 {
-    use SoftDeletes;
-
     /**
      * Attributes that are mass assignable.
      *
@@ -20,15 +17,6 @@ class Donation extends Model
         'amount',
         'status',
         'message',
-    ];
-
-    /**
-     * Attributes for soft deletes.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'deleted_at',
     ];
 
     /**

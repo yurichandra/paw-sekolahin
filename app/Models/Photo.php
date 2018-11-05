@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Photo extends Model
 {
-    use SoftDeletes;
-
     public const DONATION = 1;
     public const CAMPAIGN = 2;
     public const PERSONAL = 3;

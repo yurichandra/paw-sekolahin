@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class School extends Model
 {
@@ -18,15 +17,6 @@ class School extends Model
         'name',
         'address',
         'telephone',
-    ];
-
-    /**
-     * Attributes for soft deletes.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'deleted_at',
     ];
 
     /**
