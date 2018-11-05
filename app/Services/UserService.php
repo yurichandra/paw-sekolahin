@@ -47,6 +47,11 @@ class UserService
         try {
             DB::transaction(function () use ($data, &$user) {
                 $user = User::create($data);
+                $token = [
+                    'name' => $data['token'],
+                ];
+
+                $user->token()->create($token);
             });
 
             // event(new UserRegistration($user));
@@ -69,6 +74,7 @@ class UserService
             DB::transaction(function () use ($data, $id, &$user) {
                 $user = $this->find($id);
                 $user->update($data);
+                $user->personal()->create($data['personal']);
             });
 
             return $this->find($id);

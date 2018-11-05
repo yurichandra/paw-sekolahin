@@ -17,8 +17,20 @@ class UserTransformer extends TransformerAbstract
         return [
             'id' => $user->id,
             'email' => $user->email,
-            'phoneNumber' => $user->personal->phone_number,
-            'noKtp' => $user->personal->identity_number,
+            'name' => $user->name,
+            'personal' => $this->personal($user),
         ];
+    }
+
+    public function personal(User $user)
+    {
+        if ($user->personal !== null) {
+            return [
+                'phoneNumber' => $user->personal->phone_number,
+                'identityNumber' => $user->personal->identity_number,
+            ];
+        }
+
+        return null;
     }
 }
