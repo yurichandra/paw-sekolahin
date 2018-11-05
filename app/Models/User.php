@@ -60,4 +60,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Campaign::class, 'user_id');
     }
+
+    /**
+     * Define relation between user and token.
+     */
+    public function token()
+    {
+        return $this->hasOne(Token::class, 'user_id');
+    }
 }

@@ -66,4 +66,12 @@ class Campaign extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+    /**
+     * Define hasMany relation.
+     */
+    public function donations()
+    {
+        return $this->hasMany(Donation::class, 'campaign_id');
+    }
 }

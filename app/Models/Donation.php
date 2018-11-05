@@ -46,4 +46,9 @@ class Donation extends Model
     {
         return $this->hasOne(Photo::class, 'post_id');
     }
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }
