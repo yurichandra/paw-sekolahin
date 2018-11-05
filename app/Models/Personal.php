@@ -28,4 +28,11 @@ class Personal extends Model
     protected $dates = [
         'deleted_at',
     ];
+
+    /**
+     * Attributes that are hidden.
+     */
+    protected $hidden = [
+        'user_id',
+    ];
 }

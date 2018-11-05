@@ -11,6 +11,7 @@ class Photo extends Model
 
     public const DONATION = 1;
     public const CAMPAIGN = 2;
+    public const PERSONAL = 3;
 
     /**
      * Attributes that are mass assignable.

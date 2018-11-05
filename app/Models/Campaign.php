@@ -34,6 +34,16 @@ class Campaign extends Model
     ];
 
     /**
+     * Attributes that are hidden.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'user_id',
+        'school_id',
+    ];
+
+    /**
      * Define belongsTo relation with user.
      */
     public function user()
