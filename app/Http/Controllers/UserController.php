@@ -56,8 +56,8 @@ class UserController extends RestController
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'status' => 0,
-                'token' => Hash::make($request->email),
+                'status' => false,
+                'token' => str_random(40),
             ];
 
             $model = $service->create($data);
@@ -152,6 +152,24 @@ class UserController extends RestController
             return response()->json('delete_success');
         } catch (ModelNotFoundException $e) {
             return $this->sendNotFoundResponse('user_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
+    }
+
+    /**
+     * Verified user account.
+     *
+     * @param UserService $service
+     * @param string      $token
+     */
+    public function verifyUser(UserService $service, $token)
+    {
+        try {
+            $model = $service->verify($token);
+            $response = $this->generateItem($model);
+
+            return $this->sendResponse($response);
         } catch (\Exception $e) {
             return $this->sendIseResponse($e->getMessage());
         }

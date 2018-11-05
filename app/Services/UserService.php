@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Events\UserRegistration;
 use Illuminate\Support\Facades\DB;
+use App\Models\Token;
 
 class UserService
 {
@@ -92,5 +93,28 @@ class UserService
     public function delete($id)
     {
         return $this->repo->destroy($id);
+    }
+
+    /**
+     * Verify user account.
+     *
+     * @param string $token
+     */
+    public function verify($token = null)
+    {
+        $token = Token::where('name', $token)->first();
+
+        if (!is_null($token)) {
+            $user = $token->user;
+            $data = [
+                'status' => true,
+            ];
+
+            $user->update($data);
+
+            return $this->find($user->id);
+        }
+
+        return null;
     }
 }
