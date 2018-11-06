@@ -8,14 +8,21 @@ use Illuminate\Support\Facades\DB;
 
 class CampaignService
 {
+    protected $repo;
+
+    public function __construct(CampaignRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
     /**
      * Get the campaigns.
      *
      * @param CampaignRepository $repo
      */
-    public function get(CampaignRepository $repo)
+    public function get()
     {
-        return $repo->get();
+        return $this->repo->get();
     }
 
     /**
@@ -24,9 +31,9 @@ class CampaignService
      * @param CampaignRepository $repo
      * @param int                $id
      */
-    public function find(CampaignRepository $repo, $id)
+    public function find($id)
     {
-        return $repo->find($id);
+        return $this->repo->find($id);
     }
 
     /**
@@ -41,7 +48,7 @@ class CampaignService
                 $campaign = Campaign::create($data);
             });
 
-            return $school;
+            return $campaign;
         } catch (\Exception $e) {
             throw $e;
         }
@@ -73,8 +80,8 @@ class CampaignService
      * @param CampaignRepository $repo
      * @param int                $id
      */
-    public function delete(CampaignRepository $repo, $id)
+    public function delete($id)
     {
-        return $repo->destroy($id);
+        return $this->repo->destroy($id);
     }
 }

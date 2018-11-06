@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Campaign extends Model
 {
-    use SoftDeletes;
-
     /**
      * Attributes that are mass assignable.
      *
@@ -22,15 +19,6 @@ class Campaign extends Model
         'target',
         'raised',
         'date',
-    ];
-
-    /**
-     * Attributes for soft deletes.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'deleted_at',
     ];
 
     /**
@@ -56,7 +44,7 @@ class Campaign extends Model
      */
     public function photo()
     {
-        return $this->hasOne(Photo::class, 'post_id');
+        // return $this->hasOne(Photo::class, 'post_id');
     }
 
     /**

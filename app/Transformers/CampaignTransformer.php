@@ -21,7 +21,6 @@ class CampaignTransformer extends TransformerAbstract
             'target' => $campaign->target,
             'raised' => $campaign->raised,
             'date' => $campaign->date,
-            'photo' => $campaign->photo->path,
             'school' => $this->schoolDetails($campaign),
         ];
     }
