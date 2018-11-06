@@ -27,3 +27,6 @@ Route::resource('schools', 'SchoolController');
 
 // For CampaignController
 Route::resource('campaigns', 'CampaignController');
+
+// For DonationController
+Route::resource('donations', 'DonationController');

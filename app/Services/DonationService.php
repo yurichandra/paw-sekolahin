@@ -3,17 +3,26 @@
 namespace App\Services;
 
 use App\Repositories\DonationRepository;
+use Illuminate\Support\Facades\DB;
+use App\Models\Donation;
 
 class DonationService
 {
+    protected $repo;
+
+    public function __construct(DonationRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
     /**
      * Return collection of donations.
      *
      * @param DonationRepository $repo
      */
-    public function get(DonationRepository $repo)
+    public function get()
     {
-        return $repo->get();
+        return $this->repo->get();
     }
 
     /**
@@ -22,9 +31,9 @@ class DonationService
      * @param DonationRepository $repo
      * @param int                $id
      */
-    public function find(DonationRepository $repo, $id)
+    public function find($id)
     {
-        return $repo->find($id);
+        return $this->repo->find($id);
     }
 
     /**
@@ -71,8 +80,8 @@ class DonationService
      * @param DonationRepository $repo
      * @param int                $id
      */
-    public function delete(DonationRepository $repo, $id)
+    public function delete($id)
     {
-        return $repo->destroy($id);
+        return $this->repo->destroy($id);
     }
 }

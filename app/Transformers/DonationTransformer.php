@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
+use App\Models\Donation;
 
 class DonationTransformer extends TransformerAbstract
 {
