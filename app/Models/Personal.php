@@ -13,6 +13,7 @@ class Personal extends Model
      */
     protected $fillable = [
         'user_id',
+        'photo_id',
         'phone_number',
         'identity_number',
     ];
@@ -32,4 +33,9 @@ class Personal extends Model
     protected $hidden = [
         'user_id',
     ];
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
 }

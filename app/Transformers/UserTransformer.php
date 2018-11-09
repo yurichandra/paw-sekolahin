@@ -28,6 +28,18 @@ class UserTransformer extends TransformerAbstract
             return [
                 'phoneNumber' => $user->personal->phone_number,
                 'identityNumber' => $user->personal->identity_number,
+                'photo' => $this->photo($user),
+            ];
+        }
+
+        return null;
+    }
+
+    public function photo(User $user)
+    {
+        if ($user->personal->photo !== null) {
+            return [
+                'path' => $user->personal->photo->path,
             ];
         }
 
