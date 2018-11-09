@@ -83,9 +83,9 @@ return [
     |
     */
 
-    'username' => env('yurichandra'),
+    'username' => 'yurivhandra',
 
-    'password' => env('Arsenal1886'),
+    'password' => '10Maret98',
 
     /*
     |--------------------------------------------------------------------------

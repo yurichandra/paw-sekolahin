@@ -18,9 +18,10 @@ class SendEmailRegistration extends Job
     public function handle()
     {
         try {
-            Mail::to($user->email)->send(new UserRegistered($user));
+            Mail::to($this->user->email)
+            ->send(new UserRegistered($this->user));
         } catch (\Exception $e) {
-            throw $e->getMessage();
+            throw $e;
         }
     }
 }
