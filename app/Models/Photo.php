@@ -16,7 +16,6 @@ class Photo extends Model
      * @var array
      */
     protected $fillable = [
-        'post_id',
         'path',
         'type',
     ];
@@ -29,4 +28,12 @@ class Photo extends Model
     protected $dates = [
         'deleted_at',
     ];
+
+    /**
+     * Return hasOne relation.
+     */
+    public function personal()
+    {
+        return $this->hasOne(Personal::class, 'photo_id');
+    }
 }

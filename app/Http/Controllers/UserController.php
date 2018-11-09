@@ -7,6 +7,8 @@ use App\Services\UserService;
 use App\Transformers\UserTransformer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Photo;
 
 class UserController extends RestController
 {
@@ -118,11 +120,25 @@ class UserController extends RestController
             'identityNumber' => 'required',
         ]);
 
+        $photo = $service->find($id)
+            ->personal
+            ->photo;
+
+        $file = $request->photo ? $request->photo : $photo->path;
+
+        if ($file !== $photo->path) {
+            Storage::disk('s3')->put($file, $file);
+            $photo = Photo::firstOrCreate([
+                'path' => $file,
+            ]);
+        }
+
         $data = [
             'name' => $request->name,
             'personal' => [
                 'phone_number' => $request->phoneNumber,
                 'identity_number' => $request->identityNumber,
+                'photo_id' => $photo->id,
             ],
         ];
 
@@ -167,6 +183,7 @@ class UserController extends RestController
      */
     public function verifyUser(UserService $service, $token)
     {
+        return view('mails.email');
         try {
             $model = $service->verify($token);
             $response = $this->generateItem($model);

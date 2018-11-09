@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use App\Models\Token;
+use App\Jobs\SendEmailRegistration;
 
 class UserService
 {
@@ -51,10 +52,17 @@ class UserService
                     'name' => $data['token'],
                 ];
 
+                $personal = [
+                    'photo_id' => null,
+                    'phone_number' => null,
+                    'identity_number' => null,
+                ];
+
                 $user->token()->create($token);
+                $user->personal()->create($personal);
             });
 
-            // dispatch(new SendEmailRegistration($user));
+            dispatch(new SendEmailRegistration($user));
 
             return $user;
         } catch (\Exception $e) {
@@ -74,7 +82,7 @@ class UserService
             DB::transaction(function () use ($data, $id, &$user) {
                 $user = $this->find($id);
                 $user->update($data);
-                $user->personal()->create($data['personal']);
+                $user->personal()->update($data['personal']);
             });
 
             return $this->find($id);
