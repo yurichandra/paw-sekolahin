@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // For UserController
 Route::resource('users', 'UserController');
-Route::get('/verify/{token}', 'UserController@verifyUser');
+Route::get('/verify/{token}', 'UserController@verifyUser')->name('user-verify');
 Route::post('/login', 'UserController@authenticate');
 
 // For SchoolController
