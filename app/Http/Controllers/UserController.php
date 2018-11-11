@@ -55,6 +55,7 @@ class UserController extends RestController
 
         try {
             $data = [
+                'role_id' => 1,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),

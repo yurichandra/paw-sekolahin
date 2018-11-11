@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use App\Models\Token;
-use App\Jobs\SendEmailRegistration;
 
 class UserService
 {
@@ -62,7 +61,8 @@ class UserService
                 $user->personal()->create($personal);
             });
 
-            dispatch(new SendEmailRegistration($user));
+            Mail::to($user->email)
+            ->send(new UserRegistered($user));
 
             return $user;
         } catch (\Exception $e) {

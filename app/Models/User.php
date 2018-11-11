@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Token::class, 'user_id');
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
