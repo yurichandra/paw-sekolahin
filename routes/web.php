@@ -13,3 +13,6 @@
 
 Route::get('/', 'IndexController@index');
 Route::get('/admin', 'IndexController@admin');
+Route::get('/admin/{any}', function () {
+    return view('admin');
+})->where('any', '[\/\w\.-]*');
