@@ -40,6 +40,13 @@
     import Auth from '../../auth'
 
     export default {
+        props: {
+            value : {
+                type : Boolean,
+                required : true,
+            }
+        },
+
         data () {
             return {
                 email : '',
@@ -55,7 +62,8 @@
             async authenticate () {
                 try {
                     await Auth.authenticate(this.email, this.password)
-                    this.$router.push({ name: 'dashboard' })
+                    this.$emit('input', true)
+                    this.$router.replace({ name: 'dashboard'})
                 } catch (err) {
                     this.error.unableToLogin = true
                 }

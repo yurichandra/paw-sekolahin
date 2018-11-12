@@ -1,6 +1,5 @@
 <template>
     <div>
-        <HeaderView />
         <router-view></router-view>
         <div class="row">
             <div class="col m4">
