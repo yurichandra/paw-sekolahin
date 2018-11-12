@@ -184,7 +184,6 @@ class UserController extends RestController
      */
     public function verifyUser(UserService $service, $token)
     {
-        return view('mails.email');
         try {
             $model = $service->verify($token);
             $response = $this->generateItem($model);

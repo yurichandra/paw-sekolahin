@@ -20,8 +20,10 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "js-cookie": "^2.2.0",
         "vue-axios": "^2.1.4",
         "vue-router": "^3.0.1",
+        "vue-session": "^1.0.0",
         "vuex": "^3.0.1"
     }
 }
