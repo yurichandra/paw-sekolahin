@@ -9,7 +9,7 @@ const mutations = {
     setSource (state, source) {
         state.data.name = source.name
         state.data.email = source.email
-    }
+    },
 };
 
 const getters = {
