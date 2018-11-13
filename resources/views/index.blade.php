@@ -15,7 +15,7 @@
     <script src="js/uikit-icons.js"></script>
     <script src="nprogress.js"></script>
 
-    <title>uaspaw</title>
+    <title>Sekolahin</title>
 </head>
 <body>
     <div id="app">

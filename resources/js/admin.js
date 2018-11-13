@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router'
-import { routes } from './routes'
+import { routes } from './service/admin/routes'
 import Admin from './components/Admin'
 import Vue from 'vue'
 import store from './store'
