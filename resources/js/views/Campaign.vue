@@ -1,8 +1,6 @@
 <template>
   <div class="campaign" style="background-image: url(images/pattern.png)">
-    <Header />
     <CardList/>
-    <Footer />
   </div>
 </template>
 

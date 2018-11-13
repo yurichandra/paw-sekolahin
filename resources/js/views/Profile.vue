@@ -1,9 +1,7 @@
 <template>
     <div style="background-image: url(images/pattern.png)">
-        <Header />
         <HeroBlock />
         <ProfileEdit />
-        <Footer />
     </div>
 </template>
 

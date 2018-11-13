@@ -1,8 +1,6 @@
 <template>
   <div class="campaign-create" style="background-image: url(images/pattern.png)">
-    <Header />
     <Form/>
-    <Footer />
   </div>
 </template>
 

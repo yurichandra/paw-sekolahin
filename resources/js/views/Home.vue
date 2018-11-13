@@ -1,10 +1,8 @@
 <template>
     <div class="home" style="background-image: url(images/pattern.png)">
-        <Header />
         <HeroImage />
         <CampaignList />
         <HomeSection />
-        <Footer />
     </div>
 </template>
 

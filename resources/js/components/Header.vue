@@ -12,7 +12,7 @@
           <ul class="uk-navbar-nav">
             <li class="uk-visible@s"><router-link to="/campaign">Campaign</router-link></li>
             <li class="uk-visible@s"><router-link to="/partners">Partners</router-link></li>
-            <li class="uk-visible@s"><router-link to="/#login">Login</router-link></li>
+            <li class="uk-visible@s"><router-link to="/login">Login</router-link></li>
             <li><a class="uk-icon" data-uk-icon="menu"></a></li>
           </ul>
         </div>
