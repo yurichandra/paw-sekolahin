@@ -15,16 +15,16 @@
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">Email</label>
-                                <input class="uk-input" type="text" placeholder="Email ..">
+                                <input class="uk-input" type="text" placeholder="Email">
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">Password</label>
-                                <input class="uk-input" type="password" placeholder="Password ..">
+                                <input class="uk-input" type="password" placeholder="Password">
                             </div>
 
                             <div class="uk-margin">
-                                <input class="uk-button" type="button" value="Login">
+                                <input class="uk-button" type="button" value="Login" @click="loginHandler">
                             </div>
 
                         </fieldset>

@@ -26,6 +26,28 @@ export default {
         })
     },
 
+    register (email, name, password, confirmPassword) {
+        return new Promise((resolve, reject) => {
+            const payload = {
+                email,
+                name,
+                password,
+                confirmPassword
+            }
+
+            const successCallback =  (res) => {
+                const data = res.data
+                resolve()
+            }
+
+            const errorCallback = (err) => {
+                reject(err)
+            }
+
+            Http.post('/api/users', payload, successCallback, errorCallback)
+        })
+    },
+
     logout () {
         this.deleteCookie
         store.commit('LoggedUser/setSource', {})

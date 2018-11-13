@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use App\Models\Token;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegistered;
 
 class UserService
 {

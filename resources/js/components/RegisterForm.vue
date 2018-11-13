@@ -49,14 +49,16 @@
                                     v-model="confirmPassword"
                                     @keyup="passwordCheck">
                             </div>
-
-                            <span v-if="error">Your password is different</span>
+                            <span v-if="failed" class="red">You can't register!</span>
+                            <span v-if="error.password" class="red">Your password is different</span>
+                            <span v-if="success.registration" class="green">Registration success! Check your email</span>
 
                             <div class="uk-margin">
                                 <input
                                     class="uk-button"
                                     type="button"
                                     value="register"
+                                    :disabled="error.button"
                                     @click="registerHandler">
                             </div>
 
@@ -83,27 +85,35 @@
                 password : '',
                 name : '',
                 confirmPassword : '',
-                error : false
+                error : {
+                    password : false,
+                    button : false
+                },
+                success : {
+                    registration : false
+                }
             }
         },
 
         methods: {
             passwordCheck () {
                 if (this.password !== this.confirmPassword) {
-                    this.error = true
+                    this.error.password = true
+                    this.error.button = true
                     return this.error
                 }
 
-                this.error = false
+                this.error.password = false
+                this.error.button = false
                 return this.error
             },
 
             async registerHandler () {
                 try {
                     await Auth.register(this.email, this.name, this.password, this.confirmPassword)
-                    console.log('Berhasil daftar!')
+                    this.success.registration = true
                 } catch (err) {
-                    console.log(err)
+                    this.failed = true
                 }
             }
         }
@@ -111,6 +121,18 @@
 
 </script>
 
-<style>
+<style scoped>
+    .red {
+        background-color: red;
+        padding: 5px;
+        color: white;
+        border-radius: 5px;
+    }
 
+    .green {
+        background-color: green;
+        padding: 5px;
+        color: white;
+        border-radius: 5px;
+    }
 </style>

@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
+    'host' => env('MAIL_HOST', 'in-v3.mailjet.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,9 +83,9 @@ return [
     |
     */
 
-    'username' => 'yurivhandra',
+    'username' => '205e8afbae54ed52ca8bad3bd7c8f97f',
 
-    'password' => '10Maret98',
+    'password' => '487113e13435f7cd1fb35d30f9c457cd',
 
     /*
     |--------------------------------------------------------------------------
