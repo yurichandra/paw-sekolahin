@@ -6,11 +6,14 @@ import LoginView from './components/admin/LoginView.vue'
 import DonationView from './components/admin/DonationView.vue'
 import SchoolView from './components/admin/SchoolView.vue'
 
+import HomeView from './views/Home.vue'
+import CreateView from './views/CampaignCreate.vue'
+import CampaignView from './views/Campaign.vue'
+import ProfileView from './views/Profile.vue'
+
+
 export const routes = [
-    {
-        path : '/campaigns',
-        component : Campaign
-    },
+    // ROUTES UNTUK ADMIN
     {
         name : 'admin',
         path : '/admin',
@@ -30,6 +33,33 @@ export const routes = [
         name : 'users',
         path : '/admin/users',
         component : UserView
+    },
+    // ROUTES UNTUK UTAMA
+    {
+        path: '/',
+        name: 'home',
+        component: HomeView
+      },
+      {
+        path: '/create',
+        name: 'campaign-create',
+        component: CreateView
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: ProfileView
+      },
+      {
+        path: '/campaign',
+        name: 'campaign',
+        component: CampaignView
+      },
+      {
+          path: '*',
+          name: 'all',
+          component: HomeView
+      }
     },
     {
         name : 'donations',
