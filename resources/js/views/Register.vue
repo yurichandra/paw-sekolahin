@@ -1,5 +1,5 @@
 <template>
-  <div class="campaign" style="background-image: url(images/pattern.png)">
+  <div class="uk-height-1-1" style="background-image: url(images/pattern.png)">
     <Register />
   </div>
 </template>

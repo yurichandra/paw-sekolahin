@@ -15,5 +15,9 @@ const router = new VueRouter({
 new Vue({
   router,
   store,
+  mounted(){
+    var element = document.getElementById("login");
+    element.setAttribute("href", "#modal-center");
+  },
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

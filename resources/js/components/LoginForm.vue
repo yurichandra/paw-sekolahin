@@ -1,40 +1,63 @@
 <template>
-    <!-- Login -->
-    <section class="uk-section uk-section-small">
-        <div class="uk-container uk-container-small uk-hidden@s uk-background-cover" style="height: 100px; width: 100%; background-image: url(images/2.jpg)"></div>
-        <div class="uk-container uk-container-small uk-background-default">
-            <div data-uk-grid="">
-                <div class="uk-width-1-5 uk-cover-container uk-visible@s">
-                    <img src="images/2.jpg" alt="Alt img" data-uk-cover="" class="uk-cover" style="height: 462px; width: 1200px;">
-                </div>
-                <div class="uk-width-4-5@s uk-width-1-1 uk-margin">
-                    <form class="uk-form-stacked">
-                        <fieldset class="uk-fieldset">
 
-                            <legend class="uk-legend">Login</legend>
+    <div id="modal-center" class="uk-flex-top" style="background-image: url(images/pattern.png)" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-width-large uk-flex uk-flex-center">
 
-                            <div class="uk-margin">
-                                <label class="uk-form-label">Email</label>
-                                <input class="uk-input" type="text" placeholder="Email">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-width-medium">
+                <form action="login.html">
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">MASUK</legend>
+                        <div class="uk-margin">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon uk-form-icon-flip uk-icon" data-uk-icon="icon: user"></span>
+                                <input class="uk-input uk-form-large" required="" placeholder="Username" type="text">
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon uk-form-icon-flip uk-icon" data-uk-icon="icon: lock"></span>
+                                <input class="uk-input uk-form-large" required="" placeholder="Password" type="password">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label><input class="uk-checkbox" type="checkbox"> Keep me logged in</label>
+                        </div>
+                        <div class="uk-margin">
+                            <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1">LOG
+                                IN</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <div>
+                    <div data-uk-grid="">
+                        <div class="uk-text-center"><a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small">Forgot
+                                your password?</a></div>
+                        <div class="uk-text-left"> <a href="" class="uk-button uk-button-small uk-button-danger">Buat
+                                akun!</a></div>
+                    </div>
+                    <div class="uk-margin-small-top" id="recover" hidden="">
+                        <form action="login.html">
+
+                            <div class="uk-margin-small">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon uk-form-icon-flip uk-icon" data-uk-icon="icon: mail"></span>
+                                    <input class="uk-input" placeholder="E-mail" required="" type="text">
+                                </div>
+                            </div>
+                            <div class="uk-margin-small">
+                                <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-width-1-1">SEND
+                                    PASSWORD</button>
                             </div>
 
-                            <div class="uk-margin">
-                                <label class="uk-form-label">Password</label>
-                                <input class="uk-input" type="password" placeholder="Password">
-                            </div>
-
-                            <div class="uk-margin">
-                                <input class="uk-button" type="button" value="Login" @click="loginHandler">
-                            </div>
-
-                        </fieldset>
-                    </form>
-                    Don't have an account? <router-link to="/register">Register here</router-link>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </section>
-    <!-- /Login -->
+    </div>
 </template>
 
 <script>

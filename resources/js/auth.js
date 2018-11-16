@@ -49,12 +49,12 @@ export default {
     },
 
     logout () {
-        this.deleteCookie
-        store.commit('LoggedUser/setSource', {})
+        this.deleteCookie();
+        store.commit('LoggedUser/setSource', {});
     },
 
     setCookie (data) {
-        Cookie.set('email', data)
+        Cookie.set('email', data);
     },
 
     getCookie () {
