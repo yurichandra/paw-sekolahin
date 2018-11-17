@@ -5,27 +5,29 @@
 
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <div class="uk-width-medium">
-                <form action="login.html">
+                <form>
                     <fieldset class="uk-fieldset">
                         <legend class="uk-legend">MASUK</legend>
                         <div class="uk-margin">
                             <div class="uk-inline uk-width-1-1">
                                 <span class="uk-form-icon uk-form-icon-flip uk-icon" data-uk-icon="icon: user"></span>
-                                <input class="uk-input uk-form-large" required="" placeholder="Username" type="text">
+                                <input v-model="email" class="uk-input uk-form-large" required="" placeholder="nice@mail.com"
+                                    type="text">
                             </div>
                         </div>
-                        <div class="uk-margin">
+                        <div class="uk-margin uk-margin-remove-bottom">
                             <div class="uk-inline uk-width-1-1">
                                 <span class="uk-form-icon uk-form-icon-flip uk-icon" data-uk-icon="icon: lock"></span>
-                                <input class="uk-input uk-form-large" required="" placeholder="Password" type="password">
+                                <input v-model="password" class="uk-input uk-form-large" required="" placeholder="Password"
+                                    type="password">
                             </div>
                         </div>
-
+                        <span v-if="error" class="red">Gagal dalam autentifikasi</span>
                         <div class="uk-margin">
-                            <label><input class="uk-checkbox" type="checkbox"> Keep me logged in</label>
+                            <label><input v-model="CheckCookie" class="uk-checkbox" type="checkbox"> Keep me logged in</label>
                         </div>
                         <div class="uk-margin">
-                            <button type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1">LOG
+                            <button @click="LoginHandler" type="submit" class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1">LOG
                                 IN</button>
                         </div>
                     </fieldset>
@@ -61,13 +63,76 @@
 </template>
 
 <script>
+    import Auth from '../auth'
+
     export default {
         name: "LoginForm",
-        props: {}
+        props: {},
+        data() {
+            return {
+                email: '',
+                password: '',
+                saved: false,
+                error: false,
+                standby: false
+            }
+        },
+        computed: {
+            CheckCookie() {
+                const SavedEmail = Auth.LoadCookie();
+                if (SavedEmail) {
+                    this.saved = true;
+                    this.email = SavedEmail;
+                    return true;
+                }
+                return false;
+            }
+        },
+
+        methods: {
+            async LoginHandler(e) {
+                e.preventDefault();
+                this.standby = true;
+                try {
+                    await Auth.authenticate(this.email, this.password);
+                    UIkit.notification("<span uk-icon='icon: happy'></span> Berhasil Login!", {
+                        pos: 'top-right',
+                        status: 'primary'
+                    });
+                    console.log(this.$store.getters['LoggedUser/name']);
+
+                    var element = document.getElementById("modal-center");
+                    UIkit.modal(element).hide();
+                    this.error = false;
+                    this.standby = false;
+                } catch (err) {
+                    console.log(err);
+                    UIkit.notification("<span uk-icon='icon: warning'></span> Gagal Login!!", {
+                        pos: 'top-right',
+                        status: 'danger'
+                    });
+                    this.error = true;
+                    this.standby = false;
+                }
+            },
+        }
     }
 
 </script>
 
-<style>
+<style scoped>
+    .red {
+        background-color: red;
+        padding: 5px;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .green {
+        background-color: green;
+        padding: 5px;
+        color: white;
+        border-radius: 5px;
+    }
 
 </style>

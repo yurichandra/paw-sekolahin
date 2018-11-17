@@ -9,21 +9,22 @@ export default {
             const payload = {
                 email,
                 password
-            }
+            };
 
             const successCallback = (res) => {
                 const user = res.data
-                store.commit('LoggedUser/setSource', user.data)
+                store.commit('LoggedUser/setSource', user.data);
                 // this.setCookie(user.data.email)
-                resolve()
-            }
+                this.SaveEmail(payload.email);
+                resolve();
+            };
 
             const errorCallback = (err) => {
-                reject(err)
-            }
+                reject(err);
+            };
 
-            Http.post('/api/login', payload, successCallback, errorCallback)
-        })
+            Http.post('/api/login', payload, successCallback, errorCallback);
+        });
     },
 
     register (email, name, password, confirmPassword) {
@@ -33,35 +34,35 @@ export default {
                 name,
                 password,
                 confirmPassword
-            }
+            };
 
             const successCallback =  (res) => {
-                const data = res.data
-                resolve()
-            }
+                const data = res.data;
+                resolve();
+            };
 
             const errorCallback = (err) => {
-                reject(err)
-            }
+                reject(err);
+            };
 
-            Http.post('/api/users', payload, successCallback, errorCallback)
-        })
+            Http.post('/api/users', payload, successCallback, errorCallback);
+        });
     },
 
     logout () {
-        this.deleteCookie();
+        this.DeleteCookie();
         store.commit('LoggedUser/setSource', {});
     },
 
-    setCookie (data) {
-        Cookie.set('email', data);
+    SaveEmail (email) {
+        Cookie.set('email', email);
     },
 
-    getCookie () {
-        return Cookie.get('email')
+    LoadCookie () {
+        return Cookie.get('email');
     },
 
-    deleteCookie () {
-        Cookie.remove('email')
+    DeleteCookie() {
+        Cookie.remove('email');
     }
-}
+};

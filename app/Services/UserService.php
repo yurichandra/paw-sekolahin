@@ -129,6 +129,7 @@ class UserService
 
     public function auth(array $data)
     {
+        // TODO: Buat bisa jika status 0, biar bisa dikasih peringatan
         $email = $data['email'];
         $password = $data['password'];
 

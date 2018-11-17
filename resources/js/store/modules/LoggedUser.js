@@ -1,19 +1,21 @@
 const state = {
-    data: {
-        name : "",
-        email : "",
+    User: {
+        name : null,
+        email : null,
+        status: null
     }
 };
 
 const mutations = {
     setSource (state, source) {
-        state.data.name = source.name
-        state.data.email = source.email
+        state.User.name = source.name;
+        state.User.email = source.email;
+        state.User.status = source.status;
     },
 };
 
 const getters = {
-    name: state => state.data.name
+    name: state => state.User.name
 };
 
 export default {
@@ -21,4 +23,4 @@ export default {
     state,
     mutations,
     getters,
-}
+};
