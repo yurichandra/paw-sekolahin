@@ -48,7 +48,7 @@
 <script>
     export default {
         name: "CampaignForm",
-        props: {}
+        props: {},
     }
 
 </script>

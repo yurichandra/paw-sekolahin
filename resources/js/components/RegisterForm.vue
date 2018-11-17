@@ -146,14 +146,14 @@
         background-color: red;
         padding: 5px;
         color: white;
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
     .green {
         background-color: green;
         padding: 5px;
         color: white;
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
 </style>
