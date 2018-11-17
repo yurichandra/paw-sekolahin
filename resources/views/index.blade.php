@@ -9,11 +9,13 @@
     <link rel="icon" href=" ">
 
     <!-- THIS IS UIKIT DEPEDENCY -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/uikit.css">
-    <script src="js/uikit.js"></script>
-    <script src="js/uikit-icons.js"></script>
-    <script src="nprogress.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/uikit.css">
+    <link rel="stylesheet" href="/css/nprogress.css">
+
+    <script src="/js/uikit.js"></script>
+    <script src="/js/uikit-icons.js"></script>
+    <script src="/js/nprogress.js"></script>
 
     <title>Sekolahin</title>
 </head>

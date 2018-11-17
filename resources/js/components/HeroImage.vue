@@ -27,7 +27,7 @@
 
 <script>
   export default {
-    name: 'HeroImage',
+    name: 'hero-image',
     props: {}
   }
 

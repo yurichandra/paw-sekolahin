@@ -81,7 +81,7 @@
     import Auth from '../auth'
 
     export default {
-        name: "RegisterForm",
+        name: "register-form",
         props: {},
 
         data() {

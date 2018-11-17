@@ -42,7 +42,7 @@
 <script>
   import CardData from '../components/CardData.vue'
   export default {
-    name: "CardList",
+    name: "card-list",
     components: {
       CardData
     },

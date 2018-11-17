@@ -53,7 +53,7 @@
 
 <script>
   export default {
-    name: 'CardData',
+    name: 'card-data',
     props: {}
   }
 

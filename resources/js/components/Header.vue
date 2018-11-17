@@ -5,7 +5,7 @@
             <nav class="uk-background-default uk-navbar" data-uk-navbar="">
                 <div class="uk-navbar-left">
                     <div class="uk-navbar-item">
-                        <a class="uk-logo" href=""><img src="img/cover-logo.svg" alt="Logo"></a>
+                        <router-link to="/" class="uk-logo"><img src="img/cover-logo.svg" alt="Logo"></router-link>
                     </div>
                 </div>
                 <div class="uk-navbar-right">
@@ -30,7 +30,7 @@
 
 <script>
     export default {
-        name: 'Header',
+        name: 'header',
         props: {},
         methods: {
             ShowModal() {

@@ -66,7 +66,7 @@
     import Auth from '../auth'
 
     export default {
-        name: "LoginForm",
+        name: "login-form",
         props: {},
         data() {
             return {

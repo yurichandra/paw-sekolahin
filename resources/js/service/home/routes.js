@@ -1,9 +1,10 @@
-import HomeView from '../../views/Home.vue'
-import CreateView from '../../views/CampaignCreate.vue'
-import CampaignView from '../../views/Campaign.vue'
-import ProfileView from '../../views/Profile.vue'
-import LoginView from '../../views/Login.vue'
-import RegisterView from '../../views/Register.vue'
+import HomeView from '../../views/Home.vue';
+import CreateView from '../../views/CampaignCreate.vue';
+import CampaignView from '../../views/Campaign.vue';
+import ProfileView from '../../views/Profile.vue';
+import RegisterView from '../../views/Register.vue';
+import DetailView from '../../views/CampaignDetail.vue';
+
 
 export const routes = [
     {
@@ -17,6 +18,11 @@ export const routes = [
         component: CreateView
     },
     {
+        path: '/campaign/detail',
+        name: 'campaign-detail',
+        component: DetailView
+    },
+    {
         path: '/profile',
         name: 'profile',
         component: ProfileView
@@ -25,11 +31,6 @@ export const routes = [
         path: '/campaign',
         name: 'campaign',
         component: CampaignView
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: LoginView
     },
     {
         path: '/register',

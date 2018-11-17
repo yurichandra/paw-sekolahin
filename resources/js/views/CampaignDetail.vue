@@ -1,26 +1,32 @@
 <template>
-  <div class="campaign-create" style="background-image: url(images/pattern.png)">
-    <Form/>
-  </div>
+    <div>
+        <div style="background-image: url(images/pattern.png)">
+            <Author />
+            <Article />
+        </div>
+        <Donation />
+        <Bar />
+    </div>
 </template>
 
 <script>
-  import Header from '../components/Header.vue'
-  import Footer from '../components/Footer.vue'
-  import Form from '../components/CampaignForm.vue'
+    import Author from '../components/AuthorDetail.vue'
+    import Bar from '../components/BottomBar.vue'
+    import Article from '../components/Article.vue'
+    import Donation from '../components/Donation.vue'
 
-  export default {
-    name: 'campaign-create',
-    components: {
-      Header,
-      Form,
-      Footer
+    export default {
+        name: 'campaign-detail',
+        components: {
+            Article,
+            Author,
+            Bar,
+            Donation
+        }
     }
-  }
 
 </script>
 
 <style>
 
 </style>
-

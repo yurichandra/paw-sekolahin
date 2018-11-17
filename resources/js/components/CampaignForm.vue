@@ -47,7 +47,7 @@
 
 <script>
     export default {
-        name: "CampaignForm",
+        name: "campaign-form",
         props: {}
     }
 

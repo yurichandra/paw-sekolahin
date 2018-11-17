@@ -30,7 +30,7 @@
 
 <script>
     export default {
-        name: "StickyMenu",
+        name: "sticky-menu",
         props: {}
     }
 

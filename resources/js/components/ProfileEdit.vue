@@ -58,7 +58,7 @@
     import StickyMenu from '../components/StickyMenu.vue'
     import CampaignForm from '../components/CampaignForm.vue'
     export default {
-        name: "ProfileEdit",
+        name: "profile-edit",
         components: {
             StickyMenu,
             CampaignForm

@@ -1,24 +1,23 @@
 <template>
     <div style="background-image: url(images/pattern.png)">
         <HeroBlock />
-        <ProfileEdit />
+        <!-- <UserEdit /> -->
+        <TableEdit />
     </div>
 </template>
 
 <script>
     // @ is an alias to /src
-    import Header from '../components/Header.vue'
     import HeroBlock from '../components/HeroBlock.vue'
-    import ProfileEdit from '../components/ProfileEdit.vue'
-    import Footer from '../components/Footer.vue'
+    import UserEdit from '../components/ProfileEdit.vue'
+    import TableEdit from '../components/ProfileTable.vue'
 
     export default {
-        name: 'Profile',
+        name: 'profile',
         components: {
-            Header,
             HeroBlock,
-            ProfileEdit,
-            Footer
+            UserEdit,
+            TableEdit
         }
     }
 

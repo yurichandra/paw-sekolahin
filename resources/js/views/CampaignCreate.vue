@@ -5,16 +5,12 @@
 </template>
 
 <script>
-  import Header from '../components/Header.vue'
-  import Footer from '../components/Footer.vue'
   import Form from '../components/CampaignForm.vue'
 
   export default {
     name: 'campaign-create',
     components: {
-      Header,
-      Form,
-      Footer
+      Form
     }
   }
 

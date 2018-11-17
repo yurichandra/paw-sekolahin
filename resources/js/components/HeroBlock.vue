@@ -18,7 +18,7 @@
 
 <script>
     export default {
-        name: "HeroBlock",
+        name: "hero-block",
         props: {}
     }
 

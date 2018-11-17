@@ -78,7 +78,7 @@
 
 <script>
   export default {
-    name: 'SlideList',
+    name: 'slide-list',
     props: {}
   }
 

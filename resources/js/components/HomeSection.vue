@@ -38,7 +38,7 @@
 
 <script>
   export default {
-    name: 'HomeSection',
+    name: 'home-section',
     props: {}
   }
 

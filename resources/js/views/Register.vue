@@ -5,16 +5,12 @@
 </template>
 
 <script>
-  import Header from '../components/Header.vue'
-  import Footer from '../components/Footer.vue'
   import Register from '../components/RegisterForm.vue'
 
   export default {
-    name: 'login',
+    name: 'register',
     components: {
-      Header,
       Register,
-      Footer
     }
   }
 
