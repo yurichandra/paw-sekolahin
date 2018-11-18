@@ -8,8 +8,9 @@
                         <div class="input-field col s12">
                             <input
                                 id="email"
-                                type="email"
-                                class="validate">
+                                type="text"
+                                class="validate"
+                                v-model="name">
                             <label for="email">Name</label>
                         </div>
                     </div>
@@ -17,8 +18,9 @@
                         <div class="input-field col s12">
                             <input
                                 id="password"
-                                type="password"
-                                class="validate">
+                                type="text"
+                                class="validate"
+                                v-model="address">
                             <label for="password">Address</label>
                         </div>
                     </div>
@@ -27,13 +29,14 @@
                             <input
                                 id="telephone"
                                 type="text"
-                                class="validate">
+                                class="validate"
+                                v-model="telephone">
                             <label for="telephone">Telephone</label>
                         </div>
                     </div>
                 </form>
             </div>
-            <a class="blue darken-3 btn">Add New School</a>
+            <a class="blue darken-3 btn" @click="addSchool">Add New School</a>
         </div>
         <div class="p5">
             <h5>Schools</h5>
@@ -51,33 +54,18 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>
-                        082125315898
+                <tr
+                    v-for="school in schools"
+                    :key="school.id">
+                    <td v-html="school.name"></td>
+                    <td v-html="school.address"></td>
+                    <td v-html="school.telephone">
                     </td>
                     <td>
                         <a class="waves-effect waves-light btn">Update</a>
-                        <a class="waves-effect red accent-4 btn">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td>082125315898</td>
-                    <td>
-                        <a class="waves-effect waves-light btn">Update</a>
-                        <a class="waves-effect red accent-4 btn">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>
-                    <td>082125315898</td>
-                    <td>
-                        <a class="waves-effect waves-light btn">Update</a>
-                        <a class="waves-effect red accent-4 btn">Delete</a>
+                        <a
+                            class="waves-effect red accent-4 btn"
+                            @click="deleteSchool(school.id)">Delete</a>
                     </td>
                 </tr>
                 </tbody>
@@ -87,6 +75,60 @@
 </template>
 
 <script>
+    import { mapActions, mapState } from 'vuex'
+
+    export default {
+        data () {
+            return {
+                name : '',
+                address : '',
+                telephone : ''
+            }
+        },
+
+        computed: {
+            ...mapState({
+                schools: state => state.School.schools
+            }),
+        },
+
+        methods : {
+            ...mapActions({
+                storeSchool: 'School/store',
+                getAllSchools: 'School/getSchools',
+                deleteSchool: 'School/destroy'
+            }),
+
+            addSchool () {
+                const payload = {
+                    'name': this.name,
+                    'address': this.address,
+                    'telephone': this.telephone
+                }
+
+                try {
+                    this.storeSchool(payload)
+                    console.log('success!')
+                } catch (err) {
+                    console.log(err)
+                }
+            },
+
+            deleteSchool (id) {
+                try {
+                    this.deleteSchool(id)
+                    console.log(id)
+                    console.log('Delete Succeed!')
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        },
+
+        async created () {
+            await this.getAllSchools()
+        }
+    }
 </script>
 
 <style scoped>
@@ -99,4 +141,3 @@
         padding: 0 50px;
     }
 </style>
-

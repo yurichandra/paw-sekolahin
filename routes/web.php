@@ -21,10 +21,10 @@ Route::get('/profile', 'IndexController@index');
 
 Route::get('/admin', 'IndexController@admin');
 
-Route::get('/{any}', function () {
-    return view('index');
-})->where('any', '[\/\w\.-]*');
-
 Route::get('/admin/{any}', function () {
     return view('admin');
+})->where('any', '[\/\w\.-]*');
+
+Route::get('/{any}', function () {
+    return view('index');
 })->where('any', '[\/\w\.-]*');

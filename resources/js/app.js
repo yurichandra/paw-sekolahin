@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import App from './components/App.vue';
-import { routes } from './service/home/routes';
-import store from './store';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import App from './components/App.vue'
+import { routes } from './service/home/routes'
+import store from './store'
+import VueRouter from 'vue-router'
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);

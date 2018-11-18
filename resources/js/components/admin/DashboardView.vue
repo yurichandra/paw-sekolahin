@@ -6,7 +6,7 @@
                 <DonationCard />
             </div>
             <div class="col m4">
-                <CampaignCard />
+                <CampaignCard :count="campaignCount"/>
             </div>
             <div class="col m4">
                 <SchoolCard />
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions, mapState } from 'vuex'
     import Header from './layouts/Header.vue'
     import DonationCard from './cards/DonationCards.vue'
     import CampaignCard from './cards/CampaignCards.vue'
@@ -43,16 +43,28 @@
             LatestCampaign : LatestCampaign
         },
 
-        data () {
-            return {
-
-            }
+        methods: {
+            ...mapActions({
+                getAllCampaigns: 'Campaign/getCampaigns'
+            })
         },
 
         computed: {
             ...mapGetters({
                 name : 'LoggedUser/name'
-            })
+            }),
+
+            ...mapState({
+                campaigns: state => state.Campaign.campaigns
+            }),
+
+            campaignCount () {
+                return this.campaigns.length ? this.campaigns.length : 0
+            }
+        },
+
+        async created () {
+            this.getAllCampaigns()
         }
     }
 </script>

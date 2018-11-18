@@ -18,7 +18,7 @@
 
         data () {
             return {
-                auth : false
+                auth : true
             }
         },
 
