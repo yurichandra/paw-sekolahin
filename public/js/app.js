@@ -12559,10 +12559,10 @@ module.exports = __webpack_require__(21);
 "use strict";
 /* unused harmony export Store */
 /* unused harmony export install */
-/* unused harmony export mapState */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return mapState; });
 /* unused harmony export mapMutations */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapGetters; });
-/* unused harmony export mapActions */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapActions; });
 /* unused harmony export createNamespacedHelpers */
 /**
  * vuex v3.0.1
@@ -18132,10 +18132,16 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LoggedUser__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Campaign__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__School__ = __webpack_require__(197);
+
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    LoggedUser: __WEBPACK_IMPORTED_MODULE_0__LoggedUser__["a" /* default */]
+    LoggedUser: __WEBPACK_IMPORTED_MODULE_0__LoggedUser__["a" /* default */],
+    Campaign: __WEBPACK_IMPORTED_MODULE_1__Campaign__["a" /* default */],
+    School: __WEBPACK_IMPORTED_MODULE_2__School__["a" /* default */]
 });
 
 /***/ }),
@@ -18771,13 +18777,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(101);
+var content = __webpack_require__(104);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -18797,7 +18803,7 @@ if(false) {
 }
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -18811,7 +18817,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18859,7 +18865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -18969,106 +18975,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-1f42fb90", module.exports)
   }
 }
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(105);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("3076a2c7", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61a7c374\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Footer.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61a7c374\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Footer.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 106 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Footer',
-  props: {}
-});
 
 /***/ }),
 /* 107 */
@@ -20957,7 +20863,33 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", [
+              _c("div", { attrs: { "data-uk-grid": "" } }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "uk-text-left" },
+                  [
+                    _c("router-link", { attrs: { to: "/register" } }, [
+                      _vm._v("Buat akun!")
+                    ]),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "uk-button uk-button-small uk-button-danger",
+                        attrs: { href: "" }
+                      },
+                      [_vm._v("Buat\n                            akun!")]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
           ])
         ]
       )
@@ -20969,71 +20901,60 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { attrs: { "data-uk-grid": "" } }, [
-        _c("div", { staticClass: "uk-text-center" }, [
-          _c(
-            "a",
-            {
-              staticClass: "uk-link-reset uk-text-small",
-              attrs: {
-                "data-uk-toggle":
-                  "target: #recover;animation: uk-animation-slide-top-small"
-              }
-            },
-            [_vm._v("Forgot\n                            your password?")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "uk-text-left" }, [
-          _c(
-            "a",
-            {
-              staticClass: "uk-button uk-button-small uk-button-danger",
-              attrs: { href: "" }
-            },
-            [_vm._v("Buat\n                            akun!")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
+    return _c("div", { staticClass: "uk-text-center" }, [
       _c(
-        "div",
+        "a",
         {
-          staticClass: "uk-margin-small-top",
-          attrs: { id: "recover", hidden: "" }
+          staticClass: "uk-link-reset uk-text-small",
+          attrs: {
+            "data-uk-toggle":
+              "target: #recover;animation: uk-animation-slide-top-small"
+          }
         },
-        [
-          _c("form", { attrs: { action: "login.html" } }, [
-            _c("div", { staticClass: "uk-margin-small" }, [
-              _c("div", { staticClass: "uk-inline uk-width-1-1" }, [
-                _c("span", {
-                  staticClass: "uk-form-icon uk-form-icon-flip uk-icon",
-                  attrs: { "data-uk-icon": "icon: mail" }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "uk-input",
-                  attrs: { placeholder: "E-mail", required: "", type: "text" }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin-small" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "uk-button uk-button-primary uk-button-primary uk-width-1-1",
-                  attrs: { type: "submit" }
-                },
-                [_vm._v("SEND\n                                PASSWORD")]
-              )
-            ])
-          ])
-        ]
+        [_vm._v("Forgot\n                            your password?")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "uk-margin-small-top",
+        attrs: { id: "recover", hidden: "" }
+      },
+      [
+        _c("form", { attrs: { action: "login.html" } }, [
+          _c("div", { staticClass: "uk-margin-small" }, [
+            _c("div", { staticClass: "uk-inline uk-width-1-1" }, [
+              _c("span", {
+                staticClass: "uk-form-icon uk-form-icon-flip uk-icon",
+                attrs: { "data-uk-icon": "icon: mail" }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "uk-input",
+                attrs: { placeholder: "E-mail", required: "", type: "text" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-margin-small" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "uk-button uk-button-primary uk-button-primary uk-width-1-1",
+                attrs: { type: "submit" }
+              },
+              [_vm._v("SEND\n                                PASSWORD")]
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -23235,47 +23156,19 @@ if (false) {
 }
 
 /***/ }),
-/* 179 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "campaign",
-      staticStyle: { "background-image": "url(images/pattern.png)" }
-    },
-    [_c("LoginForm")],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-12f5395a", module.exports)
-  }
-}
-
-/***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(181)
+  __webpack_require__(183)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(183)
+var __vue_script__ = __webpack_require__(185)
 /* template */
-var __vue_template__ = __webpack_require__(189)
+var __vue_template__ = __webpack_require__(191)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -23314,13 +23207,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(182);
+var content = __webpack_require__(184);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -23340,7 +23233,7 @@ if(false) {
 }
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -23354,7 +23247,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""])
 
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23363,7 +23256,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Header_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Footer_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Footer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Footer_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_RegisterForm_vue__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_RegisterForm_vue__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_RegisterForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_RegisterForm_vue__);
 //
 //
@@ -23386,7 +23279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -23396,7 +23289,7 @@ function injectStyle (ssrContext) {
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(187)
+var __vue_script__ = __webpack_require__(189)
 /* template */
 var __vue_template__ = __webpack_require__(190)
 /* template functional */
@@ -23471,7 +23364,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.red[data-v-7942be72] {\n    background-color: red;\n    padding: 5px;\n    color: white;\n    border-radius: 5px;\n}\n.green[data-v-7942be72] {\n    background-color: green;\n    padding: 5px;\n    color: white;\n    border-radius: 5px;\n}\n\n", ""]);
+exports.push([module.i, "\n.red[data-v-7942be72] {\n    background-color: red;\n    padding: 5px;\n    color: white;\n    border-radius: 3px;\n}\n.green[data-v-7942be72] {\n    background-color: green;\n    padding: 5px;\n    color: white;\n    border-radius: 3px;\n}\n\n", ""]);
 
 // exports
 
@@ -23583,8 +23476,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             confirmPassword: '',
             error: {
                 password: false,
-                button: false,
-                email: false
+                button: false
             },
             standby: false
         };
@@ -23978,6 +23870,135 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3563ad7c", module.exports)
   }
 }
+
+/***/ }),
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__http__ = __webpack_require__(23);
+
+
+var state = {
+    campaigns: []
+};
+
+var mutations = {
+    setSource: function setSource(state, data) {
+        state.campaigns = data;
+    }
+};
+
+var actions = {
+    getCampaigns: function getCampaigns(_ref) {
+        var commit = _ref.commit;
+
+        return new Promise(function (resolve, error) {
+            var successCallback = function successCallback(res) {
+                commit('setSource', res.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/campaigns', successCallback, errorCallback);
+        });
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    actions: actions,
+    mutations: mutations,
+    state: state
+});
+
+/***/ }),
+/* 196 */,
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__http__ = __webpack_require__(23);
+
+
+var state = {
+    schools: []
+};
+
+var mutations = {
+    setSource: function setSource(state, data) {
+        state.schools = data;
+    },
+    created: function created(state, data) {
+        state.schools.push(data);
+    }
+};
+
+var actions = {
+    getSchools: function getSchools(_ref) {
+        var commit = _ref.commit;
+
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                commit('setSource', res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/schools', successCallback, errorCallback);
+        });
+    },
+    store: function store(context, payload) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                if (res.status === 201) {
+                    context.commit('created', res.data.data);
+                    resolve();
+                }
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/schools', payload, successCallback, errorCallback);
+        });
+    },
+    destroy: function destroy(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                if (res.status === 200) {
+                    console.log('....Entering delete school method');
+                    context.commit('delete', index);
+                    resolve();
+                }
+                console.log('failed....');
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].delete('/api/schools/' + id, successCallback, errorCallback);
+        });
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    actions: actions,
+    mutations: mutations,
+    state: state
+});
 
 /***/ })
 /******/ ]);
