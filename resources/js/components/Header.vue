@@ -18,8 +18,40 @@
                         </li>
                         <li class="uk-visible@s">
                             <router-link @click.native="ShowModal" to="">Login</router-link>
+                            <a href="" data-uk-icon="user">
+                                <img class="uk-border-circle" width="32" height="32" src="https://unsplash.it/80/80/?random">
+                            </a>
+                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right" style="left: 1000px; top: 80px;">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-nav-header uk-text-small uk-text-primary">YOUR ACCOUNT</li>
+                                    <li><a href="#"><span data-uk-icon="icon: info" class="uk-icon"></span> Profile</a></li>
+                                    <li><a href="#"><span data-uk-icon="icon: arrow-right" class="uk-icon"></span>
+                                            Campaign List</a></li>
+                                    <li><a href="#"><span data-uk-icon="icon: arrow-right" class="uk-icon"></span>
+                                            Donation</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#"><span data-uk-icon="icon: sign-out" class="uk-icon"></span>
+                                            Logout</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        <li><a class="uk-icon" data-uk-icon="menu"></a></li>
+                        <li>
+                            <a class="uk-icon" data-uk-icon="menu"></a>
+                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right" style="left: 1000px; top: 80px;">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-nav-header uk-text-small uk-text-primary">Menu</li>
+                                    <li><a href="#"><span data-uk-icon="icon: user" class="uk-icon"></span>
+                                            Robertus Yudho</a></li>
+                                    <li><a href="#"><span data-uk-icon="icon: warning" class="uk-icon"></span>
+                                            Campaign</a></li>
+                                    <li><a href="#"><span data-uk-icon="icon: settings" class="uk-icon"></span>
+                                            Partners</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#"><span data-uk-icon="icon: sign-out" class="uk-icon"></span>
+                                            Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -29,19 +61,17 @@
 </template>
 
 <script>
-    export default {
-        name: 'header',
-        props: {},
-        methods: {
-            ShowModal() {
-                var element = document.getElementById("modal-center");
-                UIkit.modal(element).show();
-            }
-        }
+export default {
+  name: "header",
+  props: {},
+  methods: {
+    ShowModal() {
+      var element = document.getElementById("modal-center");
+      UIkit.modal(element).show();
     }
-
+  }
+};
 </script>
 
 <style>
-
 </style>

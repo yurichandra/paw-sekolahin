@@ -1,9 +1,15 @@
-import Vue from 'vue'
-import App from './components/App.vue'
-import { routes } from './service/home/routes'
-import store from './store'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import App from './components/App.vue';
+import { routes } from './service/home/routes';
+import store from './store';
+import VueRouter from 'vue-router';
+import VueSession from 'vue-session';
 
+var options = {
+  persist: true
+};
+
+Vue.use(VueSession, options);
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
 
