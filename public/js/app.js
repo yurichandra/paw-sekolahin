@@ -20605,6 +20605,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -20871,17 +20872,14 @@ var render = function() {
                   "div",
                   { staticClass: "uk-text-left" },
                   [
-                    _c("router-link", { attrs: { to: "/register" } }, [
-                      _vm._v("Buat akun!")
-                    ]),
                     _c(
-                      "a",
+                      "router-link",
                       {
                         staticClass:
                           "uk-button uk-button-small uk-button-danger",
-                        attrs: { href: "" }
+                        attrs: { to: "/register" }
                       },
-                      [_vm._v("Buat\n                            akun!")]
+                      [_vm._v("Buat akun!")]
                     )
                   ],
                   1
