@@ -36,7 +36,7 @@
                     <div data-uk-grid="">
                         <div class="uk-text-center"><a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small">Forgot
                                 your password?</a></div>
-                        <div class="uk-text-left"> <a href="" class="uk-button uk-button-small uk-button-danger">Buat
+                        <div class="uk-text-left"> <router-link to="/register">Buat akun!</router-link><a href="" class="uk-button uk-button-small uk-button-danger">Buat
                                 akun!</a></div>
                     </div>
                     <div class="uk-margin-small-top" id="recover" hidden="">
