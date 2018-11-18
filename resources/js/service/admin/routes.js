@@ -4,6 +4,7 @@ import UserView from '../../components/admin/UserView.vue'
 import LoginView from '../../components/admin/LoginView.vue'
 import DonationView from '../../components/admin/DonationView.vue'
 import SchoolView from '../../components/admin/SchoolView.vue'
+import SchoolEdit from '../../components/admin/SchoolEdit.vue'
 
 export const routes = [
     {
@@ -35,5 +36,10 @@ export const routes = [
         name : 'schools',
         path : '/admin/schools',
         component : SchoolView
+    },
+    {
+        name: 'schools.edit',
+        path: '/admin/schools/:id',
+        component: SchoolEdit
     }
 ]

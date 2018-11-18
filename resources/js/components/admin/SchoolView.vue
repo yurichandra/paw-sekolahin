@@ -62,10 +62,14 @@
                     <td v-html="school.telephone">
                     </td>
                     <td>
-                        <a class="waves-effect waves-light btn">Update</a>
+                        <router-link
+                            :to="{name:'schools.edit', params: {id: school.id}}"
+                            class="waves-effect waves-light btn">
+                            Update
+                        </router-link>
                         <a
                             class="waves-effect red accent-4 btn"
-                            @click="deleteSchool(school.id)">Delete</a>
+                            @click="destroy(school.id)">Delete</a>
                     </td>
                 </tr>
                 </tbody>
@@ -114,10 +118,9 @@
                 }
             },
 
-            deleteSchool (id) {
+            destroy (id) {
                 try {
                     this.deleteSchool(id)
-                    console.log(id)
                     console.log('Delete Succeed!')
                 } catch (err) {
                     console.log(err)
