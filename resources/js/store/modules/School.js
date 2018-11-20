@@ -1,7 +1,8 @@
 import Http from '../../http'
 
 const state = {
-    schools: []
+    schools: [],
+    school: {}
 }
 
 const mutations = {
@@ -13,9 +14,9 @@ const mutations = {
         state.schools.push(data)
     },
 
-    // delete(state, index) {
-    //     state.schools.splice(index, 1)
-    // }
+    setSchool(state, data) {
+        state.school = data
+    },
 }
 
 const actions = {
@@ -51,22 +52,58 @@ const actions = {
         })
     },
 
-    destroy (context, id) {
+    get (context, id) {
         return new Promise((resolve, reject) => {
             const successCallback = res => {
-                if (res.status === 200) {
-                    console.log('....Entering delete school method')
-                    context.commit('delete', index)
-                    resolve()
-                }
-                console.log('failed....')
+                context.commit('setSchool', res.data.data)
+                resolve()
             }
 
             const errorCallback = err => {
                 reject(err)
             }
 
-            Http.delete(`/api/schools/` + id, successCallback, errorCallback)
+            Http.get(`/api/schools/${id}`, successCallback, errorCallback)
+        })
+    },
+
+    update (context, payload) {
+        return new Promise((resolve, reject) => {
+            const data = {
+                name: payload.name,
+                address: payload.address,
+                telephone: payload.telephone
+            }
+
+            const successCallback = res => {
+                if (res.status === 200) {
+                    context.dispatch('getSchools')
+                    resolve()
+                }
+            }
+
+            const errorCallback = err => {
+                reject(err)
+            }
+
+            Http.patch(`/api/schools/${payload.id}`, data, successCallback, errorCallback)
+        })
+    },
+
+    destroy (context, id) {
+        return new Promise((resolve, reject) => {
+            const successCallback = res => {
+                if (res.status === 200) {
+                    context.dispatch('getSchools')
+                    resolve()
+                }
+            }
+
+            const errorCallback = err => {
+                reject(err)
+            }
+
+            Http.delete(`/api/schools/${id}`, successCallback, errorCallback)
         })
     }
 }

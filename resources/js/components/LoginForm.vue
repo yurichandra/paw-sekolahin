@@ -95,19 +95,20 @@
                 e.preventDefault();
                 this.standby = true;
                 try {
-                    await Auth.authenticate(this.email, this.password);
+                    await Auth.authenticate(this.email, this.password)
                     UIkit.notification("<span uk-icon='icon: happy'></span> Berhasil Login!", {
                         pos: 'top-right',
                         status: 'primary'
-                    });
-                    console.log(this.$store.getters['LoggedUser/name']);
+                    })
+                    console.log(this.$store.getters['LoggedUser/name'])
 
                     var element = document.getElementById("modal-center");
                     UIkit.modal(element).hide();
                     this.error = false;
                     this.standby = false;
+                    this.$routes.push({name: 'home'})
                 } catch (err) {
-                    console.log(err);
+                    console.log(err)
                     UIkit.notification("<span uk-icon='icon: warning'></span> Gagal Login!!", {
                         pos: 'top-right',
                         status: 'danger'

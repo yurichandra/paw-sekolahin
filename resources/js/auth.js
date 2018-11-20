@@ -1,7 +1,6 @@
 import Http from './http'
 import store from './store'
 import Cookie from 'js-cookie'
-import Session from 'vue-session'
 
 export default {
     authenticate (email, password) {
@@ -14,7 +13,7 @@ export default {
             const successCallback = (res) => {
                 const user = res.data
                 store.commit('LoggedUser/setSource', user.data);
-                // this.setCookie(user.data.email)
+                store.commit('LoggedUser/loggedIn')
                 this.SaveEmail(payload.email);
                 resolve();
             };
@@ -50,8 +49,10 @@ export default {
     },
 
     logout () {
-        this.DeleteCookie();
-        store.commit('LoggedUser/setSource', {});
+        this.DeleteCookie()
+        store.commit('LoggedUser/setSource', {})
+        store.commit('LoggedUser/loggedOut')
+        store.commit('User/setSource', {})
     },
 
     SaveEmail (email) {

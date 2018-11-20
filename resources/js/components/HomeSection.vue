@@ -9,22 +9,21 @@
         </div>
         <div class="uk-width-3-5 uk-align-center uk-flex uk-flex-center uk-flex-middle">
           <div class="uk-width-large">
-            <p>Nonprofit event fundraising</p>d
-            <h3>Sell more tickets to your events, reach new audiences, and raise more</h3>
-              <h5>Power any type of nonprofit event, large or small, with integrated ticketing,
-                registration,
-                and social fundraising.</h5>
+            <p>Nonprofit school fundraising</p>
+            <h3>Help more children to get education</h3>
+              <h5>Help more children to get a better education and
+                  help them to reach their dream.</h5>
           </div>
         </div>
       </div>
       <div uk-grid>
         <div class="uk-width-3-5 uk-align-center uk-flex uk-flex-center uk-flex-middle">
           <div class="uk-width-large">
-            <p>Online Social Fundraising</p>
-            <h3>Add social to grow your fundraising year round</h3>
-              <h5>Social Amp™ optimization is a set of features designed to promote social sharing. It's
-                proven to add more donations and awareness to any nonprofit's campaign, event, and
-                website.</h5>
+            <p>Online school Fundraising</p>
+            <h3>Add your kindness by help them</h3>
+              <h5>Sekolahin is school fundraising to help children who unable
+                  to attend the school by give them fund to get better and
+                  high quality education.</h5>
           </div>
         </div>
         <div class="uk-width-2-5@m uk-width-auto@s">

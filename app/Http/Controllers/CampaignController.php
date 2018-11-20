@@ -160,4 +160,18 @@ class CampaignController extends RestController
             return $this->sendIseResponse($e->getMessage());
         }
     }
+
+    public function getByUser(CampaignService $service, $id)
+    {
+        try {
+            $campaigns = $service->findUserCampaigns($id);
+            $response = $this->generateCollection($campaigns);
+
+            return $this->sendResponse($response);
+        } catch (ModelNotFoundException $e) {
+            return $this->sendNotFoundResponse('user_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
+    }
 }

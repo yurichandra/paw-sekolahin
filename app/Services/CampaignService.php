@@ -84,4 +84,9 @@ class CampaignService
     {
         return $this->repo->destroy($id);
     }
+
+    public function findUserCampaigns($id)
+    {
+        return $this->repo->findByUser($id);
+    }
 }

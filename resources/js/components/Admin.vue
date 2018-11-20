@@ -8,7 +8,8 @@
 <script>
     import LoginView from './admin/LoginView'
     import Header from './admin/layouts/Header.vue'
-    import Http from '../auth'
+    import Auth from '../auth'
+    import { mapGetters } from 'vuex'
 
     export default {
         components: {
@@ -18,8 +19,26 @@
 
         data () {
             return {
-                auth : true
+                // auth : false
             }
+        },
+
+        computed: {
+            ...mapGetters({
+                status: 'LoggedUser/status'
+            }),
+
+            auth () {
+                if (this.status === true) {
+                    return true
+                }
+
+                return false
+            }
+        },
+
+        created () {
+            console.log(this.status)
         },
 
         mounted () {

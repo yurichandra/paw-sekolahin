@@ -11,29 +11,56 @@
                     <form class="uk-form-stacked">
                         <fieldset class="uk-fieldset">
 
-                            <legend class="uk-legend">Legend</legend>
+                            <legend class="uk-legend">Create a campaign!</legend>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label">Nama</label>
-                                <input class="uk-input" type="text" placeholder="Campaign ..">
+                                <label class="uk-form-label">Title</label>
+                                <input class="uk-input" type="text" placeholder="Campaign .." v-model="title">
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label">Target Uang</label>
-                                <input class="uk-input" type="text" placeholder="1000 ..">
+                                <label class="uk-form-label">School</label>
+                                <select class="uk-select" name="" id="" v-model="school">
+                                    <option
+                                        v-for="school in schools"
+                                        :key="school.id"
+                                        :value="school.id"
+                                        v-html="school.name">
+                                    </option>
+                                </select>
                             </div>
 
                             <div class="uk-margin">
-                                <label class="uk-form-label">Tanggal</label>
-                                <input class="uk-input" placeholder="Date" name="date" value="" type="date">
+                                <label class="uk-form-label">Target</label>
+                                <input
+                                    class="uk-input"
+                                    type="text"
+                                    placeholder="Rp 1000 .."
+                                    v-model="target">
                             </div>
 
                             <div class="uk-margin">
-                                <textarea class="uk-textarea" rows="5" placeholder="Textarea"></textarea>
+                                <label class="uk-form-label">Date</label>
+                                <input
+                                    class="uk-input"
+                                    placeholder="Date"
+                                    name="date"
+                                    value=""
+                                    type="date"
+                                    v-model="date">
                             </div>
 
                             <div class="uk-margin">
-                                <input class="uk-button" type="button" value="Buat Campaign">
+                                <label class="uk-form-label">Message</label>
+                                <textarea
+                                    class="uk-textarea"
+                                    rows="5"
+                                    placeholder="Textarea"
+                                    v-model="message"></textarea>
+                            </div>
+
+                            <div class="uk-margin">
+                                <input class="uk-button" type="button" value="Create campaign" @click="create">
                             </div>
 
                         </fieldset>
@@ -46,9 +73,60 @@
 </template>
 
 <script>
+    import { mapState, mapActions, mapGetters } from 'vuex'
+
     export default {
-        name: "campaign-form",
-        props: {}
+        name: "CampaignForm",
+        props: {},
+
+        data () {
+            return {
+                school : '',
+                date : '',
+                message : '',
+                target : 0,
+                title : ''
+            }
+        },
+
+        computed: {
+            ...mapState({
+                schools: state => state.School.schools
+            }),
+
+            ...mapGetters({
+                userId: 'LoggedUser/userId'
+            })
+        },
+
+        methods: {
+            ...mapActions({
+                getAllSchools: 'School/getSchools',
+                store: 'Campaign/store'
+            }),
+
+            create () {
+                const payload = {
+                    userId: this.userId,
+                    schoolId: this.school,
+                    title: this.title,
+                    body: this.message,
+                    date: this.date,
+                    target: this.target
+                }
+
+                try {
+                    this.store(payload)
+                    console.log("berhasil!")
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        },
+
+        async created () {
+            await this.getAllSchools()
+        }
     }
 
 </script>

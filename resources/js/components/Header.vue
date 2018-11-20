@@ -14,43 +14,25 @@
                             <router-link to="/campaign">Campaign</router-link>
                         </li>
                         <li class="uk-visible@s">
-                            <router-link to="/partners">Partners</router-link>
+                            <router-link
+                                to="/profile"
+                                v-if=auth>
+                                Profile
+                            </router-link>
                         </li>
                         <li class="uk-visible@s">
-                            <router-link @click.native="ShowModal" to="">Login</router-link>
-                            <a href="" data-uk-icon="user">
-                                <img class="uk-border-circle" width="32" height="32" src="https://unsplash.it/80/80/?random">
-                            </a>
-                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right" style="left: 1000px; top: 80px;">
-                                <ul class="uk-nav uk-navbar-dropdown-nav">
-                                    <li class="uk-nav-header uk-text-small uk-text-primary">YOUR ACCOUNT</li>
-                                    <li><a href="#"><span data-uk-icon="icon: info" class="uk-icon"></span> Profile</a></li>
-                                    <li><a href="#"><span data-uk-icon="icon: arrow-right" class="uk-icon"></span>
-                                            Campaign List</a></li>
-                                    <li><a href="#"><span data-uk-icon="icon: arrow-right" class="uk-icon"></span>
-                                            Donation</a></li>
-                                    <li class="uk-nav-divider"></li>
-                                    <li><a href="#"><span data-uk-icon="icon: sign-out" class="uk-icon"></span>
-                                            Logout</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="uk-icon" data-uk-icon="menu"></a>
-                            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right" style="left: 1000px; top: 80px;">
-                                <ul class="uk-nav uk-navbar-dropdown-nav">
-                                    <li class="uk-nav-header uk-text-small uk-text-primary">Menu</li>
-                                    <li><a href="#"><span data-uk-icon="icon: user" class="uk-icon"></span>
-                                            Robertus Yudho</a></li>
-                                    <li><a href="#"><span data-uk-icon="icon: warning" class="uk-icon"></span>
-                                            Campaign</a></li>
-                                    <li><a href="#"><span data-uk-icon="icon: settings" class="uk-icon"></span>
-                                            Partners</a></li>
-                                    <li class="uk-nav-divider"></li>
-                                    <li><a href="#"><span data-uk-icon="icon: sign-out" class="uk-icon"></span>
-                                            Logout</a></li>
-                                </ul>
-                            </div>
+                            <router-link
+                                @click.native="ShowModal"
+                                to=""
+                                v-if=!auth>
+                                Login
+                            </router-link>
+                            <router-link
+                                @click.native="logoutHandler"
+                                to=""
+                                v-if=auth>
+                                Logout
+                            </router-link>
                         </li>
                     </ul>
                 </div>
@@ -61,13 +43,37 @@
 </template>
 
 <script>
-export default {
-  name: "header",
-  props: {},
-  methods: {
-    ShowModal() {
-      var element = document.getElementById("modal-center");
-      UIkit.modal(element).show();
+    import { mapGetters } from 'vuex'
+    import Auth from '../auth'
+
+    export default {
+        name: 'Header',
+        props: {},
+        methods: {
+            ShowModal() {
+                var element = document.getElementById("modal-center");
+                UIkit.modal(element).show();
+            },
+
+            logoutHandler () {
+                Auth.logout()
+                this.$router.replace({name: 'home'})
+            }
+        },
+
+        computed: {
+            ...mapGetters({
+                status: 'LoggedUser/status'
+            }),
+
+            auth () {
+                if (this.status === true) {
+                    return true
+                }
+
+                return false
+            }
+        }
     }
   }
 };
