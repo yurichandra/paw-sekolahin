@@ -18110,6 +18110,9 @@ var state = {
 var mutations = {
     setSource: function setSource(state, data) {
         state.campaigns = data;
+    },
+    setDetail: function setDetail(state, data) {
+        state.campaign = data;
     }
 };
 
@@ -18120,6 +18123,7 @@ var actions = {
         return new Promise(function (resolve, reject) {
             var successCallback = function successCallback(res) {
                 commit('setSource', res.data.data);
+                console.log(res.data.data[0].id);
                 resolve();
             };
 
@@ -18157,7 +18161,20 @@ var actions = {
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/campaigns', payload, successCallback, errorCallback);
         });
     },
-    get: function get(context, id) {},
+    get: function get(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setDetail', res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/campaigns/' + id, successCallback, errorCallback);
+        });
+    },
     update: function update(context, payload) {},
     destroy: function destroy(context, id) {}
 };

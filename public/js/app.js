@@ -18160,6 +18160,9 @@ var state = {
 var mutations = {
     setSource: function setSource(state, data) {
         state.campaigns = data;
+    },
+    setDetail: function setDetail(state, data) {
+        state.campaign = data;
     }
 };
 
@@ -18170,6 +18173,7 @@ var actions = {
         return new Promise(function (resolve, reject) {
             var successCallback = function successCallback(res) {
                 commit('setSource', res.data.data);
+                console.log(res.data.data[0].id);
                 resolve();
             };
 
@@ -18207,7 +18211,20 @@ var actions = {
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/campaigns', payload, successCallback, errorCallback);
         });
     },
-    get: function get(context, id) {},
+    get: function get(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setDetail', res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/campaigns/' + id, successCallback, errorCallback);
+        });
+    },
     update: function update(context, payload) {},
     destroy: function destroy(context, id) {}
 };
@@ -18969,7 +18986,7 @@ var routes = [{
     name: 'campaign-create',
     component: __WEBPACK_IMPORTED_MODULE_1__views_CampaignCreate_vue___default.a
 }, {
-    path: '/campaign/detail',
+    path: '/campaign/:campaign_id',
     name: 'campaign-detail',
     component: __WEBPACK_IMPORTED_MODULE_5__views_CampaignDetail_vue___default.a
 }, {
@@ -24728,7 +24745,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24739,14 +24756,24 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_AuthorDetail_vue__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_AuthorDetail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_AuthorDetail_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_BottomBar_vue__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_BottomBar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_BottomBar_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Article_vue__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Article_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Article_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Donation_vue__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Donation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Donation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_AuthorDetail_vue__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_AuthorDetail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_AuthorDetail_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_BottomBar_vue__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_BottomBar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_BottomBar_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Article_vue__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Article_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Article_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Donation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_home_routes__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vuex__ = __webpack_require__(4);
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -24758,6 +24785,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
+
 
 
 
@@ -24767,11 +24797,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'campaign-detail',
     components: {
-        Article: __WEBPACK_IMPORTED_MODULE_2__components_Article_vue___default.a,
-        Author: __WEBPACK_IMPORTED_MODULE_0__components_AuthorDetail_vue___default.a,
-        Bar: __WEBPACK_IMPORTED_MODULE_1__components_BottomBar_vue___default.a,
-        Donation: __WEBPACK_IMPORTED_MODULE_3__components_Donation_vue___default.a
-    }
+        Article: __WEBPACK_IMPORTED_MODULE_3__components_Article_vue___default.a,
+        Author: __WEBPACK_IMPORTED_MODULE_1__components_AuthorDetail_vue___default.a,
+        Bar: __WEBPACK_IMPORTED_MODULE_2__components_BottomBar_vue___default.a,
+        Donation: __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue___default.a
+    },
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["d" /* mapState */])({
+        campaign: function campaign(state) {
+            return state.Campaign.campaign;
+        }
+    }), {
+        Donasi: function Donasi() {
+            return "Donasi";
+        }
+    }),
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapActions */])({
+        getCampaign: 'Campaign/get'
+    })),
+
+    created: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            console.log(this.$route.params.campaign_id);
+                            _context.next = 3;
+                            return this.getCampaign(this.$route.params.campaign_id);
+
+                        case 3:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function created() {
+            return _ref.apply(this, arguments);
+        }
+
+        return created;
+    }()
 });
 
 /***/ }),
@@ -24860,7 +24928,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24897,6 +24965,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "author-detail",
+    props: {
+        nama: String
+
+    },
+    computed: {
+        Detail: function Detail() {
+            return this.nama + " sudah membuat campaign ini, bantu isi target!";
+        }
+    },
     methods: {
         ShowModal: function ShowModal() {
             var element = document.getElementById("modal-sections");
@@ -24913,56 +24990,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "uk-section uk-section-small" }, [
+      _c(
+        "div",
+        {
+          staticClass: "uk-container uk-container-small",
+          attrs: { id: "author-wrap" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "uk-grid uk-grid-medium uk-flex uk-flex-middle",
+              attrs: { "data-uk-grid": "" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-width-expand" }, [
+                _c("h4", { staticClass: "uk-margin-remove uk-text-bold" }, [
+                  _vm._v(_vm._s(_vm.nama))
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "uk-text-small uk-text-muted" }, [
+                  _vm._v(_vm._s(_vm.Detail))
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "uk-section uk-section-small" }, [
-        _c(
-          "div",
-          {
-            staticClass: "uk-container uk-container-small",
-            attrs: { id: "author-wrap" }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "uk-grid uk-grid-medium uk-flex uk-flex-middle",
-                attrs: { "data-uk-grid": "" }
-              },
-              [
-                _c("div", { staticClass: "uk-width-auto uk-first-column" }, [
-                  _c("img", {
-                    staticClass: "uk-border-circle",
-                    attrs: { src: "https://unsplash.it/80/80/?random", alt: "" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-width-expand" }, [
-                  _c("h4", { staticClass: "uk-margin-remove uk-text-bold" }, [
-                    _vm._v("John Article")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "uk-text-small uk-text-muted" }, [
-                    _vm._v(
-                      "Ut enim ad minim veniam, quis nostrud exercitation ."
-                    )
-                  ])
-                ])
-              ]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "uk-container uk-container-small" }, [
-        _c("hr", { staticClass: "uk-margin-remove" })
-      ])
+    return _c("div", { staticClass: "uk-width-auto uk-first-column" }, [
+      _c("img", {
+        staticClass: "uk-border-circle",
+        attrs: { src: "https://unsplash.it/80/80/?random", alt: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-container uk-container-small" }, [
+      _c("hr", { staticClass: "uk-margin-remove" })
     ])
   }
 ]
@@ -25061,7 +25142,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -25096,10 +25177,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "bottom-bar",
+    props: {
+        target_root: String,
+        raised_root: String
+    },
     methods: {
         ShowModal: function ShowModal() {
             var element = document.getElementById("modal-sections");
             UIkit.modal(element).show();
+        }
+    },
+    computed: {
+        Detail: function Detail() {
+            return this.raised_root + "/" + this.target_root;
         }
     }
 });
@@ -25125,13 +25215,27 @@ var render = function() {
         { staticClass: "uk-container uk-container-small uk-text-small" },
         [
           _c("div", { staticClass: "uk-grid", attrs: { "data-uk-grid": "" } }, [
-            _vm._m(0),
+            _c("div", { staticClass: "uk-width-expand uk-first-column" }, [
+              _c("a", { staticClass: "uk-link-reset", attrs: { href: "#" } }, [
+                _c("span", {
+                  staticClass: "uk-icon",
+                  attrs: { "data-uk-icon": "icon: arrow-right" }
+                }),
+                _vm._v(" "),
+                _c("strong", [_vm._v(_vm._s(_vm.Detail))]),
+                _vm._v(" "),
+                _c("span", { staticClass: "uk-visible@s" }, [
+                  _vm._v("- Target Terpenuhi")
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "uk-width-auto uk-text-right" }, [
               _c(
                 "button",
                 {
-                  staticClass: "uk-button uk-button-danger uk-border-pill",
+                  staticClass:
+                    "uk-button uk-button-danger uk-border-pill uk-button-small",
                   on: { click: _vm.ShowModal }
                 },
                 [_vm._v("\n                    DONASI")]
@@ -25143,27 +25247,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-width-expand uk-first-column" }, [
-      _c("a", { staticClass: "uk-link-reset", attrs: { href: "#" } }, [
-        _c("span", {
-          staticClass: "uk-icon",
-          attrs: { "data-uk-icon": "icon: arrow-right" }
-        }),
-        _vm._v(" "),
-        _c("strong", [_vm._v("Next article")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "uk-visible@s" }, [
-          _vm._v("- Vivamus hendrerit tristique tortor vel ultricies")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -25259,7 +25343,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -25292,6 +25376,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "article",
+    props: {
+        judul_root: String,
+        deskripsi_root: String,
+        target_root: String,
+        raised_root: String,
+        tanggal_root: String
+    },
     components: {
         Picture: __WEBPACK_IMPORTED_MODULE_0__components_Picture_vue___default.a,
         Detail: __WEBPACK_IMPORTED_MODULE_1__components_ArticleDetail_vue___default.a,
@@ -25826,7 +25917,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -25846,12 +25937,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "article-detail"
+    name: "article-detail",
+    props: {
+        judul: String,
+        deskripsi: String,
+        tanggal: String
+    },
+    computed: {
+        Detail: function Detail() {
+            return "Berakhir tanggal " + this.tanggal;
+        }
+    }
 });
 
 /***/ }),
@@ -25862,35 +25960,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "uk-container uk-container-small" }, [
+    _c(
+      "h2",
+      {
+        staticClass:
+          "uk-text-bold uk-h1 uk-margin-remove-adjacent uk-margin-remove-top"
+      },
+      [_vm._v(_vm._s(_vm.judul))]
+    ),
+    _vm._v(" "),
+    _c("p", { staticClass: "uk-article-meta" }, [_vm._v(_vm._s(_vm.Detail))]),
+    _vm._v(" "),
+    _c("p", { staticClass: "uk-text-lead" }, [_vm._v(_vm._s(_vm.deskripsi))])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-container uk-container-small" }, [
-      _c(
-        "h2",
-        {
-          staticClass:
-            "uk-text-bold uk-h1 uk-margin-remove-adjacent uk-margin-remove-top"
-        },
-        [_vm._v("Fusce facilisis tempus\n        magna ac dignissim.")]
-      ),
-      _vm._v(" "),
-      _c("p", { staticClass: "uk-article-meta" }, [
-        _vm._v("Dibuat tanggal 12 April 2012.")
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "uk-text-lead" }, [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n        ullamco laboris nisi ut aliquip."
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -25986,7 +26071,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -26009,10 +26094,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "article-progress"
+    name: "article-progress",
+    props: {
+        target: String,
+        tanggal: String,
+        raised: String
+    },
+    computed: {
+        DiffDate: function DiffDate() {
+            var crdate = new Date(Date.now());
+            var endate = new Date(this.tanggal);
+            var timeDiff = Math.abs(endate.getTime() - crdate.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            if (crdate > endate) return "Out of day";else return "SISA " + diffDays + " HARI";
+        },
+        Target: function Target() {
+            return "Target uang, Rp." + this.target;
+        },
+        Raised: function Raised() {
+            return "Terkumpul, Rp." + this.raised;
+        }
+    },
+    methods: {}
 });
 
 /***/ }),
@@ -26023,32 +26129,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-container uk-container-small" }, [
-      _c("div", { staticClass: "uk-text-bold" }, [
-        _c("h2", { staticClass: "uk-heading-primary uk-text-capitalize" }, [
-          _vm._v("Target uang, Rp. 999.000.000,00")
-        ]),
-        _vm._v(" "),
-        _c("h2", { staticClass: "uk-heading-bullet uk-text-capitalize" }, [
-          _vm._v("Terkumpul, Rp.\n            999.000.000,00")
-        ]),
-        _vm._v(" "),
-        _c(
-          "h3",
-          { staticClass: "uk-heading-line uk-text-center uk-text-danger" },
-          [_c("span", [_vm._v("SISA 999 HARI")])]
-        )
-      ])
+  return _c("div", { staticClass: "uk-container uk-container-small" }, [
+    _c("div", { staticClass: "uk-text-bold" }, [
+      _c("h2", { staticClass: "uk-heading-primary uk-text-capitalize" }, [
+        _vm._v(_vm._s(_vm.Target))
+      ]),
+      _vm._v(" "),
+      _c("h2", { staticClass: "uk-heading-bullet uk-text-capitalize" }, [
+        _vm._v(_vm._s(_vm.Raised))
+      ]),
+      _vm._v(" "),
+      _c(
+        "h3",
+        { staticClass: "uk-heading-line uk-text-center uk-text-danger" },
+        [_c("span", [_vm._v(_vm._s(_vm.DiffDate))])]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -26069,7 +26168,23 @@ var render = function() {
   return _c(
     "section",
     { staticClass: "uk-section uk-article" },
-    [_c("Detail"), _vm._v(" "), _c("Progress")],
+    [
+      _c("Detail", {
+        attrs: {
+          judul: _vm.judul_root,
+          deskripsi: _vm.deskripsi_root,
+          tanggal: _vm.tanggal_root
+        }
+      }),
+      _vm._v(" "),
+      _c("Progress", {
+        attrs: {
+          target: _vm.target_root,
+          raised: _vm.raised_root,
+          tanggal: _vm.tanggal_root
+        }
+      })
+    ],
     1
   )
 }
@@ -26342,13 +26457,30 @@ var render = function() {
       _c(
         "div",
         { staticStyle: { "background-image": "url(images/pattern.png)" } },
-        [_c("Author"), _vm._v(" "), _c("Article")],
+        [
+          _c("Author", { attrs: { nama: _vm.Donasi } }),
+          _vm._v(" "),
+          _c("Article", {
+            attrs: {
+              judul_root: _vm.campaign.title,
+              deskripsi_root: _vm.campaign.body,
+              tanggal_root: _vm.campaign.date,
+              target_root: _vm.campaign.target,
+              raised_root: _vm.campaign.raised
+            }
+          })
+        ],
         1
       ),
       _vm._v(" "),
       _c("Donation"),
       _vm._v(" "),
-      _c("Bar")
+      _c("Bar", {
+        attrs: {
+          target_root: _vm.campaign.target,
+          raised_root: _vm.campaign.raised
+        }
+      })
     ],
     1
   )

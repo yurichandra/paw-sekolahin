@@ -9,6 +9,9 @@ const mutations = {
     setSource(state, data) {
         state.campaigns = data
     },
+    setDetail(state, data){
+        state.campaign = data
+    }
 }
 
 const actions = {
@@ -16,6 +19,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             const successCallback = res => {
                 commit('setSource', res.data.data);
+                console.log(res.data.data[0].id);
                 resolve()
             }
 
@@ -57,7 +61,18 @@ const actions = {
     },
 
     get(context, id) {
+        return new Promise((resolve, reject) => {
+            const successCallback = res => {
+                context.commit('setDetail', res.data.data)
+                resolve()
+            }
 
+            const errorCallback = err => {
+                reject(err)
+            }
+
+            Http.get(`/api/campaigns/${id}`, successCallback, errorCallback)
+        })
     },
 
     update(context, payload) {

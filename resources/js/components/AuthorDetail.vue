@@ -8,8 +8,8 @@
                         <img src="https://unsplash.it/80/80/?random" alt="" class="uk-border-circle">
                     </div>
                     <div class="uk-width-expand">
-                        <h4 class="uk-margin-remove uk-text-bold">John Article</h4>
-                        <span class="uk-text-small uk-text-muted">Ut enim ad minim veniam, quis nostrud exercitation .</span>
+                        <h4 class="uk-margin-remove uk-text-bold">{{ nama }}</h4>
+                        <span class="uk-text-small uk-text-muted">{{ Detail }}</span>
                     </div>
                 </div>
             </div>
@@ -24,6 +24,15 @@
 <script>
     export default {
         name: "author-detail",
+        props:{
+            nama: String,
+
+        },
+        computed: {            
+            Detail(){
+                return this.nama + " sudah membuat campaign ini, bantu isi target!"
+            }
+        },
         methods: {
             ShowModal() {
                 var element = document.getElementById("modal-sections");
