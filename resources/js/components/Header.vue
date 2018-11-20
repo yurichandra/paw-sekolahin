@@ -5,7 +5,7 @@
             <nav class="uk-background-default uk-navbar" data-uk-navbar="">
                 <div class="uk-navbar-left">
                     <div class="uk-navbar-item">
-                        <a class="uk-logo" href=""><img src="img/cover-logo.svg" alt="Logo"></a>
+                        <router-link to="/" class="uk-logo"><img src="img/cover-logo.svg" alt="Logo"></router-link>
                     </div>
                 </div>
                 <div class="uk-navbar-right">
@@ -14,10 +14,25 @@
                             <router-link to="/campaign">Campaign</router-link>
                         </li>
                         <li class="uk-visible@s">
-                            <router-link to="/partners">Partners</router-link>
+                            <router-link
+                                to="/profile"
+                                v-if=auth>
+                                Profile
+                            </router-link>
                         </li>
                         <li class="uk-visible@s">
-                            <router-link @click.native="ShowModal" to="">Login</router-link>
+                            <router-link
+                                @click.native="ShowModal"
+                                to=""
+                                v-if=!auth>
+                                Login
+                            </router-link>
+                            <router-link
+                                @click.native="logoutHandler"
+                                to=""
+                                v-if=auth>
+                                Logout
+                            </router-link>
                         </li>
                         <li><a class="uk-icon" data-uk-icon="menu"></a></li>
                     </ul>
@@ -29,6 +44,9 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+    import Auth from '../auth'
+
     export default {
         name: 'Header',
         props: {},
@@ -36,6 +54,25 @@
             ShowModal() {
                 var element = document.getElementById("modal-center");
                 UIkit.modal(element).show();
+            },
+
+            logoutHandler () {
+                Auth.logout()
+                this.$router.replace({name: 'home'})
+            }
+        },
+
+        computed: {
+            ...mapGetters({
+                status: 'LoggedUser/status'
+            }),
+
+            auth () {
+                if (this.status === true) {
+                    return true
+                }
+
+                return false
             }
         }
     }
