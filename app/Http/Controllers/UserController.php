@@ -121,25 +121,24 @@ class UserController extends RestController
             'identityNumber' => 'required',
         ]);
 
-        $photo = $service->find($id)
-            ->personal
-            ->photo;
+        // $photo = $service->find($id)
+        //     ->personal
+        //     ->photo;
 
-        $file = $request->photo ? $request->photo : $photo->path;
+        // $file = $request->photo ? $request->photo : $photo->path;
 
-        if ($file !== $photo->path) {
-            Storage::disk('s3')->put($file, $file);
-            $photo = Photo::firstOrCreate([
-                'path' => $file,
-            ]);
-        }
+        // if ($file !== $photo->path) {
+        //     Storage::disk('s3')->put($file, $file);
+        //     $photo = Photo::firstOrCreate([
+        //         'path' => $file,
+        //     ]);
+        // }
 
         $data = [
             'name' => $request->name,
             'personal' => [
                 'phone_number' => $request->phoneNumber,
                 'identity_number' => $request->identityNumber,
-                'photo_id' => $photo->id,
             ],
         ];
 

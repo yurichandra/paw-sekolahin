@@ -27,6 +27,7 @@ Route::resource('schools', 'SchoolController');
 
 // For CampaignController
 Route::resource('campaigns', 'CampaignController');
+Route::get('campaigns/by-user/{id}', 'CampaignController@getByUser');
 
 // For DonationController
 Route::resource('donations', 'DonationController');
