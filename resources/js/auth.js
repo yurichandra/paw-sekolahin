@@ -52,6 +52,7 @@ export default {
         this.DeleteCookie()
         store.commit('LoggedUser/setSource', {})
         store.commit('LoggedUser/loggedOut')
+        store.commit('User/setSource', {})
     },
 
     SaveEmail (email) {

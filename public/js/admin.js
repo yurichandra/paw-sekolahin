@@ -1940,6 +1940,7 @@ var index_esm = {
         this.DeleteCookie();
         __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */].commit('LoggedUser/setSource', {});
         __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */].commit('LoggedUser/loggedOut');
+        __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */].commit('User/setSource', {});
     },
     SaveEmail: function SaveEmail(email) {
         __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.set('email', email);
@@ -18032,6 +18033,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LoggedUser__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Campaign__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__School__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__User__ = __webpack_require__(202);
+
 
 
 
@@ -18039,7 +18042,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony default export */ __webpack_exports__["a"] = ({
     LoggedUser: __WEBPACK_IMPORTED_MODULE_0__LoggedUser__["a" /* default */],
     Campaign: __WEBPACK_IMPORTED_MODULE_1__Campaign__["a" /* default */],
-    School: __WEBPACK_IMPORTED_MODULE_2__School__["a" /* default */]
+    School: __WEBPACK_IMPORTED_MODULE_2__School__["a" /* default */],
+    User: __WEBPACK_IMPORTED_MODULE_3__User__["a" /* default */]
 });
 
 /***/ }),
@@ -18116,7 +18120,7 @@ var actions = {
 
         return new Promise(function (resolve, reject) {
             var successCallback = function successCallback(res) {
-                commit('setSource', res.data);
+                commit('setSource', res.data.data);
                 resolve();
             };
 
@@ -18125,6 +18129,20 @@ var actions = {
             };
 
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/campaigns', successCallback, errorCallback);
+        });
+    },
+    fetchByUser: function fetchByUser(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setSource', res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/campaigns/by-user/' + id, successCallback, errorCallback);
         });
     },
     store: function store(context, payload) {
@@ -21169,6 +21187,161 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__http__ = __webpack_require__(11);
+
+
+var state = {
+    user: {}
+};
+
+var mutations = {
+    setSource: function setSource(state, data) {
+        state.user = data;
+    }
+};
+
+var actions = {
+    get: function get(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setSource', res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/users/' + id, successCallback, errorCallback);
+        });
+    },
+    update: function update(context, payload) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setSource', res.data.data);
+                // context.commit('LoggedUser/setSource', res.data.data)
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].patch('/api/users/' + payload.id, payload, successCallback, errorCallback);
+        });
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: state,
+    actions: actions,
+    mutations: mutations
+});
 
 /***/ })
 /******/ ]);
