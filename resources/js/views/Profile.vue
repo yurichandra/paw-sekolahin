@@ -1,8 +1,8 @@
 <template>
     <div style="background-image: url(images/pattern.png)">
         <HeroBlock />
-        <!-- <UserEdit /> -->
-        <TableEdit />
+        <UserEdit />
+        <!-- <TableEdit /> -->
     </div>
 </template>
 

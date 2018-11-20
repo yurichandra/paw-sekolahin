@@ -20312,12 +20312,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 UIkit.modal(element).hide();
                                 this.error = false;
                                 this.standby = false;
-                                this.$routes.push({ name: 'home' });
-                                _context.next = 20;
+                                _context.next = 19;
                                 break;
 
-                            case 14:
-                                _context.prev = 14;
+                            case 13:
+                                _context.prev = 13;
                                 _context.t0 = _context['catch'](2);
 
                                 console.log(_context.t0);
@@ -20328,12 +20327,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.error = true;
                                 this.standby = false;
 
-                            case 20:
+                            case 19:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[2, 14]]);
+                }, _callee, this, [[2, 13]]);
             }));
 
             function LoginHandler(_x) {
@@ -22085,7 +22084,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22096,8 +22095,17 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardData_vue__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardData_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CardData_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CardData_vue__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CardData_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_CardData_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(4);
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -22135,15 +22143,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "card-list",
-  components: {
-    CardData: __WEBPACK_IMPORTED_MODULE_0__components_CardData_vue___default.a
-  },
-  props: {}
+    name: "card-list",
+    components: {
+        CardData: __WEBPACK_IMPORTED_MODULE_1__components_CardData_vue___default.a
+    },
+    props: {},
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["d" /* mapState */])({
+        campaigns: function campaigns(state) {
+            return state.Campaign.campaigns;
+        }
+    })),
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapActions */])({
+        getCampaigns: 'Campaign/getCampaigns'
+    })),
+
+    created: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return this.getCampaigns();
+
+                        case 2:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function created() {
+            return _ref.apply(this, arguments);
+        }
+
+        return created;
+    }()
 });
 
 /***/ }),
@@ -22232,7 +22274,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22243,15 +22285,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
-
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 //
 //
 //
@@ -22296,48 +22329,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'CardData',
-    props: {},
+    props: {
+        item: Object
+    },
+    computed: {
+        DiffDate: function DiffDate() {
+            var crdate = new Date(Date.now());
+            var endate = new Date(this.item.date);
+            var timeDiff = Math.abs(endate.getTime() - crdate.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["d" /* mapState */])({
-        campaigns: function campaigns(state) {
-            return state.Campaign.campaigns;
+            if (crdate > endate) return "Out of day";else return diffDays + "day";
+        },
+        DiffTarget: function DiffTarget() {
+            var value = this.item.raised / this.item.target;
+            return Math.ceil(value * (100 / 100)) + "%";
         }
-    })),
-
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])({
-        getCampaigns: 'Campaign/getCampaigns'
-    })),
-
-    created: function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                while (1) {
-                    switch (_context.prev = _context.next) {
-                        case 0:
-                            _context.next = 2;
-                            return this.getCampaigns();
-
-                        case 2:
-                        case 'end':
-                            return _context.stop();
-                    }
-                }
-            }, _callee, this);
-        }));
-
-        function created() {
-            return _ref.apply(this, arguments);
-        }
-
-        return created;
-    }()
+    }
 });
 
 /***/ }),
@@ -22354,101 +22365,125 @@ var render = function() {
       staticClass: "sd-card uk-first-column",
       staticStyle: { transform: "translateY(0px)" }
     },
-    _vm._l(_vm.campaigns, function(campaign) {
-      return _c(
-        "div",
-        {
-          key: campaign.id,
-          staticClass: "uk-card uk-card-small uk-card-default"
-        },
-        [
-          _vm._m(0, true),
+    [
+      _c("div", { staticClass: "uk-card uk-card-small uk-card-default" }, [
+        _c("div", { staticClass: "uk-card-header" }, [
+          _c(
+            "div",
+            {
+              staticClass: "uk-grid uk-grid-small uk-text-small",
+              attrs: { "data-uk-grid": "" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "uk-width-auto uk-text-right uk-text-muted" },
+                [
+                  _c("span", {
+                    staticClass: "uk-icon",
+                    attrs: { "data-uk-icon": "icon:clock; ratio: 0.8" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { domProps: { innerHTML: _vm._s(_vm.DiffDate) } })
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-card-media" }, [
+          _c(
+            "div",
+            {
+              staticClass: "uk-inline-clip uk-transition-toggle",
+              attrs: { tabindex: "0" }
+            },
+            [
+              _c("img", {
+                staticClass: "lazy",
+                attrs: {
+                  "data-src": "https://picsum.photos/400/300/?random=5",
+                  "data-width": "400",
+                  "data-height": "300",
+                  "data-uk-img": "",
+                  alt: "",
+                  src: "https://picsum.photos/400/300/?random=5"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary"
+                },
+                [
+                  _c("span", {
+                    staticClass: "uk-icon",
+                    attrs: { "data-uk-icon": "icon:lifesaver; ratio: 0.8" }
+                  }),
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.item.target) +
+                      "\n                "
+                  )
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-card-body" }, [
+          _c("h6", {
+            staticClass:
+              "uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold",
+            domProps: { innerHTML: _vm._s(_vm.item.title) }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "uk-card-media" }, [
-            _c(
-              "div",
-              {
-                staticClass: "uk-inline-clip uk-transition-toggle",
-                attrs: { tabindex: "0" }
-              },
-              [
-                _c("img", {
-                  staticClass: "lazy",
-                  attrs: {
-                    "data-src": "https://picsum.photos/400/300/?random=5",
-                    "data-width": "400",
-                    "data-height": "300",
-                    "data-uk-img": "",
-                    alt: "",
-                    src: "https://picsum.photos/400/300/?random=5"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary"
-                  },
-                  [
-                    _c("span", {
-                      staticClass: "uk-icon",
-                      attrs: { "data-uk-icon": "icon:lifesaver; ratio: 0.8" }
-                    }),
-                    _vm._v(
-                      "\n          " + _vm._s(campaign.target) + "\n        "
-                    )
-                  ]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-card-body" }, [
-            _c("h6", {
+          _c("p", {
+            staticClass: "uk-text-small uk-text-muted",
+            domProps: { innerHTML: _vm._s(_vm.item.body) }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-card-footer" }, [
+          _c(
+            "div",
+            {
               staticClass:
-                "uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold",
-              domProps: { innerHTML: _vm._s(campaign.title) }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "uk-text-small uk-text-muted",
-              domProps: { innerHTML: _vm._s(campaign.body) }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-card-footer" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle",
-                attrs: { "data-uk-grid": "" }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "uk-width-expand uk-text-small uk-first-column"
-                  },
-                  [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(campaign.school.name) +
-                        "\n        "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-width-auto uk-text-right" }, [
-                  _vm._v("\n          50%\n        ")
-                ])
-              ]
-            )
-          ])
-        ]
-      )
-    })
+                "uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle",
+              attrs: { "data-uk-grid": "" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "uk-width-expand uk-text-small uk-first-column"
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.item.school.name) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "uk-width-auto uk-text-right",
+                  domProps: { innerHTML: _vm._s(_vm.DiffTarget) }
+                },
+                [_vm._v("\n                    50%\n                ")]
+              )
+            ]
+          )
+        ])
+      ])
+    ]
   )
 }
 var staticRenderFns = [
@@ -22456,31 +22491,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-card-header" }, [
-      _c(
-        "div",
-        {
-          staticClass: "uk-grid uk-grid-small uk-text-small",
-          attrs: { "data-uk-grid": "" }
-        },
-        [
-          _c("div", { staticClass: "uk-width-expand uk-first-column" }, [
-            _c("span", { staticClass: "cat-txt" }, [_vm._v("Semua")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "uk-width-auto uk-text-right uk-text-muted" },
-            [
-              _c("span", {
-                staticClass: "uk-icon",
-                attrs: { "data-uk-icon": "icon:clock; ratio: 0.8" }
-              }),
-              _vm._v(" 3 min.\n        ")
-            ]
-          )
-        ]
-      )
+    return _c("div", { staticClass: "uk-width-expand uk-first-column" }, [
+      _c("span", { staticClass: "cat-txt" }, [_vm._v("Semua")])
     ])
   }
 ]
@@ -22572,8 +22584,12 @@ var render = function() {
                 "data-uk-sortable": "handle: .drag-icon"
               }
             },
-            [_c("CardData")],
-            1
+            _vm._l(_vm.campaigns, function(campaign) {
+              return _c("CardData", {
+                key: campaign.id,
+                attrs: { item: campaign }
+              })
+            })
           )
         ]
       )
@@ -23904,7 +23920,7 @@ var render = function() {
   return _c(
     "div",
     { staticStyle: { "background-image": "url(images/pattern.png)" } },
-    [_c("HeroBlock"), _vm._v(" "), _c("TableEdit")],
+    [_c("HeroBlock"), _vm._v(" "), _c("UserEdit")],
     1
   )
 }

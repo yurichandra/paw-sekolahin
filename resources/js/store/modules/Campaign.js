@@ -15,7 +15,7 @@ const actions = {
     getCampaigns({ commit }) {
         return new Promise((resolve, reject) => {
             const successCallback = res => {
-                commit('setSource', res.data.data)
+                commit('setSource', res.data.data);
                 resolve()
             }
 

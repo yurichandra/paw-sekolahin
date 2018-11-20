@@ -106,7 +106,6 @@
                     UIkit.modal(element).hide();
                     this.error = false;
                     this.standby = false;
-                    this.$routes.push({name: 'home'})
                 } catch (err) {
                     console.log(err)
                     UIkit.notification("<span uk-icon='icon: warning'></span> Gagal Login!!", {

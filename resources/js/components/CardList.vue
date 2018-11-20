@@ -28,8 +28,7 @@
       </div>
       <div class="uk-grid uk-grid-medium uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-6@xl uk-grid-match js-filter uk-flex-top uk-flex-wrap-top uk-sortable"
         data-uk-grid="masonry: true" data-uk-sortable="handle: .drag-icon" style="height: 2538px;">
-
-        <CardData />
+        <CardData v-for="campaign in campaigns" :key="campaign.id" :item="campaign"/>
       </div>
     </div>
   </section>
@@ -38,12 +37,29 @@
 
 <script>
   import CardData from '../components/CardData.vue'
+  import { mapState, mapActions } from 'vuex'
+
   export default {
     name: "card-list",
     components: {
       CardData
     },
-    props: {}
+    props: {},
+    computed: {
+        ...mapState({
+            campaigns: state => state.Campaign.campaigns
+        })
+    },
+
+    methods: {
+        ...mapActions({
+            getCampaigns: 'Campaign/getCampaigns'
+        })
+    },
+
+    async created () {
+        await this.getCampaigns()
+    }
   }
 
 </script>
