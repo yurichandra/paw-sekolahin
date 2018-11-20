@@ -10,7 +10,7 @@ var options = {
 };
 
 Vue.use(VueSession, options);
-Vue.config.productionTip = false;
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({

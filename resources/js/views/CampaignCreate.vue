@@ -12,9 +12,7 @@
   export default {
     name: 'campaign-create',
     components: {
-      Header,
       Form,
-      Footer,
       LoginForm
     }
   }

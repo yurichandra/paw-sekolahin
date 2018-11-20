@@ -14,8 +14,6 @@
 // For user
 
 Route::get('/', 'IndexController@index');
-Route::get('/create', 'IndexController@index');
-Route::get('/profile', 'IndexController@index');
 
 // For Admin
 

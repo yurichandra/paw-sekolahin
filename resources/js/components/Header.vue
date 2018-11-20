@@ -47,7 +47,7 @@
     import Auth from '../auth'
 
     export default {
-        name: 'Header',
+        name: 'header',
         props: {},
         methods: {
             ShowModal() {
@@ -75,8 +75,7 @@
             }
         }
     }
-  }
-};
+  
 </script>
 
 <style>
