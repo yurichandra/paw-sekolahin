@@ -1,7 +1,8 @@
 import Http from '../../http'
 
 const state = {
-    campaigns: []
+    campaigns: [],
+    campaign: {}
 }
 
 const mutations = {
@@ -12,7 +13,7 @@ const mutations = {
 
 const actions = {
     getCampaigns({ commit }) {
-        return new Promise((resolve, error) => {
+        return new Promise((resolve, reject) => {
             const successCallback = res => {
                 commit('setSource', res.data)
                 resolve()
@@ -24,6 +25,32 @@ const actions = {
 
             Http.get('/api/campaigns', successCallback, errorCallback)
         })
+    },
+
+    store(context, payload) {
+        return new Promise((resolve, reject) => {
+            const successCallback = res => {
+                resolve(res.data.data)
+            }
+
+            const errorCallback = err => {
+                reject(err)
+            }
+
+            Http.post('/api/campaigns', payload, successCallback, errorCallback)
+        })
+    },
+
+    get(context, id) {
+
+    },
+
+    update(context, payload) {
+
+    },
+
+    destroy(context, id) {
+
     }
 }
 
