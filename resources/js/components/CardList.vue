@@ -7,9 +7,6 @@
         <div class="uk-width-4-5">
           <ul class="uk-subnav uk-subnav-pill">
             <li class="uk-active" data-uk-filter-control=""><a href="#">Semua</a></li>
-            <li data-uk-filter-control=".sd-card"><a href="#">SD</a></li>
-            <li data-uk-filter-control=".smp-card"><a href="#">SMP</a></li>
-            <li data-uk-filter-control=".sma-card"><a href="#">SMA</a></li>
           </ul>
         </div>
         <div class="uk-width-1-5@s uk-margin-auto">
