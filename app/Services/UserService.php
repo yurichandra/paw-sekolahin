@@ -129,7 +129,6 @@ class UserService
 
     public function auth(array $data)
     {
-        // TODO: Buat bisa jika status 0, biar bisa dikasih peringatan
         $email = $data['email'];
         $password = $data['password'];
 
@@ -137,6 +136,10 @@ class UserService
             'email' => $email,
             'status' => true,
         ])->first();
+
+        if (!$user) {
+            throw \Exception;
+        }
 
         return password_verify($password, $user->password) ? $user : null;
     }
