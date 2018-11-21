@@ -39,4 +39,9 @@ class Donation extends Model
     {
         return $this->belongsTo(Campaign::class);
     }
+
+    public function proof()
+    {
+        return $this->hasOne(Proof::class);
+    }
 }
