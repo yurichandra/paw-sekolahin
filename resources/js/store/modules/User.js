@@ -1,16 +1,36 @@
 import Http from '../../http'
 
 const state = {
-    user: {}
+    user: {},
+    users: []
 }
 
 const mutations = {
     setSource(state, data) {
         state.user = data
+    },
+
+    setUsers (state, data) {
+        state.users = data
     }
 }
 
 const actions = {
+    getUsers (context) {
+        return new Promise((resolve, reject) => {
+            const successCallback = res => {
+                context.commit('setUsers', res.data.data)
+                resolve()
+            }
+
+            const errorCallback = err => {
+                reject(err)
+            }
+
+            Http.get('/api/users', successCallback, errorCallback)
+        })
+    },
+
     get (context, id) {
         return new Promise((resolve, reject) => {
             const successCallback = res => {
@@ -24,7 +44,6 @@ const actions = {
 
             Http.get(`/api/users/${id}`, successCallback, errorCallback)
         })
-
     },
 
     update (context, payload) {
