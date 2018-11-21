@@ -37,7 +37,7 @@
                 return "Donasi"
             }
         },
-    
+
         methods: {
             ...mapActions({
                 getCampaign: 'Campaign/get'
@@ -45,8 +45,8 @@
         },
 
         async created() {
-            console.log(this.$route.params.campaign_id)
-            await this.getCampaign(this.$route.params.campaign_id)
+            console.log(this.$route.params.id)
+            await this.getCampaign(this.$route.params.id)
         }
     }
 

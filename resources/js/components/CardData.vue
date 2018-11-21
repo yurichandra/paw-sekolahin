@@ -19,12 +19,16 @@
                         data-uk-img="" alt="" src="https://picsum.photos/400/300/?random=5">
                     <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
                         <span data-uk-icon="icon:lifesaver; ratio: 0.8" class="uk-icon"></span>
-                        {{ item.target }}
+                        Rp {{ item.target }}
                     </div>
                 </div>
             </div>
             <div class="uk-card-body">
-                <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold" v-html="item.title"></h6>
+                <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold">
+                    <router-link
+                        v-html="item.title"
+                        :to="{name: 'campaign-detail', params: {id: item.id}}"></router-link>
+                </h6>
                 <p class="uk-text-small uk-text-muted" v-html="item.body"></p>
             </div>
             <div class="uk-card-footer">

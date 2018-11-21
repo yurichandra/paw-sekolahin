@@ -9,16 +9,16 @@
                 <CampaignCard :count="campaignCount"/>
             </div>
             <div class="col m4">
-                <SchoolCard />
+                <SchoolCard :count="schoolCount"/>
             </div>
         </div>
         <div class="p5">
             <h5>Latest User</h5>
-            <LatestUser />
+            <LatestUser :users="reverseUsers"/>
         </div>
         <div class="p5">
             <h5>Latest Campaign</h5>
-            <LatestCampaign />
+            <LatestCampaign :campaigns = "campaigns"/>
         </div>
 
     </div>
@@ -45,7 +45,10 @@
 
         methods: {
             ...mapActions({
-                getAllCampaigns: 'Campaign/getCampaigns'
+                getAllCampaigns: 'Campaign/getCampaigns',
+                fetchDonations: 'Donation/getAllDonations',
+                fetchSchool: 'School/getSchools',
+                fetchUsers: 'User/getUsers'
             })
         },
 
@@ -55,16 +58,30 @@
             }),
 
             ...mapState({
-                campaigns: state => state.Campaign.campaigns
+                campaigns: state => state.Campaign.campaigns,
+                schools: state => state.School.schools,
+                donations: state => state.Donation.donations,
+                users: state => state.User.users
             }),
 
             campaignCount () {
                 return this.campaigns.length ? this.campaigns.length : 0
+            },
+
+            schoolCount () {
+                return this.schools.length ? this.schools.length : 0
+            },
+
+            reverseUsers () {
+                return this.users.reverse()
             }
         },
 
         async created () {
             this.getAllCampaigns()
+            this.fetchDonations()
+            this.fetchSchool()
+            this.fetchUsers()
         }
     }
 </script>

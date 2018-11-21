@@ -18,7 +18,7 @@ export const routes = [
         component: CreateView
     },
     {
-        path: '/campaign/:campaign_id',
+        path: '/campaign/:id',
         name: 'campaign-detail',
         component: DetailView
     },

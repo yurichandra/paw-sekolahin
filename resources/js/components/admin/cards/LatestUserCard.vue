@@ -10,22 +10,26 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td>Alvin</td>
-                <td>Eclair</td>
-                <td>$0.87</td>
-            </tr>
-            <tr>
-                <td>Alan</td>
-                <td>Jellybean</td>
-                <td>$3.76</td>
-            </tr>
-            <tr>
-                <td>Jonathan</td>
-                <td>Lollipop</td>
-                <td>$7.00</td>
-            </tr>
+                <tr
+                    v-for="user in users.slice(0, 4)"
+                    :key="user.id">
+                    <td v-html="user.id"></td>
+                    <td v-html="user.name"></td>
+                    <td v-html="user.email">$0.87</td>
+                </tr>
             </tbody>
         </table>
     </div>
 </template>
+
+<script>
+    export default {
+        props: {
+            users: {
+                required: true,
+                type: Array
+            }
+        }
+    }
+</script>
+
