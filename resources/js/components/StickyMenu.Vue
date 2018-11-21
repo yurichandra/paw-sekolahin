@@ -16,9 +16,9 @@
                     </div>
                     <div class="uk-card-body uk-text-left">
                         <ul class="uk-nav">
-                            <li class="uk-active"><a href="" class="uk-button uk-button-text">Akun Saya</a></li>
-                            <li><a href="" class="uk-button uk-button-text">Campaign Saya</a></li>
-                            <li><a href="" class="uk-button uk-button-text">Donasi Saya</a></li>
+                            <li class="uk-active"><router-link to="/profile/akun" class="uk-button uk-button-text">Akun Saya</router-link></li>
+                            <li><router-link to="/profile/campaign" class="uk-button uk-button-text">Campaign Saya</router-link></li>
+                            <li><router-link to="/profile/donasi" class="uk-button uk-button-text">Donasi Saya</router-link></li>
                         </ul>
                     </div>
                 </div>

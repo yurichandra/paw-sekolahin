@@ -18,12 +18,12 @@ export const routes = [
         component: CreateView
     },
     {
-        path: '/campaign/:id',
+        path: '/campaign/:campaign_id',
         name: 'campaign-detail',
         component: DetailView
     },
     {
-        path: '/profile',
+        path: '/profile/:profile_type',
         name: 'profile',
         component: ProfileView
     },

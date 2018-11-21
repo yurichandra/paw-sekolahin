@@ -6,14 +6,14 @@
 
                 <!-- ISI -->
                 <div class="uk-width-4-5">
-                    <h2 class="uk-heading-divider">Campaign Saya</h2>
+                    <h2 class="uk-heading-divider">{{ jenis }} Saya</h2>
                     <table class="uk-table uk-table-hover uk-table-divider">
                         <thead>
                             <tr>
-                                <th>Nama Campaign</th>
-                                <th>Target</th>
-                                <th>Pencapaian</th>
-                                <th>Aksi</th>
+                                <th>{{ table[0] }}</th>
+                                <th>{{ table[1] }}</th>
+                                <th>{{ table[2] }}</th>
+                                <th>{{ table[3] }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +35,10 @@
 
     export default {
         name: "profile-table",
+        props:{
+            jenis: String,
+            table: Array
+        },
         components: {
             Row,
             StickyMenu

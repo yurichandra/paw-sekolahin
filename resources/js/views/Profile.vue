@@ -1,8 +1,9 @@
 <template>
     <div style="background-image: url(images/pattern.png)">
         <HeroBlock />
-        <UserEdit />
-        <!-- <TableEdit /> -->
+        <UserEdit v-if="Detail==0"/>
+        <TableEdit jenis="Campaign" :table="['Nama', 'Target', 'Pencapaian', 'Aksi']" v-else-if="Detail==1"/>
+        <TableEdit jenis="Donasi" :table="['Nama', 'Deskripsi', 'Status', 'Aksi']" v-else-if="Detail==2"/>
     </div>
 </template>
 
@@ -18,7 +19,22 @@
             HeroBlock,
             UserEdit,
             TableEdit
+        },
+        computed: {
+            Detail() {
+                console.log(this.$route.params);
+                var param = this.$route.params.profile_type;
+                if (param == "akun")
+                    return 0;
+                else if (param == "campaign")
+                    return 1;
+                else if (param == "donasi")
+                    return 2;
+                else
+                    return 3;
+            }
         }
+
     }
 
 </script>

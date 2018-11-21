@@ -15,7 +15,7 @@
                         </li>
                         <li class="uk-visible@s">
                             <router-link
-                                to="/profile"
+                                to="/profile/akun"
                                 v-if=auth>
                                 Profile
                             </router-link>
