@@ -27,7 +27,7 @@
                 <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold">
                     <router-link
                         v-html="item.title"
-                        :to="{name: 'campaign-detail', params: {id: item.id}}"></router-link>
+                        :to="{name: 'campaign-detail', params: {campaign_id: item.id}}"></router-link>
                 </h6>
                 <p class="uk-text-small uk-text-muted" v-html="item.body"></p>
             </div>

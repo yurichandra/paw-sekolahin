@@ -45,7 +45,7 @@
         },
 
         async created() {
-            await this.getCampaign(this.$route.params.id)
+            await this.getCampaign(this.$route.params.campaign_id)
         }
     }
 

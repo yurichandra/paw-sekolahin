@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
     init () {
-        axios.defaults.baseURL = '127.0.0.1/'
+        axios.defaults.baseURL = '127.0.0.1/';
     },
 
     get (url, successCallback, errorCallback) {
@@ -11,7 +11,7 @@ export default {
             method : 'get'
         })
         .then(successCallback)
-        .catch(errorCallback)
+        .catch(errorCallback);
     },
 
     post (url, data, successCallback, errorCallback) {
@@ -21,7 +21,7 @@ export default {
             method: 'post'
         })
         .then(successCallback)
-        .catch(errorCallback)
+        .catch(errorCallback);
     },
 
     patch (url, data, successCallback, errorCallback) {
@@ -31,7 +31,7 @@ export default {
             method: 'patch'
         })
         .then(successCallback)
-        .catch(errorCallback)
+        .catch(errorCallback);
     },
 
     delete(url, successCallback, errorCallback) {
@@ -40,6 +40,6 @@ export default {
             method: 'delete'
         })
         .then(successCallback)
-        .catch(errorCallback)
+        .catch(errorCallback);
     }
 }

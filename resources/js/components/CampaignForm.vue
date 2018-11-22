@@ -8,6 +8,7 @@
                     <img src="images/2.jpg" alt="Alt img" data-uk-cover="" class="uk-cover" style="height: 462px; width: 1200px;">
                 </div>
                 <div class="uk-width-4-5@s uk-width-1-1 uk-margin">
+
                     <form class="uk-form-stacked">
                         <fieldset class="uk-fieldset">
 
@@ -15,48 +16,33 @@
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">Title</label>
-                                <input class="uk-input" type="text" placeholder="Campaign .." v-model="title">
+                                <input class="uk-input" type="text" placeholder="Campaign .." v-model="title" required>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">School</label>
                                 <select class="uk-select" name="" id="" v-model="school">
-                                    <option
-                                        v-for="school in schools"
-                                        :key="school.id"
-                                        :value="school.id"
-                                        v-html="school.name">
+                                    <option v-for="school in schools" :key="school.id" :value="school.id" v-html="school.name"
+                                        required>
                                     </option>
                                 </select>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">Target</label>
-                                <input
-                                    class="uk-input"
-                                    type="text"
-                                    placeholder="Rp 1000 .."
-                                    v-model="target">
+                                <input class="uk-input" type="text" placeholder="Rp 1000 .." v-model="target" required>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">Date</label>
-                                <input
-                                    class="uk-input"
-                                    placeholder="Date"
-                                    name="date"
-                                    value=""
-                                    type="date"
-                                    v-model="date">
+                                <input class="uk-input" placeholder="Date" name="date" value="" type="date" v-model="date"
+                                    required>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label">Message</label>
-                                <textarea
-                                    class="uk-textarea"
-                                    rows="5"
-                                    placeholder="Textarea"
-                                    v-model="message"></textarea>
+                                <textarea class="uk-textarea" rows="5" placeholder="Textarea" v-model="message"
+                                    required></textarea>
                             </div>
 
                             <div class="uk-margin">
@@ -65,7 +51,14 @@
 
                         </fieldset>
                     </form>
+
                 </div>
+            </div>
+        </div>
+
+        <div id="modal-loading" class="uk-flex-top" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" bg-close="true">
+                <div uk-spinner></div>
             </div>
         </div>
     </section>
@@ -73,19 +66,25 @@
 </template>
 
 <script>
-    import { mapState, mapActions, mapGetters } from 'vuex'
+    import {
+        mapState,
+        mapActions,
+        mapGetters
+    } from 'vuex'
 
     export default {
         name: "CampaignForm",
-        props: {},
+        props: {
 
-        data () {
+        },
+
+        data() {
             return {
-                school : '',
-                date : '',
-                message : '',
-                target : 0,
-                title : ''
+                school: '',
+                date: '',
+                message: '',
+                target: 0,
+                title: ''
             }
         },
 
@@ -95,8 +94,19 @@
             }),
 
             ...mapGetters({
-                userId: 'LoggedUser/userId'
+                userId: 'LoggedUser/userId',
+                ongoing: 'Util/ongoing'
             })
+        },
+
+        watch: {
+            ongoing: function (val) {
+                var element = document.getElementById("modal-loading");
+                if (val === true)
+                    UIkit.modal(element).show();
+                else
+                    UIkit.modal(element).hide();
+            }
         },
 
         methods: {
@@ -105,7 +115,7 @@
                 store: 'Campaign/store'
             }),
 
-            create () {
+            create() {
                 const payload = {
                     userId: this.userId,
                     schoolId: this.school,
@@ -116,21 +126,25 @@
                 }
 
                 try {
-                    this.store(payload)
-                    console.log("berhasil!")
+                    var vrouter = this.$router;
+                    this.store(payload).then(function (value) {
+                        setTimeout(function () {
+                            vrouter.push(`/campaign/${value.id}`);
+                        }, 500);
+                        console.log("berhasil!")
+                    });
                 } catch (err) {
                     console.log(err)
                 }
             }
         },
 
-        async created () {
+        async created() {
             await this.getAllSchools()
         }
     }
 
 </script>
 
-<style>
-
+<style scoped>
 </style>
