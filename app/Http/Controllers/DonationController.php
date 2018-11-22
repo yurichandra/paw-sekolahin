@@ -148,4 +148,27 @@ class DonationController extends RestController
             return $this->sendIseResponse($e->getMessage());
         }
     }
+
+    public function uploadProof(Request $request, DonationService $service, $id)
+    {
+        $this->validate($request, [
+            'userId' => 'required',
+            'photo' => 'required',
+        ]);
+
+        $path = $request->file('photo')->store('images');
+
+        $data = [
+            'user_id' => $request->userId,
+            'path' => $path,
+        ];
+
+        try {
+            $service->uploadProof($id, $data);
+
+            return response()->json();
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
+    }
 }

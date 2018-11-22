@@ -84,4 +84,16 @@ class DonationService
     {
         return $this->repo->destroy($id);
     }
+
+    public function uploadProof($id, $data)
+    {
+        try {
+            $donation = $this->find($id);
+            $donation->proof->create($data);
+
+            return true;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
