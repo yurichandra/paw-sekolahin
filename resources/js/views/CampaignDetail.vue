@@ -1,11 +1,13 @@
 <template>
     <div>
         <div style="background-image: url(images/pattern.png)">
-            <Author :nama="Donasi"/>
-            <Article :judul_root="campaign.title" :deskripsi_root="campaign.body" :tanggal_root="campaign.date" :target_root="campaign.target" :raised_root="campaign.raised"/>
+            <Author :nama="Donasi" />
+            <Article :judul_root="campaign.title" :deskripsi_root="campaign.body" :tanggal_root="campaign.date"
+                :target_root="campaign.target" :raised_root="campaign.raised" />
         </div>
         <Donation />
-        <Bar :target_root="campaign.target" :raised_root="campaign.raised"/>
+        <Bar :target_root="campaign.target" :raised_root="campaign.raised" />
+        <LoginForm />
     </div>
 </template>
 
@@ -15,6 +17,8 @@
     import Article from '../components/Article.vue'
     import Donation from '../components/Donation.vue'
     import router from '../service/home/routes'
+    import LoginForm from '../components/LoginForm.vue'
+
 
     import {
         mapState,
@@ -27,13 +31,14 @@
             Article,
             Author,
             Bar,
-            Donation
+            Donation,
+            LoginForm
         },
         computed: {
             ...mapState({
                 campaign: state => state.Campaign.campaign
             }),
-            Donasi(){
+            Donasi() {
                 return "Donasi"
             }
         },

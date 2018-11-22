@@ -18113,6 +18113,11 @@ var state = {
     campaign: {}
 };
 
+var getters = {
+    campaign_id: function campaign_id(state) {
+        return state.campaign.id;
+    }
+};
 var mutations = {
     setSource: function setSource(state, data) {
         state.campaigns = data;
@@ -18207,6 +18212,7 @@ var actions = {
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     actions: actions,
+    getters: getters,
     mutations: mutations,
     state: state
 });
@@ -18439,6 +18445,19 @@ var actions = {
             };
 
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/donations', successCallback, errorCallback);
+        });
+    },
+    SaveDonation: function SaveDonation(context, payload) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                resolve(res.data.data);
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+            console.log("payload:", payload);
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/donations', payload, successCallback, errorCallback);
         });
     }
 };

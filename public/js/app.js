@@ -18163,6 +18163,11 @@ var state = {
     campaign: {}
 };
 
+var getters = {
+    campaign_id: function campaign_id(state) {
+        return state.campaign.id;
+    }
+};
 var mutations = {
     setSource: function setSource(state, data) {
         state.campaigns = data;
@@ -18257,6 +18262,7 @@ var actions = {
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     actions: actions,
+    getters: getters,
     mutations: mutations,
     state: state
 });
@@ -18489,6 +18495,19 @@ var actions = {
             };
 
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/donations', successCallback, errorCallback);
+        });
+    },
+    SaveDonation: function SaveDonation(context, payload) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                resolve(res.data.data);
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+            console.log("payload:", payload);
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/donations', payload, successCallback, errorCallback);
         });
     }
 };
@@ -24853,7 +24872,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24875,7 +24894,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Donation_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_home_routes__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_LoginForm_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_LoginForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_LoginForm_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vuex__ = __webpack_require__(4);
 
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -24893,6 +24914,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+
 
 
 
@@ -24908,9 +24932,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         Article: __WEBPACK_IMPORTED_MODULE_3__components_Article_vue___default.a,
         Author: __WEBPACK_IMPORTED_MODULE_1__components_AuthorDetail_vue___default.a,
         Bar: __WEBPACK_IMPORTED_MODULE_2__components_BottomBar_vue___default.a,
-        Donation: __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue___default.a
+        Donation: __WEBPACK_IMPORTED_MODULE_4__components_Donation_vue___default.a,
+        LoginForm: __WEBPACK_IMPORTED_MODULE_6__components_LoginForm_vue___default.a
     },
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["d" /* mapState */])({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_7_vuex__["d" /* mapState */])({
         campaign: function campaign(state) {
             return state.Campaign.campaign;
         }
@@ -24920,7 +24945,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     }),
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapActions */])({
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_7_vuex__["b" /* mapActions */])({
         getCampaign: 'Campaign/get'
     })),
 
@@ -26391,7 +26416,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -26402,6 +26427,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -26441,8 +26469,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "donation"
+    name: "donation",
+    data: function data() {
+        return {
+            pesan: '',
+            uang: 0
+        };
+    },
+
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
+        userId: 'LoggedUser/userId',
+        campaignId: 'Campaign/campaign_id',
+        ongoing: 'Util/ongoing'
+    })),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+        store: 'Donation/SaveDonation'
+    }), {
+        create: function create() {
+            var payload = {
+                userId: this.userId,
+                campaignId: this.campaignId,
+                amount: this.uang,
+                message: this.pesan,
+                status: false
+            };
+
+            console.log(payload);
+            try {
+                this.store(payload);
+                var element = document.getElementById("modal-sections");
+                UIkit.modal(element).hide();
+                UIkit.modal.alert('Jangan lupa Verifikasi donasi anda ..');
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    })
 });
 
 /***/ }),
@@ -26453,92 +26517,125 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "uk-flex-top",
+      attrs: { id: "modal-sections", "uk-modal": "" }
+    },
+    [
+      _c("div", { staticClass: "uk-modal-dialog uk-margin-auto-vertical" }, [
+        _c("button", {
+          staticClass: "uk-modal-close-default",
+          attrs: { type: "button", "uk-close": "" }
+        }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-modal-body uk-flex uk-flex-center" }, [
+          _c("form", { staticClass: "uk-form-stacked" }, [
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [_vm._v("Pesan")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-inline uk-margin-auto" }, [
+                _c("span", {
+                  staticClass: "uk-form-icon",
+                  attrs: { "uk-icon": "icon: heart" }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pesan,
+                      expression: "pesan"
+                    }
+                  ],
+                  staticClass: "uk-input uk-width-1-1",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.pesan },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pesan = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Jumlah Uang")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-inline" }, [
+                _c("span", {
+                  staticClass: "uk-form-icon",
+                  attrs: { "uk-icon": "icon: credit-card" }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.uang,
+                      expression: "uang"
+                    }
+                  ],
+                  staticClass: "uk-input uk-width-1-1",
+                  attrs: { type: "number" },
+                  domProps: { value: _vm.uang },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.uang = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-modal-footer uk-text-right" }, [
+          _c(
+            "button",
+            {
+              staticClass: "uk-button uk-button-default uk-modal-close",
+              attrs: { type: "button" }
+            },
+            [_vm._v("Cancel")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "uk-button uk-button-primary",
+              attrs: { type: "button" },
+              on: { click: _vm.create }
+            },
+            [_vm._v("Save")]
+          )
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "uk-flex-top",
-        attrs: { id: "modal-sections", "uk-modal": "" }
-      },
-      [
-        _c("div", { staticClass: "uk-modal-dialog uk-margin-auto-vertical" }, [
-          _c("button", {
-            staticClass: "uk-modal-close-default",
-            attrs: { type: "button", "uk-close": "" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-modal-header" }, [
-            _c("h2", { staticClass: "uk-modal-title" }, [_vm._v("Donasi")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-modal-body uk-flex uk-flex-center" }, [
-            _c("form", { staticClass: "uk-form-stacked" }, [
-              _c("div", { staticClass: "uk-margin" }, [
-                _c("label", { staticClass: "uk-form-label" }, [
-                  _vm._v("Pesan")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-inline uk-margin-auto" }, [
-                  _c("span", {
-                    staticClass: "uk-form-icon",
-                    attrs: { "uk-icon": "icon: heart" }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "uk-input uk-width-1-1",
-                    attrs: { type: "text" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-margin" }, [
-                _c("label", { staticClass: "uk-form-label" }, [
-                  _vm._v("Jumlah Uang")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-inline" }, [
-                  _c("span", {
-                    staticClass: "uk-form-icon uk-form-icon-flip",
-                    attrs: { "uk-icon": "icon: credit-card" }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "uk-input uk-width-1-1",
-                    attrs: { type: "text" }
-                  })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-modal-footer uk-text-right" }, [
-            _c(
-              "button",
-              {
-                staticClass: "uk-button uk-button-default uk-modal-close",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Cancel")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "uk-button uk-button-primary",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Save")]
-            )
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "uk-modal-header" }, [
+      _c("h2", { staticClass: "uk-modal-title" }, [_vm._v("Donasi")])
+    ])
   }
 ]
 render._withStripped = true
@@ -26587,7 +26684,9 @@ var render = function() {
           target_root: _vm.campaign.target,
           raised_root: _vm.campaign.raised
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("LoginForm")
     ],
     1
   )

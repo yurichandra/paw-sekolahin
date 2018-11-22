@@ -5,6 +5,9 @@ const state = {
     campaign: {}
 };
 
+const getters = {
+    campaign_id: state => state.campaign.id,
+}
 const mutations = {
     setSource(state, data) {
         state.campaigns = data
@@ -98,6 +101,7 @@ const actions = {
 export default {
     namespaced: true,
     actions,
+    getters,
     mutations,
     state
 }

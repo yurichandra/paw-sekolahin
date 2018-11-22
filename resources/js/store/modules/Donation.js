@@ -25,6 +25,19 @@ const actions = {
 
             Http.get('/api/donations', successCallback, errorCallback)
         })
+    },
+    SaveDonation(context, payload) {
+        return new Promise((resolve, reject) => {
+            const successCallback = res => {
+                resolve(res.data.data)
+            }
+
+            const errorCallback = err => {
+                reject(err)
+            }
+            console.log("payload:",payload)
+            Http.post('/api/donations',payload, successCallback, errorCallback)
+        })
     }
 }
 
