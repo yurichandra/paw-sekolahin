@@ -1,26 +1,27 @@
 <template>
     <div>
         <router-view></router-view>
-        <div class="row">
-            <div class="col m4">
-                <DonationCard />
+        <div class="container">
+            <div class="row">
+                <div class="col m4">
+                    <DonationCard :total="donationTotal"/>
+                </div>
+                <div class="col m4">
+                    <CampaignCard :count="campaignCount"/>
+                </div>
+                <div class="col m4">
+                    <SchoolCard :count="schoolCount"/>
+                </div>
             </div>
-            <div class="col m4">
-                <CampaignCard :count="campaignCount"/>
+            <div class="p5">
+                <h5>Latest User</h5>
+                <LatestUser :users="reverseUsers"/>
             </div>
-            <div class="col m4">
-                <SchoolCard :count="schoolCount"/>
+            <div class="p5">
+                <h5>Latest Campaign</h5>
+                <LatestCampaign :campaigns = "campaigns"/>
             </div>
         </div>
-        <div class="p5">
-            <h5>Latest User</h5>
-            <LatestUser :users="reverseUsers"/>
-        </div>
-        <div class="p5">
-            <h5>Latest Campaign</h5>
-            <LatestCampaign :campaigns = "campaigns"/>
-        </div>
-
     </div>
 </template>
 
@@ -72,6 +73,14 @@
                 return this.schools.length ? this.schools.length : 0
             },
 
+            donationTotal () {
+                return this.donations.reduce((acc, donation) => {
+                    acc =+ donation.amount
+
+                    return acc
+                }, 0)
+            },
+
             reverseUsers () {
                 return this.users.reverse()
             }
@@ -89,6 +98,10 @@
 <style scoped>
     .p5 {
         padding: 0 15px;
+    }
+
+    .p3 {
+        padding: 30px;
     }
 </style>
 

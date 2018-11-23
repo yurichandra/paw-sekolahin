@@ -14,6 +14,7 @@ class DonationTransformer extends TransformerAbstract
             'amount' => $donation->amount,
             'status' => $donation->status,
             'message' => $donation->message,
+            'campaign' => $donation->campaign->title,
             'donors' => $donation->user->name,
         ];
     }

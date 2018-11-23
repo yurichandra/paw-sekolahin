@@ -1,5 +1,5 @@
 <template>
-    <div class="p5">
+    <div class="container">
         <h5>Latest User</h5>
         <a class="waves-effect waves-light btn">Download</a>
         <div class="card">

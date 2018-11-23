@@ -1,5 +1,5 @@
 <template>
-    <div class="p5">
+    <div class="container">
         <h5>Latest Campaign</h5>
         <a class="waves-effect waves-light btn">Download</a>
         <div class="card">
@@ -17,8 +17,8 @@
                         v-for="campaign in campaigns"
                         :key="campaign.id">
                         <td v-html="campaign.title"></td>
-                        <td v-html="campaign.raised"></td>
-                        <td v-html="campaign.target"></td>
+                        <td>Rp {{ campaign.raised }}</td>
+                        <td>Rp {{ campaign.target }}</td>
                     </tr>
                 </tbody>
             </table>

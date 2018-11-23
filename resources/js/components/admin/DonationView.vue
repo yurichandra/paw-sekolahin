@@ -1,5 +1,5 @@
 <template>
-    <div class="p5">
+    <div class="container">
         <h5>Latest Donation</h5>
         <a class="waves-effect waves-light btn">Download</a>
         <div class="card">
@@ -15,29 +15,13 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$3.76</td>
-                    <td>Not Verified</td>
-                    <td>
-                        <a class="waves-effect waves-light btn">Verify</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td>$3.76</td>
-                    <td>Verified</td>
-                    <td>
-                        <a class="waves-effect waves-light btn">Verify</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>
-                    <td>$7.00</td>
-                    <td>Not Verified</td>
+                <tr
+                    v-for="donation in formattedDonation"
+                    :key="donation.id">
+                    <td v-html="donation.donors"></td>
+                    <td v-html="donation.campaign"></td>
+                    <td>Rp {{ donation.amount }}</td>
+                    <td v-html="donation.status"></td>
                     <td>
                         <a class="waves-effect waves-light btn">Verify</a>
                     </td>
@@ -49,6 +33,23 @@
 </template>
 
 <script>
+    import { mapState, mapActions } from 'vuex'
+
+    export default {
+        computed: {
+            ...mapState({
+                donations: state => state.Donation.donations
+            }),
+
+            formattedDonation () {
+                return this.donations.map(item => {
+                    item.status = item.status === 0 ? 'Not verified' : 'Verified'
+
+                    return item
+                })
+            }
+        },
+    }
 </script>
 
 <style scoped>

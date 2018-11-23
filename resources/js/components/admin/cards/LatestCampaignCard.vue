@@ -14,8 +14,8 @@
                     v-for="campaign in campaigns"
                     :key="campaign.id">
                     <td v-html="campaign.title"></td>
-                    <td v-html="campaign.raised"></td>
-                    <td v-html="campaign.target"></td>
+                    <td>Rp {{ campaign.raised }}</td>
+                    <td>Rp {{ campaign.target }}</td>
                 </tr>
             </tbody>
         </table>

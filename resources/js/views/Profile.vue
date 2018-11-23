@@ -10,7 +10,7 @@
         <TableEdit
             jenis="Donasi"
             :donations="donations"
-            :table="['Nama', 'Deskripsi', 'Status', 'Aksi']"
+            :table="['Donors', 'Amount', 'Status', 'Action']"
             v-else-if="Detail==2"/>
     </div>
 </template>

@@ -25,7 +25,6 @@
                                 <td>
                                     <button class="uk-button uk-button-primary">View</button>
                                     <button class="uk-button uk-button-default">Edit</button>
-                                    <button class="uk-button uk-button-danger">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -53,8 +52,6 @@
                                 <td v-html="donation.status"></td>
                                 <td>
                                     <button class="uk-button uk-button-primary">View</button>
-                                    <button class="uk-button uk-button-default">Edit</button>
-                                    <button class="uk-button uk-button-danger">Delete</button>
                                 </td>
                             </tr>
                         </tbody>

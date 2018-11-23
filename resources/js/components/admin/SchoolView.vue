@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div class="card col s12 m12 m5">
             <h6>Add new school</h6>
             <div class="row">
