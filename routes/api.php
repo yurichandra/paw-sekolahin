@@ -31,3 +31,9 @@ Route::get('campaigns/by-user/{id}', 'CampaignController@getByUser');
 
 // For DonationController
 Route::resource('donations', 'DonationController');
+
+//For upload proof
+Route::post('/upload-proof/{id}', 'DonationController@uploadProof');
+
+//For verify donation
+Route::post('/verify-donation/{id}', 'DonationController@verifyDonation');

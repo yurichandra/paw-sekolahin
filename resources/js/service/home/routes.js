@@ -5,7 +5,6 @@ import ProfileView from '../../views/Profile.vue';
 import RegisterView from '../../views/Register.vue';
 import DetailView from '../../views/CampaignDetail.vue';
 
-
 export const routes = [
     {
         path: '/',
