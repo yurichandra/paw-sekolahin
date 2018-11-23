@@ -29,10 +29,18 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         name: "StickyMenu",
         props: {
             name: String
+        },
+
+        computed: {
+            ...mapGetters({
+                name: 'LoggedUser/name'
+            })
         }
     }
 

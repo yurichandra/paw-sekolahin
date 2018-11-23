@@ -4,7 +4,6 @@
             <div data-uk-grid="">
                 <StickyMenu />
 
-                <!-- ISI -->
                 <div class="uk-width-4-5" v-if="campaigns">
                     <h2 class="uk-heading-divider">{{ jenis }} Saya</h2>
                     <table class="uk-table uk-table-hover uk-table-divider">
@@ -17,7 +16,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <Row />
+                            <tr
+                                v-for="campaign in campaigns"
+                                :key="campaign.id">
+                                <td v-html="campaign.title"></td>
+                                <td>Rp {{ campaign.target }}</td>
+                                <td>Rp {{ campaign.raised }}</td>
+                                <td>
+                                    <button class="uk-button uk-button-primary">View</button>
+                                    <button class="uk-button uk-button-default">Edit</button>
+                                    <button class="uk-button uk-button-danger">Delete</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div id="batas"></div>
@@ -36,11 +46,11 @@
                         </thead>
                         <tbody>
                             <tr
-                                v-for="campaign in campaigns"
-                                :key="campaign.id">
-                                <td v-html="campaign.title"></td>
-                                <td v-html="campaign.target"></td>
-                                <td v-html="campaign.raised"></td>
+                                v-for="donation in formattedDonations"
+                                :key="donation.id">
+                                <td v-html="donation.donors"></td>
+                                <td>Rp {{ donation.amount }}</td>
+                                <td v-html="donation.status"></td>
                                 <td>
                                     <button class="uk-button uk-button-primary">View</button>
                                     <button class="uk-button uk-button-default">Edit</button>
@@ -81,6 +91,16 @@
         components: {
             Row,
             StickyMenu
+        },
+
+        computed: {
+            formattedDonations () {
+                return this.donations.map(item => {
+                    item.status = item.status === 0 ? 'Not verified' : 'Verified'
+
+                    return item
+                })
+            }
         }
     }
 

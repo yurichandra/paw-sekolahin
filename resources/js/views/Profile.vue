@@ -9,6 +9,7 @@
             v-else-if="Detail==1"/>
         <TableEdit
             jenis="Donasi"
+            :donations="donations"
             :table="['Nama', 'Deskripsi', 'Status', 'Aksi']"
             v-else-if="Detail==2"/>
     </div>
@@ -32,7 +33,8 @@
 
         computed: {
             ...mapState({
-                campaigns: state => state.Campaign.campaigns
+                campaigns: state => state.Campaign.campaigns,
+                donations: state => state.Donation.donations
             }),
 
             ...mapGetters({
@@ -55,12 +57,14 @@
 
         methods: {
             ...mapActions({
-                fetchByUser : 'Campaign/fetchByUser'
+                fetchByUser : 'Campaign/fetchByUser',
+                fetchDonationsByUser : 'Donation/fetchByUser'
             }),
         },
 
         async created () {
             this.fetchByUser(this.userId)
+            this.fetchDonationsByUser(this.userId)
         }
 
     }

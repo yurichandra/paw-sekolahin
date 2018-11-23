@@ -85,6 +85,11 @@ class DonationService
         return $this->repo->destroy($id);
     }
 
+    public function findByUser($id)
+    {
+        return $this->repo->findByUser($id);
+    }
+
     public function uploadProof($id, $data)
     {
         try {

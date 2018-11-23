@@ -31,6 +31,7 @@ Route::get('campaigns/by-user/{id}', 'CampaignController@getByUser');
 
 // For DonationController
 Route::resource('donations', 'DonationController');
+Route::get('donations/by-user/{id}', 'DonationController@getByUser');
 
 //For upload proof
 Route::post('/upload-proof/{id}', 'DonationController@uploadProof');

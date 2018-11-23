@@ -18506,8 +18506,23 @@ var actions = {
             var errorCallback = function errorCallback(err) {
                 reject(err);
             };
-            console.log("payload:", payload);
+
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/donations', payload, successCallback, errorCallback);
+        });
+    },
+    fetchByUser: function fetchByUser(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setSource', res.data.data);
+                console.log(res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/donations/by-user/' + id, successCallback, errorCallback);
         });
     }
 };
@@ -20244,7 +20259,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -20255,19 +20270,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -20334,9 +20345,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'slide-list',
-  props: {}
+    name: 'slide-list',
+    props: {},
+
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["d" /* mapState */])({
+        campaigns: function campaigns(state) {
+            return state.Campaign.campaigns;
+        }
+    })),
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])({
+        fetchCampaigns: 'Campaign/getCampaigns'
+    })),
+
+    created: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            this.fetchCampaigns();
+
+                        case 1:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function created() {
+            return _ref.apply(this, arguments);
+        }
+
+        return created;
+    }()
 });
 
 /***/ }),
@@ -20357,7 +20403,91 @@ var render = function() {
       { staticClass: "uk-slider", attrs: { "data-uk-slider": "velocity: 5" } },
       [
         _c("div", { staticClass: "uk-position-relative" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "uk-slider-container" }, [
+            _c(
+              "ul",
+              {
+                staticClass:
+                  "uk-slider-items uk-child-width-1-2@m uk-grid uk-grid-medium news-slide",
+                staticStyle: { transform: "translateX(0px)" }
+              },
+              _vm._l(_vm.campaigns.slice(0, 2), function(campaign) {
+                return _c(
+                  "li",
+                  { key: campaign.id, staticClass: "uk-active" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "uk-grid uk-grid-medium uk-flex uk-flex-middle",
+                            attrs: { "data-uk-grid": "" }
+                          },
+                          [
+                            _vm._m(0, true),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "uk-width-2-3@s uk-width-3-5@m" },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "uk-label uk-label-warning",
+                                    staticStyle: { "font-size": "0.75rem" }
+                                  },
+                                  [_vm._v("Trends")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "h3",
+                                  {
+                                    staticClass:
+                                      "uk-card-title uk-margin-small-top uk-margin-remove-bottom"
+                                  },
+                                  [
+                                    _c("router-link", {
+                                      staticClass: "uk-link-reset",
+                                      attrs: {
+                                        to: {
+                                          name: "campaign-detail",
+                                          params: { campaign_id: campaign.id }
+                                        }
+                                      },
+                                      domProps: {
+                                        innerHTML: _vm._s(campaign.title)
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "uk-article-meta" }, [
+                                  _vm._v("Published 12th August 2018")
+                                ]),
+                                _vm._v(" "),
+                                _c("p", {
+                                  staticClass: "uk-margin-small",
+                                  domProps: { innerHTML: _vm._s(campaign.body) }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              })
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "uk-hidden@l uk-light" }, [
             _c(
@@ -20518,177 +20648,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-slider-container" }, [
-      _c(
-        "ul",
-        {
-          staticClass:
-            "uk-slider-items uk-child-width-1-2@m uk-grid uk-grid-medium news-slide",
-          staticStyle: { transform: "translateX(0px)" }
-        },
-        [
-          _c("li", { staticClass: "uk-active" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded"
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-grid uk-grid-medium uk-flex uk-flex-middle",
-                    attrs: { "data-uk-grid": "" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "uk-width-1-3@s uk-width-2-5@m uk-height-1-1 uk-first-column"
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src: "https://picsum.photos/500/500/?random=1",
-                            alt: ""
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-width-2-3@s uk-width-3-5@m" },
-                      [
-                        _c(
-                          "span",
-                          {
-                            staticClass: "uk-label uk-label-warning",
-                            staticStyle: { "font-size": "0.75rem" }
-                          },
-                          [_vm._v("Trends")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "h3",
-                          {
-                            staticClass:
-                              "uk-card-title uk-margin-small-top uk-margin-remove-bottom"
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "uk-link-reset",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Short Blog Title")]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "uk-article-meta" }, [
-                          _vm._v("Published 12th August 2018")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "uk-margin-small" }, [
-                          _vm._v(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing\n                    elit, sed do..."
-                          )
-                        ])
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "uk-active" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded"
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-grid uk-grid-medium uk-flex uk-flex-middle",
-                    attrs: { "data-uk-grid": "" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "uk-width-1-3@s uk-width-2-5@m uk-height-1-1 uk-first-column"
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src: "https://picsum.photos/500/500/?random=2",
-                            alt: ""
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-width-2-3@s uk-width-3-5@m" },
-                      [
-                        _c(
-                          "span",
-                          {
-                            staticClass: "uk-label uk-label-warning",
-                            staticStyle: { "font-size": "0.75rem" }
-                          },
-                          [_vm._v("Trends")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "h3",
-                          {
-                            staticClass:
-                              "uk-card-title uk-margin-small-top uk-margin-remove-bottom"
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "uk-link-reset",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Short Blog Title")]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "uk-article-meta" }, [
-                          _vm._v("Published 12th August 2018")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "uk-margin-small" }, [
-                          _vm._v(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing\n                    elit, sed do..."
-                          )
-                        ])
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "uk-width-1-3@s uk-width-2-5@m uk-height-1-1 uk-first-column"
+      },
+      [
+        _c("img", {
+          attrs: { src: "https://picsum.photos/500/500/?random=1", alt: "" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -23056,6 +23027,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 // @ is an alias to /src
 
@@ -23075,6 +23047,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["d" /* mapState */])({
         campaigns: function campaigns(state) {
             return state.Campaign.campaigns;
+        },
+        donations: function donations(state) {
+            return state.Donation.donations;
         }
     }), Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
         userId: 'LoggedUser/userId'
@@ -23087,7 +23062,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }),
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapActions */])({
-        fetchByUser: 'Campaign/fetchByUser'
+        fetchByUser: 'Campaign/fetchByUser',
+        fetchDonationsByUser: 'Donation/fetchByUser'
     })),
 
     created: function () {
@@ -23097,8 +23073,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             this.fetchByUser(this.userId);
+                            this.fetchDonationsByUser(this.userId);
 
-                        case 1:
+                        case 2:
                         case 'end':
                             return _context.stop();
                     }
@@ -23391,7 +23368,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -23418,7 +23395,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
 //
 //
 //
@@ -23577,7 +23553,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -23588,6 +23564,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -23619,11 +23598,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "StickyMenu",
     props: {
         name: String
-    }
+    },
+
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
+        name: 'LoggedUser/name'
+    }))
 });
 
 /***/ }),
@@ -23775,7 +23760,7 @@ var render = function() {
           "div",
           { attrs: { "data-uk-grid": "" } },
           [
-            _c("StickyMenu", { attrs: { name: _vm.user.name } }),
+            _c("StickyMenu"),
             _vm._v(" "),
             _c("div", { staticClass: "uk-width-4-5" }, [
               _c("h2", { staticClass: "uk-heading-divider" }, [
@@ -23992,7 +23977,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24007,6 +23992,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_TableRow_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_TableRow_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_StickyMenu_vue__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_StickyMenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_StickyMenu_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24090,6 +24085,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         Row: __WEBPACK_IMPORTED_MODULE_0__components_TableRow_vue___default.a,
         StickyMenu: __WEBPACK_IMPORTED_MODULE_1__components_StickyMenu_vue___default.a
+    },
+
+    computed: {
+        formattedDonations: function formattedDonations() {
+            return this.donations.map(function (item) {
+                item.status = item.status === 0 ? 'Not verified' : 'Verified';
+
+                return item;
+            });
+        }
     }
 });
 
@@ -24318,7 +24323,22 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("tbody", [_c("Row")], 1)
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.campaigns, function(campaign) {
+                          return _c("tr", { key: campaign.id }, [
+                            _c("td", {
+                              domProps: { innerHTML: _vm._s(campaign.title) }
+                            }),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Rp " + _vm._s(campaign.target))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Rp " + _vm._s(campaign.raised))]),
+                            _vm._v(" "),
+                            _vm._m(0, true)
+                          ])
+                        })
+                      )
                     ]
                   ),
                   _vm._v(" "),
@@ -24350,21 +24370,19 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.campaigns, function(campaign) {
-                          return _c("tr", { key: campaign.id }, [
+                        _vm._l(_vm.formattedDonations, function(donation) {
+                          return _c("tr", { key: donation.id }, [
                             _c("td", {
-                              domProps: { innerHTML: _vm._s(campaign.title) }
+                              domProps: { innerHTML: _vm._s(donation.donors) }
                             }),
                             _vm._v(" "),
-                            _c("td", {
-                              domProps: { innerHTML: _vm._s(campaign.target) }
-                            }),
+                            _c("td", [_vm._v("Rp " + _vm._s(donation.amount))]),
                             _vm._v(" "),
                             _c("td", {
-                              domProps: { innerHTML: _vm._s(campaign.raised) }
+                              domProps: { innerHTML: _vm._s(donation.status) }
                             }),
                             _vm._v(" "),
-                            _vm._m(0, true)
+                            _vm._m(1, true)
                           ])
                         })
                       )
@@ -24382,6 +24400,24 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "uk-button uk-button-primary" }, [
+        _vm._v("View")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "uk-button uk-button-default" }, [
+        _vm._v("Edit")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "uk-button uk-button-danger" }, [
+        _vm._v("Delete")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -24438,6 +24474,7 @@ var render = function() {
         ? _c("TableEdit", {
             attrs: {
               jenis: "Donasi",
+              donations: _vm.donations,
               table: ["Nama", "Deskripsi", "Status", "Aksi"]
             }
           })

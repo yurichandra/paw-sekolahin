@@ -6,7 +6,10 @@
       <div class="uk-position-relative">
         <div class="uk-slider-container">
           <ul class="uk-slider-items uk-child-width-1-2@m uk-grid uk-grid-medium news-slide" style="transform: translateX(0px);">
-            <li class="uk-active">
+            <li
+                class="uk-active"
+                v-for="campaign in campaigns.slice(0, 2)"
+                :key="campaign.id">
               <div class="uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded">
                 <div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" data-uk-grid="">
                   <div class="uk-width-1-3@s uk-width-2-5@m uk-height-1-1 uk-first-column">
@@ -15,29 +18,13 @@
                   <div class="uk-width-2-3@s uk-width-3-5@m">
                     <span class="uk-label uk-label-warning" style="font-size: 0.75rem">Trends</span>
                     <h3 class="uk-card-title uk-margin-small-top uk-margin-remove-bottom">
-                      <a class="uk-link-reset" href="#">Short Blog Title</a>
+                      <router-link
+                        class="uk-link-reset"
+                        v-html="campaign.title"
+                        :to="{name: 'campaign-detail', params: {campaign_id: campaign.id}}"></router-link>
                     </h3>
                     <span class="uk-article-meta">Published 12th August 2018</span>
-                    <p class="uk-margin-small">Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit, sed do...</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="uk-active">
-              <div class="uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded">
-                <div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" data-uk-grid="">
-                  <div class="uk-width-1-3@s uk-width-2-5@m uk-height-1-1 uk-first-column">
-                    <img src="https://picsum.photos/500/500/?random=2" alt="">
-                  </div>
-                  <div class="uk-width-2-3@s uk-width-3-5@m">
-                    <span class="uk-label uk-label-warning" style="font-size: 0.75rem">Trends</span>
-                    <h3 class="uk-card-title uk-margin-small-top uk-margin-remove-bottom">
-                      <a class="uk-link-reset" href="#">Short Blog Title</a>
-                    </h3>
-                    <span class="uk-article-meta">Published 12th August 2018</span>
-                    <p class="uk-margin-small">Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit, sed do...</p>
+                    <p class="uk-margin-small" v-html="campaign.body"></p>
                   </div>
                 </div>
               </div>
@@ -77,10 +64,29 @@
 </template>
 
 <script>
-  export default {
-    name: 'slide-list',
-    props: {}
-  }
+    import { mapActions, mapState } from 'vuex'
+
+    export default {
+        name: 'slide-list',
+        props: {},
+
+        computed: {
+            ...mapState({
+                campaigns: state => state.Campaign.campaigns
+            })
+        },
+
+        methods: {
+            ...mapActions({
+                fetchCampaigns: 'Campaign/getCampaigns'
+            })
+        },
+
+        async created () {
+            this.fetchCampaigns()
+        }
+
+    }
 
 </script>
 

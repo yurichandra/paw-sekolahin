@@ -2,8 +2,7 @@
     <section class="uk-section uk-section-default uk-box-shadow-small uk-section-xsmall">
         <div class="uk-container">
             <div data-uk-grid="">
-                <StickyMenu
-                    :name="user.name"/>
+                <StickyMenu />
                 <!-- ISI -->
                 <div class="uk-width-4-5">
                     <h2 class="uk-heading-divider">My Account</h2>

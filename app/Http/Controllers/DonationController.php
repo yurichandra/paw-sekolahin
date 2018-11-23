@@ -149,6 +149,20 @@ class DonationController extends RestController
         }
     }
 
+    public function getByUser(DonationService $service, $id)
+    {
+        try {
+            $donations = $service->findByUser($id);
+            $response = $this->generateCollection($donations);
+
+            return $this->sendResponse($response);
+        } catch (ModelNotFoundException $e) {
+            return $this->sendNotFoundResponse('user_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
+    }
+
     public function uploadProof(Request $request, DonationService $service, $id)
     {
         $this->validate($request, [

@@ -18456,8 +18456,23 @@ var actions = {
             var errorCallback = function errorCallback(err) {
                 reject(err);
             };
-            console.log("payload:", payload);
+
             __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('/api/donations', payload, successCallback, errorCallback);
+        });
+    },
+    fetchByUser: function fetchByUser(context, id) {
+        return new Promise(function (resolve, reject) {
+            var successCallback = function successCallback(res) {
+                context.commit('setSource', res.data.data);
+                console.log(res.data.data);
+                resolve();
+            };
+
+            var errorCallback = function errorCallback(err) {
+                reject(err);
+            };
+
+            __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('/api/donations/by-user/' + id, successCallback, errorCallback);
         });
     }
 };
