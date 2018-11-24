@@ -33,9 +33,6 @@
 
     export default {
         name: "StickyMenu",
-        props: {
-            name: String
-        },
 
         computed: {
             ...mapGetters({
