@@ -55,7 +55,22 @@ const actions = {
 
             Http.get(`/api/donations/by-user/${id}`, successCallback, errorCallback)
         })
+    },
+
+    verify(context, id) {
+        return new Promise((resolve, reject) => {
+            const successCallback = () => {
+                resolve()
+            }
+
+            const errorCallback = err => {
+                reject(err)
+            }
+
+            Http.get(`/api/verify-donation/${id}`, successCallback, errorCallback)
+        })
     }
+
 }
 
 export default {

@@ -16,6 +16,12 @@ class DonationTransformer extends TransformerAbstract
             'message' => $donation->message,
             'campaign' => $donation->campaign->title,
             'donors' => $donation->user->name,
+            'proof' => $this->getProof($donation),
         ];
+    }
+
+    protected function getProof(Donation $donation)
+    {
+        return $donation->proof !== null ? $donation->proof->path : null;
     }
 }

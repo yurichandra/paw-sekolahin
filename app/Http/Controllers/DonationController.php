@@ -185,4 +185,17 @@ class DonationController extends RestController
             return $this->sendIseResponse($e->getMessage());
         }
     }
+
+    public function verifyDonation(DonationService $service, $id)
+    {
+        try {
+            $service->verify($id);
+
+            return response()->json('success!');
+        } catch (ModelNotFoundException $e) {
+            return $this->sendNotFoundResponse('donation_not_found');
+        } catch (\Exception $e) {
+            return $this->sendIseResponse($e->getMessage());
+        }
+    }
 }

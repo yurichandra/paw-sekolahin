@@ -37,4 +37,4 @@ Route::get('donations/by-user/{id}', 'DonationController@getByUser');
 Route::post('/upload-proof/{id}', 'DonationController@uploadProof');
 
 //For verify donation
-Route::post('/verify-donation/{id}', 'DonationController@verifyDonation');
+Route::get('/verify-donation/{id}', 'DonationController@verifyDonation');

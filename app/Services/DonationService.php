@@ -101,4 +101,19 @@ class DonationService
             throw $e;
         }
     }
+
+    public function verify($id)
+    {
+        try {
+            $donation = $this->find($id);
+            $donation->status = true;
+            $campaign = $donation->campaign;
+            $campaign->raised += $donation->amount;
+
+            $donation->save();
+            $campaign->save();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
