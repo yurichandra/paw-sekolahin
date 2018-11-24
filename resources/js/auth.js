@@ -14,7 +14,8 @@ export default {
                 const user = res.data
                 store.commit('LoggedUser/setSource', user.data);
                 store.commit('LoggedUser/loggedIn')
-                this.SaveEmail(payload.email);
+                this.SaveEmail(payload.email)
+                Http.setHeader(this.LoadCookie())
                 resolve();
             };
 
@@ -50,6 +51,7 @@ export default {
 
     logout () {
         this.DeleteCookie()
+        Http.deleteHeader()
         store.commit('LoggedUser/setSource', {})
         store.commit('LoggedUser/loggedOut')
         store.commit('User/setSource', {})

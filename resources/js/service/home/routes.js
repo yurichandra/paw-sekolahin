@@ -4,6 +4,7 @@ import CampaignView from '../../views/Campaign.vue';
 import ProfileView from '../../views/Profile.vue';
 import RegisterView from '../../views/Register.vue';
 import DetailView from '../../views/CampaignDetail.vue';
+import CampaignEdit from '../../views/CampaignEdit'
 
 export const routes = [
     {
@@ -15,6 +16,11 @@ export const routes = [
         path: '/create',
         name: 'campaign-create',
         component: CreateView
+    },
+    {
+        path: '/campaign/edit/:id',
+        name: 'campaign-edit',
+        component: CampaignEdit
     },
     {
         path: '/campaign/:campaign_id',

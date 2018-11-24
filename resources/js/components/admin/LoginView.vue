@@ -40,13 +40,6 @@
     import Auth from '../../auth'
 
     export default {
-        props: {
-            value : {
-                type : Boolean,
-                required : true,
-            }
-        },
-
         data () {
             return {
                 email : '',
@@ -68,6 +61,10 @@
                     this.error.unableToLogin = true
                 }
             }
+        },
+
+        created () {
+            console.log(Auth.LoadCookie())
         }
     }
 </script>

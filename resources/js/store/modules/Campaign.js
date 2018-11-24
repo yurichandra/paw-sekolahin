@@ -90,7 +90,18 @@ const actions = {
     },
 
     update(context, payload) {
+        return new Promise((resolve, reject) => {
+            const successCallback = res => {
+                resolve();
+            };
 
+            const errorCallback = err => {
+                this.dispatch('Util/ChangeOngoing', false)
+                reject(err);
+            };
+
+            Http.patch(`/api/campaigns/${payload.id}`, payload, successCallback, errorCallback);
+        });
     },
 
     destroy(context, id) {

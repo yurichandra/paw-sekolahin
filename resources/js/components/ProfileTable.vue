@@ -23,8 +23,12 @@
                                 <td>Rp {{ campaign.target }}</td>
                                 <td>Rp {{ campaign.raised }}</td>
                                 <td>
-                                    <button class="uk-button uk-button-primary">View</button>
-                                    <button class="uk-button uk-button-default">Edit</button>
+                                    <router-link
+                                        class="uk-button uk-button-primary"
+                                        :to="{name: 'campaign-detail', params: {campaign_id: campaign.id}}">View</router-link>
+                                    <router-link
+                                        class="uk-button uk-button-primary"
+                                        :to="{name: 'campaign-edit', params: {id: campaign.id}}">Edit</router-link>
                                 </td>
                             </tr>
                         </tbody>
@@ -51,7 +55,7 @@
                                 <td>Rp {{ donation.amount }}</td>
                                 <td v-html="donation.status"></td>
                                 <td>
-                                    <button class="uk-button uk-button-primary">View</button>
+                                    <input type="submit" class="uk-button uk-button-primary" value="Upload proof"/>
                                 </td>
                             </tr>
                         </tbody>
