@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <HeaderView v-if="auth"/>
-        <router-view v-model="auth"></router-view>
+        <router-view></router-view>
     </div>
 </template>
 

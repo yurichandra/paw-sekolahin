@@ -5,7 +5,7 @@
             <nav class="uk-background-default uk-navbar" data-uk-navbar="">
                 <div class="uk-navbar-left">
                     <div class="uk-navbar-item">
-                        <router-link to="/" class="uk-logo"><img src="img/cover-logo.svg" alt="Logo"></router-link>
+                        <router-link to="/" class="uk-logo">SEKOLAH.IN</router-link>
                     </div>
                 </div>
                 <div class="uk-navbar-right">
@@ -75,7 +75,7 @@
             }
         }
     }
-  
+
 </script>
 
 <style>
