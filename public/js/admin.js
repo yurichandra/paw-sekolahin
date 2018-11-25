@@ -18494,10 +18494,10 @@ var actions = {
         });
     },
     fetchByUser: function fetchByUser(context, id) {
+        console.log("Donasi Data: ", id);
         return new Promise(function (resolve, reject) {
             var successCallback = function successCallback(res) {
                 context.commit('setSource', res.data.data);
-                console.log(res.data.data);
                 resolve();
             };
 
@@ -18511,6 +18511,7 @@ var actions = {
     verify: function verify(context, id) {
         return new Promise(function (resolve, reject) {
             var successCallback = function successCallback() {
+                context.dispatch('getAllDonations');
                 resolve();
             };
 
@@ -19645,7 +19646,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cards_LatestUserCard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__cards_LatestUserCard_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__cards_LatestCampaignCard_vue__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__cards_LatestCampaignCard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__cards_LatestCampaignCard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth__ = __webpack_require__(7);
 
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -19679,7 +19679,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-
 
 
 
@@ -19730,7 +19729,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         donationTotal: function donationTotal() {
             return this.donations.reduce(function (acc, donation) {
-                acc += donation.amount;
+                acc = +donation.amount;
 
                 return acc;
             }, 0);
@@ -20756,6 +20755,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -20768,9 +20769,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         formattedDonation: function formattedDonation() {
             return this.donations.map(function (item) {
                 item.status = item.status === 0 ? 'Not verified' : 'Verified';
-
+                item.proof = '/storage/app/' + item.proof;
                 return item;
             });
+        }
+    }),
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+        verifyDonation: 'Donation/verify'
+    }), {
+        verifyHandler: function verifyHandler(id) {
+            try {
+                this.verifyDonation(id);
+                console.log("berhasil");
+            } catch (err) {
+                console.log(err);
+            }
         }
     })
 });
@@ -20806,7 +20820,22 @@ var render = function() {
               _vm._v(" "),
               _c("td", { domProps: { innerHTML: _vm._s(donation.status) } }),
               _vm._v(" "),
-              _vm._m(1, true)
+              _c("td", [_c("img", { attrs: { src: donation.proof } })]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "blue darken-3 btn",
+                    on: {
+                      click: function($event) {
+                        _vm.verifyHandler(donation.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Verify")]
+                )
+              ])
             ])
           })
         )
@@ -20829,17 +20858,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Action")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { staticClass: "waves-effect waves-light btn" }, [
-        _vm._v("Verify")
       ])
     ])
   }

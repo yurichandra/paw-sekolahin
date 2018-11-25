@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/uikit.css">
     <link rel="stylesheet" href="/css/nprogress.css">
+    <link rel="stylesheet" href="/css/dropzone.css">
 
     <script src="/js/uikit.js"></script>
     <script src="/js/uikit-icons.js"></script>
@@ -23,6 +24,7 @@
     <div id="app">
 
     </div>
+    <script src="/js/dropzone.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

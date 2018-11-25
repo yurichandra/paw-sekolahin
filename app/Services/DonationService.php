@@ -94,7 +94,7 @@ class DonationService
     {
         try {
             $donation = $this->find($id);
-            $donation->proof->create($data);
+            $donation->proof()->create($data);
 
             return true;
         } catch (\Exception $e) {

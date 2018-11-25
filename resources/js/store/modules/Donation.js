@@ -42,10 +42,10 @@ const actions = {
     },
 
     fetchByUser(context, id) {
+        console.log("Donasi Data: ",id)
         return new Promise((resolve, reject) => {
             const successCallback = res => {
                 context.commit('setSource', res.data.data)
-                console.log(res.data.data)
                 resolve()
             }
 
@@ -60,6 +60,7 @@ const actions = {
     verify(context, id) {
         return new Promise((resolve, reject) => {
             const successCallback = () => {
+                context.dispatch('getAllDonations')
                 resolve()
             }
 

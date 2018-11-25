@@ -8,7 +8,6 @@ import VueSession from 'vue-session';
 var options = {
   persist: true
 };
-
 Vue.use(VueSession, options);
 
 Vue.use(VueRouter);

@@ -63,6 +63,7 @@
         },
 
         async created () {
+            console.log("this pc", this)
             this.fetchByUser(this.userId)
             this.fetchDonationsByUser(this.userId)
         }

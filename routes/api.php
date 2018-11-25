@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,7 +38,10 @@ Route::resource('donations', 'DonationController');
 Route::get('donations/by-user/{id}', 'DonationController@getByUser');
 
 //For upload proof
-Route::post('/upload-proof/{id}', 'DonationController@uploadProof');
+Route::post('/upload-proof/{id}', [
+    'middleware' => 'cors',
+    'uses' => 'DonationController@uploadProof'
+]);
 
 //For verify donation
 Route::get('/verify-donation/{id}', 'DonationController@verifyDonation');

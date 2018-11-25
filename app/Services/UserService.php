@@ -63,8 +63,8 @@ class UserService
                 $user->personal()->create($personal);
             });
 
-            //Mail::to($user->email)
-            //->send(new UserRegistered($user));
+            Mail::to($user->email)
+            ->send(new UserRegistered($user));
 
             return $user;
         } catch (\Exception $e) {
