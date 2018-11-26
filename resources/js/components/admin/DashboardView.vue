@@ -33,6 +33,7 @@
     import SchoolCard from './cards/SchoolCards.vue'
     import LatestUser from './cards/LatestUserCard.vue'
     import LatestCampaign from './cards/LatestCampaignCard.vue'
+    import Auth from '../../auth'
 
     export default {
         components: {
@@ -75,7 +76,7 @@
 
             donationTotal () {
                 return this.donations.reduce((acc, donation) => {
-                    acc =+ donation.amount
+                    acc += donation.amount
 
                     return acc
                 }, 0)
