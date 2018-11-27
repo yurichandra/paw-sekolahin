@@ -23,5 +23,9 @@ class AddPhotoIdPersonalsTable extends Migration
      */
     public function down()
     {
+        Schema::table('personals', function (Blueprint $table) {
+            $table->dropForeign(['photo_id']);
+            $table->dropColumn('photo_id');
+        });
     }
 }
