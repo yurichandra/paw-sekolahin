@@ -37,7 +37,7 @@
                         <div class="uk-text-center"><a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small">Forgot
                                 your password?</a></div>
                         <div class="uk-text-left">
-                            <router-link to="/register" class="uk-button uk-button-small uk-button-danger" @click="ShowRegister">Buat
+                            <router-link to="/register" class="uk-button uk-button-small uk-button-danger" @click.native="ShowRegister">Buat
                                 akun!</router-link>
                         </div>
                     </div>
@@ -96,6 +96,8 @@
             //      x masih localhost
             ShowRegister() {
                 var element = document.getElementById("modal-center");
+                console.log("your ele", element)
+
                 UIkit.modal(element).hide();
             },
             async LoginHandler(e) {

@@ -19796,7 +19796,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19855,6 +19855,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
@@ -19869,7 +19872,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         logoutHandler: function logoutHandler() {
             __WEBPACK_IMPORTED_MODULE_1__auth__["a" /* default */].logout();
-            this.$router.replace({ name: 'home' });
+            this.$router.replace({
+                name: 'home'
+            });
         }
     },
 
@@ -19998,7 +20003,130 @@ var render = function() {
                       : _vm._e()
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _c("li", { staticClass: "uk-hidden@s" }, [
+                  _c("a", {
+                    staticClass: "uk-icon",
+                    attrs: {
+                      href: "#",
+                      "data-uk-icon": "icon:menu",
+                      "aria-expanded": "false"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "uk-navbar-dropdown uk-navbar-dropdown-bottom-right",
+                      staticStyle: { left: "1000px", top: "80px" }
+                    },
+                    [
+                      _c(
+                        "ul",
+                        { staticClass: "uk-nav uk-navbar-dropdown-nav" },
+                        [
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: "/campaign" } },
+                                [
+                                  _c("span", {
+                                    staticClass: "uk-icon",
+                                    attrs: {
+                                      "data-uk-icon": "icon: arrow-right"
+                                    }
+                                  }),
+                                  _vm._v(" Campaigns")
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          !_vm.auth
+                            ? _c(
+                                "li",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: { to: "" },
+                                      nativeOn: {
+                                        click: function($event) {
+                                          return _vm.ShowModal($event)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("span", {
+                                        staticClass: "uk-icon",
+                                        attrs: { "data-uk-icon": "icon: login" }
+                                      }),
+                                      _vm._v(" Login")
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.auth
+                            ? _c(
+                                "li",
+                                [
+                                  _c(
+                                    "router-link",
+                                    { attrs: { to: "/profile/akun" } },
+                                    [
+                                      _c("span", {
+                                        staticClass: "uk-icon",
+                                        attrs: { "data-uk-icon": "icon: user" }
+                                      }),
+                                      _vm._v(" Profile")
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.auth
+                            ? _c(
+                                "li",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: { to: "" },
+                                      nativeOn: {
+                                        click: function($event) {
+                                          return _vm.logoutHandler($event)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("span", {
+                                        staticClass: "uk-icon",
+                                        attrs: {
+                                          "data-uk-icon": "icon: sign-out"
+                                        }
+                                      }),
+                                      _vm._v(" Logout")
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ]
@@ -21584,6 +21712,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         //      x masih localhost
         ShowRegister: function ShowRegister() {
             var element = document.getElementById("modal-center");
+            console.log("your ele", element);
+
             UIkit.modal(element).hide();
         },
         LoginHandler: function () {
@@ -21829,7 +21959,11 @@ var render = function() {
                         staticClass:
                           "uk-button uk-button-small uk-button-danger",
                         attrs: { to: "/register" },
-                        on: { click: _vm.ShowRegister }
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.ShowRegister($event)
+                          }
+                        }
                       },
                       [_vm._v("Buat\n                            akun!")]
                     )
@@ -23021,7 +23155,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -23078,13 +23212,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'CardData',
     props: {
         item: Object
+    },
+    methods: {
+        picsum: function picsum() {
+            var rnd = Math.floor(Math.random() * 10);
+
+            var test = "https://picsum.photos/400/300/?random=" + rnd;
+
+            return test;
+        }
     },
     computed: {
         DiffDate: function DiffDate() {
@@ -23098,6 +23239,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         DiffTarget: function DiffTarget() {
             var value = this.item.raised / this.item.target;
             return Math.ceil(value * (100 / 100)) + "%";
+        }
+    },
+    mounted: function mounted() {
+        var deus = document.getElementsByClassName("img-lazy");
+        console.log(deus.length);
+        if (deus.length < 1) return;
+        for (var index = 0; index < deus.length; index++) {
+            var element = deus[index];
+            var url = this.picsum();
+            element.setAttribute("data-src", url);
         }
     }
 });
@@ -23153,14 +23304,14 @@ var render = function() {
             },
             [
               _c("img", {
-                staticClass: "lazy",
+                staticClass: "lazy img-lazy",
                 attrs: {
-                  "data-src": "https://picsum.photos/400/300/?random=5",
+                  "data-src": "",
                   "data-width": "400",
                   "data-height": "300",
                   "data-uk-img": "",
                   alt: "",
-                  src: "https://picsum.photos/400/300/?random=5"
+                  src: _vm.picsum
                 }
               }),
               _vm._v(" "),
@@ -25202,7 +25353,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -25215,19 +25366,24 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_RegisterForm_vue__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_RegisterForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_RegisterForm_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_LoginForm_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_LoginForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_LoginForm_vue__);
 //
 //
 //
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'register',
   components: {
-    Register: __WEBPACK_IMPORTED_MODULE_0__components_RegisterForm_vue___default.a
+    Register: __WEBPACK_IMPORTED_MODULE_0__components_RegisterForm_vue___default.a,
+    LoginForm: __WEBPACK_IMPORTED_MODULE_1__components_LoginForm_vue___default.a
   }
 });
 
@@ -25810,7 +25966,7 @@ var render = function() {
       staticClass: "uk-height-1-1",
       staticStyle: { "background-image": "url(images/pattern.png)" }
     },
-    [_c("Register")],
+    [_c("Register"), _vm._v(" "), _c("LoginForm")],
     1
   )
 }

@@ -15,8 +15,8 @@
             </div>
             <div class="uk-card-media">
                 <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
-                    <img class="lazy" data-src="https://picsum.photos/400/300/?random=5" data-width="400" data-height="300"
-                        data-uk-img="" alt="" src="https://picsum.photos/400/300/?random=5">
+                    <img class="lazy img-lazy" data-src="" data-width="400" data-height="300" data-uk-img="" alt=""
+                        :src="picsum">
                     <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
                         <span data-uk-icon="icon:lifesaver; ratio: 0.8" class="uk-icon"></span>
                         Rp {{ item.target }}
@@ -25,9 +25,7 @@
             </div>
             <div class="uk-card-body">
                 <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold">
-                    <router-link
-                        v-html="item.title"
-                        :to="{name: 'campaign-detail', params: {campaign_id: item.id}}"></router-link>
+                    <router-link v-html="item.title" :to="{name: 'campaign-detail', params: {campaign_id: item.id}}"></router-link>
                 </h6>
                 <p class="uk-text-small uk-text-muted" v-html="item.body"></p>
             </div>
@@ -52,6 +50,15 @@
         props: {
             item: Object
         },
+        methods: {
+            picsum() {
+                let rnd = Math.floor(Math.random() * 10);
+
+                let test = "https://picsum.photos/400/300/?random=" + rnd;
+
+                return test
+            },
+        },
         computed: {
             DiffDate() {
                 var crdate = new Date(Date.now());
@@ -65,8 +72,19 @@
                     return diffDays + "day";
             },
             DiffTarget() {
-              var value = this.item.raised/this.item.target;
-              return Math.ceil(value * (100/100)) + "%"
+                var value = this.item.raised / this.item.target;
+                return Math.ceil(value * (100 / 100)) + "%"
+            }
+        },
+        mounted() {
+            let deus = document.getElementsByClassName("img-lazy")
+            console.log(deus.length)
+            if (deus.length < 1)
+                return
+            for (let index = 0; index < deus.length; index++) {
+                const element = deus[index];
+                let url = this.picsum()
+                element.setAttribute("data-src", url);
             }
         }
     }
