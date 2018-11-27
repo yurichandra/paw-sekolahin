@@ -50,7 +50,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             const successCallback = res => {
                 context.commit('setSource', res.data.data)
-                // context.commit('LoggedUser/setSource', res.data.data)
                 resolve()
             }
 

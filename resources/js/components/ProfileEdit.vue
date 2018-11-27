@@ -46,7 +46,7 @@
     import CampaignForm from '../components/CampaignForm.vue'
     import { mapState, mapActions } from 'vuex'
     import LoginForm from './LoginForm.vue'
-import LoggedUser from '../store/modules/LoggedUser';
+    import LoggedUser from '../store/modules/LoggedUser';
 
     export default {
         name: "profile-edit",
