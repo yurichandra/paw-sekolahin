@@ -13558,9 +13558,9 @@ var getters = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/*!
-  * vue-router v3.0.2
-  * (c) 2018 Evan You
+/**
+  * vue-router v3.0.1
+  * (c) 2017 Evan You
   * @license MIT
   */
 /*  */
@@ -13581,15 +13581,8 @@ function isError (err) {
   return Object.prototype.toString.call(err).indexOf('Error') > -1
 }
 
-function extend (a, b) {
-  for (var key in b) {
-    a[key] = b[key];
-  }
-  return a
-}
-
 var View = {
-  name: 'RouterView',
+  name: 'router-view',
   functional: true,
   props: {
     name: {
@@ -13603,7 +13596,6 @@ var View = {
     var parent = ref.parent;
     var data = ref.data;
 
-    // used by devtools to display a router-view badge
     data.routerView = true;
 
     // directly use parent context's createElement() function
@@ -13678,7 +13670,7 @@ var View = {
 
     return h(component, data, children)
   }
-}
+};
 
 function resolveProps (route, config) {
   switch (typeof config) {
@@ -13699,6 +13691,13 @@ function resolveProps (route, config) {
         );
       }
   }
+}
+
+function extend (to, from) {
+  for (var key in from) {
+    to[key] = from[key];
+  }
+  return to
 }
 
 /*  */
@@ -13798,6 +13797,7 @@ function stringifyQuery (obj) {
 }
 
 /*  */
+
 
 var trailingSlashRE = /\/?$/;
 
@@ -13941,7 +13941,7 @@ var toTypes = [String, Object];
 var eventTypes = [String, Array];
 
 var Link = {
-  name: 'RouterLink',
+  name: 'router-link',
   props: {
     to: {
       type: toTypes,
@@ -13976,17 +13976,17 @@ var Link = {
     var globalExactActiveClass = router.options.linkExactActiveClass;
     // Support global empty active class
     var activeClassFallback = globalActiveClass == null
-      ? 'router-link-active'
-      : globalActiveClass;
+            ? 'router-link-active'
+            : globalActiveClass;
     var exactActiveClassFallback = globalExactActiveClass == null
-      ? 'router-link-exact-active'
-      : globalExactActiveClass;
+            ? 'router-link-exact-active'
+            : globalExactActiveClass;
     var activeClass = this.activeClass == null
-      ? activeClassFallback
-      : this.activeClass;
+            ? activeClassFallback
+            : this.activeClass;
     var exactActiveClass = this.exactActiveClass == null
-      ? exactActiveClassFallback
-      : this.exactActiveClass;
+            ? exactActiveClassFallback
+            : this.exactActiveClass;
     var compareTarget = location.path
       ? createRoute(null, location, null, router)
       : route;
@@ -14026,6 +14026,7 @@ var Link = {
       if (a) {
         // in case the <a> is a static node
         a.isStatic = false;
+        var extend = _Vue.util.extend;
         var aData = a.data = extend({}, a.data);
         aData.on = on;
         var aAttrs = a.data.attrs = extend({}, a.data.attrs);
@@ -14038,7 +14039,7 @@ var Link = {
 
     return h(this.tag, data, this.$slots.default)
   }
-}
+};
 
 function guardEvent (e) {
   // don't redirect with control keys
@@ -14116,8 +14117,8 @@ function install (Vue) {
     get: function get () { return this._routerRoot._route }
   });
 
-  Vue.component('RouterView', View);
-  Vue.component('RouterLink', Link);
+  Vue.component('router-view', View);
+  Vue.component('router-link', Link);
 
   var strats = Vue.config.optionMergeStrategies;
   // use the same hook merging strategy for route hooks
@@ -14627,6 +14628,7 @@ function pathToRegexp (path, keys, options) {
 
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
+
 pathToRegexp_1.parse = parse_1;
 pathToRegexp_1.compile = compile_1;
 pathToRegexp_1.tokensToFunction = tokensToFunction_1;
@@ -14822,6 +14824,7 @@ function normalizePath (path, parent, strict) {
 
 /*  */
 
+
 function normalizeLocation (
   raw,
   current,
@@ -14836,9 +14839,9 @@ function normalizeLocation (
 
   // relative params
   if (!next.path && next.params && current) {
-    next = extend({}, next);
+    next = assign({}, next);
     next._normalized = true;
-    var params = extend(extend({}, current.params), next.params);
+    var params = assign(assign({}, current.params), next.params);
     if (current.name) {
       next.name = current.name;
       next.params = params;
@@ -14876,8 +14879,14 @@ function normalizeLocation (
   }
 }
 
-/*  */
+function assign (a, b) {
+  for (var key in b) {
+    a[key] = b[key];
+  }
+  return a
+}
 
+/*  */
 
 
 function createMatcher (
@@ -14947,8 +14956,8 @@ function createMatcher (
   ) {
     var originalRedirect = record.redirect;
     var redirect = typeof originalRedirect === 'function'
-      ? originalRedirect(createRoute(record, location, null, router))
-      : originalRedirect;
+        ? originalRedirect(createRoute(record, location, null, router))
+        : originalRedirect;
 
     if (typeof redirect === 'string') {
       redirect = { path: redirect };
@@ -15062,8 +15071,7 @@ function matchRoute (
     var key = regex.keys[i - 1];
     var val = typeof m[i] === 'string' ? decodeURIComponent(m[i]) : m[i];
     if (key) {
-      // Fix #1994: using * with props: true generates a param named 0
-      params[key.name || 'pathMatch'] = val;
+      params[key.name] = val;
     }
   }
 
@@ -15076,12 +15084,12 @@ function resolveRecordPath (path, record) {
 
 /*  */
 
+
 var positionStore = Object.create(null);
 
 function setupScroll () {
   // Fix for #1585 for Firefox
-  // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
-  window.history.replaceState({ key: getStateKey() }, '', window.location.href.replace(window.location.origin, ''));
+  window.history.replaceState({ key: getStateKey() }, '');
   window.addEventListener('popstate', function (e) {
     saveScrollPosition();
     if (e.state && e.state.key) {
@@ -15112,7 +15120,7 @@ function handleScroll (
   // wait until re-render finishes before scrolling
   router.app.$nextTick(function () {
     var position = getScrollPosition();
-    var shouldScroll = behavior.call(router, to, from, isPop ? position : null);
+    var shouldScroll = behavior(to, from, isPop ? position : null);
 
     if (!shouldScroll) {
       return
@@ -15674,10 +15682,7 @@ function poll (
   key,
   isValid
 ) {
-  if (
-    instances[key] &&
-    !instances[key]._isBeingDestroyed // do not reuse being destroyed instance
-  ) {
+  if (instances[key]) {
     cb(instances[key]);
   } else if (isValid()) {
     setTimeout(function () {
@@ -15688,6 +15693,7 @@ function poll (
 
 /*  */
 
+
 var HTML5History = (function (History$$1) {
   function HTML5History (router, base) {
     var this$1 = this;
@@ -15695,9 +15701,8 @@ var HTML5History = (function (History$$1) {
     History$$1.call(this, router, base);
 
     var expectScroll = router.options.scrollBehavior;
-    var supportsScroll = supportsPushState && expectScroll;
 
-    if (supportsScroll) {
+    if (expectScroll) {
       setupScroll();
     }
 
@@ -15713,7 +15718,7 @@ var HTML5History = (function (History$$1) {
       }
 
       this$1.transitionTo(location, function (route) {
-        if (supportsScroll) {
+        if (expectScroll) {
           handleScroll(router, route, current, true);
         }
       });
@@ -15767,7 +15772,7 @@ var HTML5History = (function (History$$1) {
 }(History));
 
 function getLocation (base) {
-  var path = decodeURI(window.location.pathname);
+  var path = window.location.pathname;
   if (base && path.indexOf(base) === 0) {
     path = path.slice(base.length);
   }
@@ -15775,6 +15780,7 @@ function getLocation (base) {
 }
 
 /*  */
+
 
 var HashHistory = (function (History$$1) {
   function HashHistory (router, base, fallback) {
@@ -15885,7 +15891,7 @@ function getHash () {
   // consistent across browsers - Firefox will pre-decode it!
   var href = window.location.href;
   var index = href.indexOf('#');
-  return index === -1 ? '' : decodeURI(href.slice(index + 1))
+  return index === -1 ? '' : href.slice(index + 1)
 }
 
 function getUrl (path) {
@@ -15912,6 +15918,7 @@ function replaceHash (path) {
 }
 
 /*  */
+
 
 var AbstractHistory = (function (History$$1) {
   function AbstractHistory (router, base) {
@@ -15970,8 +15977,6 @@ var AbstractHistory = (function (History$$1) {
 }(History));
 
 /*  */
-
-
 
 var VueRouter = function VueRouter (options) {
   if ( options === void 0 ) options = {};
@@ -16169,7 +16174,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.2';
+VueRouter.version = '3.0.1';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -21545,6 +21550,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -21574,6 +21580,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     methods: {
+        // todo:- habis register kembali ke home
+        //      x masih localhost
+        ShowRegister: function ShowRegister() {
+            var element = document.getElementById("modal-center");
+            UIkit.modal(element).hide();
+        },
         LoginHandler: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e) {
                 var element;
@@ -21816,9 +21828,10 @@ var render = function() {
                       {
                         staticClass:
                           "uk-button uk-button-small uk-button-danger",
-                        attrs: { to: "/register" }
+                        attrs: { to: "/register" },
+                        on: { click: _vm.ShowRegister }
                       },
-                      [_vm._v("Buat akun!")]
+                      [_vm._v("Buat\n                            akun!")]
                     )
                   ],
                   1
@@ -24578,7 +24591,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         options: function options() {
             var dropzoneOptions = {
-                url: 'http://localhost:8000/api/upload-proof/' + this.id,
+                url: 'http://paw.yurichandra.com/api/upload-proof/' + this.id,
                 thumbnailWidth: 150,
                 maxFilesize: 20,
                 headers: {
@@ -24614,7 +24627,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         dropzoneChangeUrl: function dropzoneChangeUrl() {
             console.log("id", this.id);
-            this.$refs.myVueDropzone.setOption('url', 'http://localhost:8000/api/upload-proof/' + this.id);
+            this.$refs.myVueDropzone.setOption('url', 'http://paw.yurichandra.com/api/upload-proof/' + this.id);
         }
     }
 });

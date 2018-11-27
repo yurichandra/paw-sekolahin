@@ -107,7 +107,7 @@
         computed: {
             options() {
                 var dropzoneOptions = {
-                    url: 'http://localhost:8000/api/upload-proof/' + this.id,
+                    url: 'http://paw.yurichandra.com/api/upload-proof/' + this.id,
                     thumbnailWidth: 150,
                     maxFilesize: 20,
                     headers: {
@@ -143,7 +143,7 @@
             },
             dropzoneChangeUrl() {
                 console.log("id", this.id)
-                this.$refs.myVueDropzone.setOption('url', 'http://localhost:8000/api/upload-proof/' + this.id, )
+                this.$refs.myVueDropzone.setOption('url', 'http://paw.yurichandra.com/api/upload-proof/' + this.id, )
             },
         }
     }
