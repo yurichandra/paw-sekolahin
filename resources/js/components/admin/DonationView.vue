@@ -37,8 +37,8 @@
         mapState,
         mapActions
     } from 'vuex'
-    import jsPDF from 'jspdf'
-    import html2canvas from 'html2canvas'
+    import jsPDF  from 'jspdf'
+    require("jspdf-autotable")
 
     export default {
         computed: {
@@ -69,21 +69,17 @@
                 }
             },
             DownloadPDF() {
-                var doc = new jsPDF();
-
-                const filename = 'BikinReporrt.pdf';
-
-                html2canvas(document.querySelector('#pdfthisshit')).then(canvas => {
-                    let margins = {
-                        top: 40,
-                        bottom: 60,
-                        left: 40,
-                        width: 522
-                    };
-                    let pdf = new jsPDF('p', 'mm', 'a4');
-                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
-                    pdf.save(filename);
+                var columns = ["ID", "DONORS", "CAMPAIGNS","AMOUNT","STATUS",];
+                var rows = [];
+                this.donations.forEach(element => {
+                    let inside = [element.id, element.donors, element.campaign, element.amount, element.status];
+                    rows.push(inside);
                 });
+
+                // Only pt supported (not mm or in)
+                var doc = new jsPDF('p', 'pt');
+                doc.autoTable(columns, rows);
+                doc.save('tableRepottt.pdf');
             }
         }
     }

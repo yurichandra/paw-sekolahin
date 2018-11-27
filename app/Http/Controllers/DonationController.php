@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\DonationService;
 use App\Transformers\DonationTransformer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 
 class DonationController extends RestController
 {
@@ -170,7 +171,6 @@ class DonationController extends RestController
         ]);
 
         $path = $request->file('photo')->store('images');
-
         $data = [
             'user_id' => $id,
             'path' => $path,
