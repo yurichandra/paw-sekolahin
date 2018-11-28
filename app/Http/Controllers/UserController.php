@@ -187,7 +187,7 @@ class UserController extends RestController
             $model = $service->verify($token);
             $response = $this->generateItem($model);
 
-            return $this->sendResponse($response);
+            return redirect()->to('/');
         } catch (\Exception $e) {
             return $this->sendIseResponse($e->getMessage());
         }
