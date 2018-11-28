@@ -76,9 +76,7 @@
 
             donationTotal () {
                 return this.donations.reduce((acc, donation) => {
-                    acc += donation.amount
-
-                    return acc
+                    return Number(acc += donation.amount)
                 }, 0)
             },
 

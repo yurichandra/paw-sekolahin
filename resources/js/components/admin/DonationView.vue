@@ -79,7 +79,7 @@
                 // Only pt supported (not mm or in)
                 var doc = new jsPDF('p', 'pt');
                 doc.autoTable(columns, rows);
-                doc.save('tableRepottt.pdf');
+                doc.save('DonationReport.pdf');
             }
         }
     }
