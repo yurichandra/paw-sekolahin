@@ -37,7 +37,7 @@
 
                         </fieldset>
                     </form>
-
+                    <span class="alert-success" v-if="status">Edit Succesfully!</span>
                 </div>
             </div>
         </div>
@@ -69,7 +69,8 @@
             return {
                 date: '',
                 message: '',
-                title: ''
+                title: '',
+                status: false
             }
         },
 
@@ -111,6 +112,7 @@
 
                 try {
                     this.updateCampaign(payload)
+                    this.status = true
                 } catch (err) {
                     console.log(err)
                 }
@@ -124,7 +126,15 @@
 
 </script>
 
-<style>
-
+<style scoped>
+    .alert-success {
+        background: #66cc99;
+        color: white;
+        padding: 5px;
+        margin: 0 auto;
+        width: 300px;
+        text-align: center;
+        border-radius: 3px;
+    }
 </style>
 
