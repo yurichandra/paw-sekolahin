@@ -13,7 +13,27 @@ class Token extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
+        'email',
+        'password',
+        'generated_at',
+        'last_used_at',
+    ];
+
+    /**
+     * Casts attributes dates
+     *
+     * @var array
+     */
+    protected $dates = [
+        'generated_at',
+        'last_used_at',
+    ];
+
+    /**
+     * Attributes that are hidden.
+     */
+    protected $hidden = [
+        'user_id'
     ];
 
     public function user()

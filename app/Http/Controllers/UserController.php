@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Photo;
+use Carbon\Carbon;
 
 class UserController extends RestController
 {
@@ -53,6 +54,8 @@ class UserController extends RestController
             'confirmPassword' => 'required|same:password',
         ]);
 
+        $now = Carbon::now();
+
         try {
             $data = [
                 'role_id' => 1,
@@ -60,7 +63,12 @@ class UserController extends RestController
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'status' => false,
-                'token' => str_random(40),
+                'token' => [
+                    'email' => str_random(32),
+                    'password' => str_random(32),
+                    'generated_at' => $now,
+                    'last_used_at' => $now,
+                ]
             ];
 
             $model = $service->create($data);

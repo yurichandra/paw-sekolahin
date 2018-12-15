@@ -69,7 +69,9 @@
 
     export default {
         name: "login-form",
+        
         props: {},
+        
         data() {
             return {
                 email: '',
@@ -79,12 +81,12 @@
                 standby: false
             }
         },
+
         computed: {
             CheckCookie() {
-                const SavedEmail = Auth.LoadCookie();
+                const SavedEmail = Auth.getToken();
                 if (SavedEmail) {
                     this.saved = true;
-                    this.email = SavedEmail;
                     return true;
                 }
                 return false;
@@ -92,14 +94,13 @@
         },
 
         methods: {
-            // todo:- habis register kembali ke home
-            //      x masih localhost
             ShowRegister() {
                 var element = document.getElementById("modal-center");
                 console.log("your ele", element)
 
                 UIkit.modal(element).hide();
             },
+
             async LoginHandler(e) {
                 e.preventDefault();
                 this.standby = true;

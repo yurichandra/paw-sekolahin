@@ -54,9 +54,9 @@ class User extends Authenticatable
     /**
      * Define relation between user and token.
      */
-    public function token()
+    public function tokens()
     {
-        return $this->hasOne(Token::class, 'user_id');
+        return $this->hasMany(Token::class, 'user_id');
     }
 
     public function role()

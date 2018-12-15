@@ -5,26 +5,6 @@ export default {
         axios.defaults.baseURL = '127.0.0.1/';
     },
 
-    setHeader (email) {
-        axios.defaults.headers.common['Authorization'] = email
-    },
-
-    getHeader () {
-        return axios.defaults.headers.common['Authorization']
-    },
-
-    isHeaderExist () {
-        if (axios.defaults.headers.common['Authorization']) {
-            return true
-        }
-
-        return false
-    },
-
-    deleteHeader () {
-        delete axios.defaults.headers.common['Authorization']
-    },
-
     get (url, successCallback, errorCallback) {
         return axios.request({
             url,
@@ -61,5 +41,21 @@ export default {
         })
         .then(successCallback)
         .catch(errorCallback);
-    }
+    },
+
+    setHeader(token) {
+        axios.defaults.headers.common['Authorization'] = 'Basic ' + btoa(token.username + ':' + token.password)
+    },
+
+    getHeader() {
+        return axios.defaults.headers.common['Authorization']
+    },
+
+    isHeaderExist() {
+        if (axios.defaults.headers.common['Authorization']) {
+            return true
+        }
+
+        return false
+    },
 }

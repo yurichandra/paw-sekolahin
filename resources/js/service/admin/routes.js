@@ -6,25 +6,8 @@ import DonationView from '../../components/admin/DonationView.vue'
 import CampaignView from '../../components/admin/CampaignView'
 import SchoolView from '../../components/admin/SchoolView.vue'
 import SchoolEdit from '../../components/admin/SchoolEdit.vue'
-import Http from '../../http'
 
-const ifNotAuthenticated = (to, from, next) => {
-    if (!Http.isHeaderExist()) {
-        next()
-        return
-    }
-    next('/admin/login')
-}
-
-const ifAuthenticated = (to, from, next) => {
-    if (Http.isHeaderExist()) {
-        next()
-        return
-    }
-    next('/admin/dashboard')
-}
-
-export const routes = [
+const routes = [
     {
         name : 'admin',
         path : '/admin',
@@ -34,13 +17,11 @@ export const routes = [
         name : 'login',
         path : '/admin/login',
         component : LoginView,
-        beforeEnter: ifNotAuthenticated
     },
     {
         name : 'dashboard',
         path : '/admin/dashboard',
         component : DashboardView,
-        beforeEnter: ifAuthenticated
     },
     {
         name : 'users',
@@ -68,3 +49,5 @@ export const routes = [
         component: SchoolEdit
     }
 ]
+
+export default routes

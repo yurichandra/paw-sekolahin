@@ -62,10 +62,6 @@
                 }
             }
         },
-
-        created () {
-            console.log(Auth.LoadCookie())
-        }
     }
 </script>
 

@@ -16,13 +16,7 @@
             HeaderView : Header,
             LoginView: LoginView
         },
-
-        data () {
-            return {
-                // auth : false
-            }
-        },
-
+        
         computed: {
             ...mapGetters({
                 status: 'LoggedUser/status'
@@ -35,10 +29,6 @@
 
                 return false
             }
-        },
-
-        created () {
-            console.log(this.status)
         },
 
         mounted () {

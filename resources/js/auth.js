@@ -11,11 +11,16 @@ export default {
             };
 
             const successCallback = (res) => {
-                const user = res.data
-                store.commit('LoggedUser/setSource', user.data);
+                const accessToken = {
+                    username: res.data.data.email,
+                    password: res.data.data.password
+                }
+
+                Http.setHeader(accessToken)
                 store.commit('LoggedUser/loggedIn')
-                this.SaveEmail(payload.email)
-                Http.setHeader(this.LoadCookie())
+                this.saveToken(accessToken)
+                this.whoami() 
+
                 resolve();
             };
 
@@ -25,6 +30,35 @@ export default {
 
             Http.post('/api/login', payload, successCallback, errorCallback);
         });
+    },
+
+    /**
+     * To determine which user is currently logged in.
+     */
+    whoami() {
+        return new Promise((resolve, reject) => {
+            const successCallback = (res) => {
+                store.commit('LoggedUser/setSource', res.data.data)
+                resolve()
+            }
+
+            const errorCallback = (err) => {
+                reject(err)                
+            }
+
+            Http.get('/api/whoami', successCallback, errorCallback)
+        })
+    },
+
+    /**
+     * When user hit refresh button
+     * apps continue to keep user logged in.
+     */
+    refresh() {
+        const token = JSON.parse(this.getToken())
+        Http.setHeader(token)
+        this.whoami()
+        store.commit('LoggedUser/loggedIn') 
     },
 
     register (email, name, password, confirmPassword) {
@@ -37,7 +71,6 @@ export default {
             };
 
             const successCallback =  (res) => {
-                const data = res.data;
                 resolve();
             };
 
@@ -50,22 +83,21 @@ export default {
     },
 
     logout () {
-        this.DeleteCookie()
-        Http.deleteHeader()
+        this.deleteToken()
         store.commit('LoggedUser/setSource', {})
         store.commit('LoggedUser/loggedOut')
         store.commit('User/setSource', {})
     },
 
-    SaveEmail (email) {
-        Cookie.set('email', email);
+    saveToken (token) {
+        Cookie.set('token', token);
     },
 
-    LoadCookie () {
-        return Cookie.get('email');
+    getToken () {
+        return Cookie.get('token') ? Cookie.get('token') : 'undefined'
     },
 
-    DeleteCookie() {
-        Cookie.remove('email');
+    deleteToken () {
+        Cookie.remove('token');
     }
 };

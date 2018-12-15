@@ -13,9 +13,9 @@ class UserService
 {
     protected $repo;
 
-    public function __construct(UserRepository $repo)
+    public function __construct()
     {
-        $this->repo = $repo;
+        $this->repo = new UserRepository;
     }
 
     /**
@@ -49,9 +49,6 @@ class UserService
         try {
             DB::transaction(function () use ($data, &$user) {
                 $user = User::create($data);
-                $token = [
-                    'name' => $data['token'],
-                ];
 
                 $personal = [
                     'photo_id' => null,
@@ -59,7 +56,7 @@ class UserService
                     'identity_number' => null,
                 ];
 
-                $user->token()->create($token);
+                $user->tokens()->create($data['token']);
                 $user->personal()->create($personal);
             });
 
