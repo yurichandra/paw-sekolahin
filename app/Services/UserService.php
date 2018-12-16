@@ -108,7 +108,7 @@ class UserService
      */
     public function verify($token = null)
     {
-        $token = Token::where('name', $token)->first();
+        $token = Token::where('email', $token)->first();
 
         if (!is_null($token)) {
             $user = $token->user;
