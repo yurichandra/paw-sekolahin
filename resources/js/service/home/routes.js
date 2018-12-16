@@ -6,7 +6,7 @@ import RegisterView from '../../views/Register.vue';
 import DetailView from '../../views/CampaignDetail.vue';
 import CampaignEdit from '../../views/CampaignEdit'
 
-export const routes = [
+const routes = [
     {
         path: '/',
         name: 'home',
@@ -48,3 +48,5 @@ export const routes = [
         component: HomeView
     },
 ]
+
+export default routes

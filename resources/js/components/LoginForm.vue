@@ -110,7 +110,6 @@
                         pos: 'top-right',
                         status: 'primary'
                     })
-                    console.log(this.$store.getters['LoggedUser/name'])
 
                     var element = document.getElementById("modal-center");
                     UIkit.modal(element).hide();
